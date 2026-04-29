@@ -84,6 +84,12 @@ return [
     'tech_title' => 'Technologies',
     'tech_subtitle' => 'Modern technologies, proven architecture.',
 
+    // Slider
+    'slider_title' => 'Solutions we build',
+    'slider_subtitle' => 'A sample of the platforms and modules we can craft for your business.',
+    'slider_prev' => 'View previous',
+    'slider_next' => 'View next',
+
     // Why us
     'why_title' => 'Why choose us?',
     'why_subtitle' => 'What sets us apart as a development agency.',

@@ -84,6 +84,12 @@ return [
     'tech_title' => 'Tecnologías',
     'tech_subtitle' => 'Tecnologías modernas, arquitectura probada.',
 
+    // Slider
+    'slider_title' => 'Soluciones que construimos',
+    'slider_subtitle' => 'Una muestra del tipo de plataformas y módulos que podemos crear para tu negocio.',
+    'slider_prev' => 'Ver anteriores',
+    'slider_next' => 'Ver siguientes',
+
     // Why us
     'why_title' => '¿Por qué elegirnos?',
     'why_subtitle' => 'Lo que nos diferencia como agencia de desarrollo.',

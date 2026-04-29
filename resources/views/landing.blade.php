@@ -328,6 +328,104 @@
     </section>
 
     {{-- ============================================================
+         FEATURED WORK SLIDER
+         ============================================================ --}}
+    <section id="muestras" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="slider-heading">
+        <div class="absolute inset-0 -z-10" aria-hidden="true"
+             style="background:
+                radial-gradient(ellipse 68% 50% at 24% 38%, rgba(111,168,216,0.10) 0%, transparent 70%),
+                radial-gradient(ellipse 56% 45% at 78% 62%, rgba(242,184,178,0.10) 0%, transparent 65%);"></div>
+
+        @php
+            $sliderCards = [
+                [
+                    'label' => __('landing.service_laravel_title'),
+                    'title' => __('landing.service_laravel_benefit'),
+                    'description' => __('landing.service_laravel_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1630609083938-3acb39a06392?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'label' => __('landing.service_angular_title'),
+                    'title' => __('landing.service_angular_benefit'),
+                    'description' => __('landing.service_angular_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1629194893765-3a904e9080dd?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'label' => __('landing.service_node_title'),
+                    'title' => __('landing.service_node_benefit'),
+                    'description' => __('landing.service_node_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1703587820365-dad81a7c5908?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'label' => __('landing.service_db_title'),
+                    'title' => __('landing.service_db_benefit'),
+                    'description' => __('landing.service_db_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1629196613836-0a7e2541990a?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'label' => __('landing.service_cloud_title'),
+                    'title' => __('landing.service_cloud_benefit'),
+                    'description' => __('landing.service_cloud_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1630609084037-ddb2b4a3fa67?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'label' => __('landing.service_consulting_title'),
+                    'title' => __('landing.service_consulting_benefit'),
+                    'description' => __('landing.service_consulting_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1629654858857-615c2c8be8a8?q=80&w=900&auto=format&fit=crop',
+                ],
+            ];
+        @endphp
+
+        <div class="max-w-6xl mx-auto" data-acuarela-carousel>
+            <div class="mb-8 md:mb-10 grid grid-cols-2 items-center gap-3">
+                <div>
+                    <h2 id="slider-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-2">{{ __('landing.slider_title') }}</h2>
+                    <p class="font-sans text-ink/60 text-base md:text-lg">{{ __('landing.slider_subtitle') }}</p>
+                </div>
+
+                <div class="ms-auto flex items-center gap-x-2">
+                    <button type="button" data-carousel-prev class="inline-flex justify-center items-center size-9 sm:size-10 bg-paper border border-acuarela-400/25 text-petroleo rounded-full transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed hover:border-acuarela-400/45 hover:bg-acuarela-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.slider_prev') }}">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button type="button" data-carousel-next class="inline-flex justify-center items-center size-9 sm:size-10 bg-paper border border-acuarela-400/25 text-petroleo rounded-full transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed hover:border-acuarela-400/45 hover:bg-acuarela-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.slider_next') }}">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-hidden -mx-2.5" data-carousel-viewport>
+                <ul class="flex transition-transform duration-500 ease-out" data-carousel-track>
+                    @foreach ($sliderCards as $card)
+                        <li class="shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 px-2.5">
+                            <article class="h-full rounded-soft border border-acuarela-400/20 bg-paper overflow-hidden transition-all duration-250 hover:-translate-y-0.5 hover:border-acuarela-400/35">
+                                <div class="relative h-44">
+                                    <div class="absolute inset-0" style="background-image: url('{{ $card['image'] }}'); background-size: cover; background-position: center;"></div>
+                                    <div class="absolute inset-0 bg-linear-to-tr from-petroleo/25 via-acuarela-400/10 to-salmon/15"></div>
+                                    <div class="absolute top-4 left-4 inline-flex px-3 py-1 rounded-pill bg-paper/90 text-petroleo font-sans text-xs font-semibold">
+                                        {{ $card['label'] }}
+                                    </div>
+                                </div>
+
+                                <div class="p-5 flex items-start gap-4">
+                                    <div class="grow">
+                                        <h3 class="font-heading text-ink text-lg font-semibold mb-2">{{ $card['title'] }}</h3>
+                                        <p class="font-sans text-sm text-ink/70 leading-relaxed">{{ $card['description'] }}</p>
+                                    </div>
+
+                                    <a href="#contacto" class="shrink-0 inline-flex items-center justify-center size-10 rounded-full bg-paper border border-acuarela-400/25 text-petroleo transition-colors duration-200 hover:bg-acuarela-50 hover:border-acuarela-400/45" aria-label="{{ __('landing.offer_cta') }}">
+                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                                    </a>
+                                </div>
+                            </article>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    {{-- ============================================================
          WHY US
          ============================================================ --}}
     <section id="por-que-nosotros" class="py-20 px-6 reveal" aria-labelledby="why-heading">
