@@ -148,9 +148,9 @@ return [
     'contact_select_placeholder' => 'Selecciona una opción',
 
     // CTA mid-page
-    'mid_cta_title' => '¿Tienes un proyecto en mente?',
-    'mid_cta_subtitle' => 'Hablemos sobre cómo podemos ayudarte.',
-    'mid_cta_button' => 'Hablemos',
+    'mid_cta_title' => 'Descubre lo que podemos construir para ti',
+    'mid_cta_subtitle' => 'Explora nuestro catálogo de módulos y funcionalidades, selecciona lo que necesitas y recibe una estimación personalizada al instante.',
+    'mid_cta_button' => 'Explorar módulos y funcionalidades',
 
     // Footer
     'footer_tagline' => 'El arte de crear software',

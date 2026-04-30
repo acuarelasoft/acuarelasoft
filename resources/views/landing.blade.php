@@ -308,29 +308,6 @@
     </section>
 
     {{-- ============================================================
-         MID-PAGE CTA — Watercolor wash accent
-         ============================================================ --}}
-    <section id="cta-mid" class="relative py-16 px-6 overflow-hidden reveal" aria-labelledby="mid-cta-heading">
-        <div class="absolute inset-0 -z-10" aria-hidden="true"
-             style="background:
-                radial-gradient(ellipse 60% 70% at 30% 50%, rgba(242,184,178,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 50% at 75% 40%, rgba(191,231,214,0.10) 0%, transparent 55%);">
-        </div>
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 id="mid-cta-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.mid_cta_title') }}</h2>
-            <p class="font-sans text-ink/60 text-lg mb-8">{{ __('landing.mid_cta_subtitle') }}</p>
-            <a href="#contacto" class="inline-flex bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
-                {{ __('landing.mid_cta_button') }}
-            </a>
-        </div>
-    </section>
-
-    {{-- Brush-stroke separator --}}
-    <svg viewBox="0 0 1200 30" preserveAspectRatio="none" class="w-full h-6" aria-hidden="true">
-        <path d="M0,15 Q150,8 300,16 T600,12 T900,17 T1200,14" stroke="rgba(191,231,214,0.35)" stroke-width="3" fill="none" stroke-linecap="round"/>
-    </svg>
-
-    {{-- ============================================================
          PROCESS — Timeline style
          ============================================================ --}}
     <section id="proceso" class="py-20 px-6 reveal" aria-labelledby="process-heading">
@@ -369,6 +346,7 @@
             </ol>
         </div>
     </section>
+
 
     {{-- ============================================================
          TECHNOLOGIES — Pill badges
@@ -543,6 +521,24 @@
                     </article>
                 </li>
             </ul>
+        </div>
+    </section>
+
+    {{-- ============================================================
+        MID-PAGE CTA — Watercolor wash accent
+        ============================================================ --}}
+    <section id="cta-mid" class="relative py-16 px-6 overflow-hidden reveal" aria-labelledby="mid-cta-heading">
+        <div class="absolute inset-0 -z-10" aria-hidden="true"
+             style="background:
+                radial-gradient(ellipse 60% 70% at 30% 50%, rgba(242,184,178,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 75% 40%, rgba(191,231,214,0.10) 0%, transparent 55%);">
+        </div>
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 id="mid-cta-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.mid_cta_title') }}</h2>
+            <p class="font-sans text-ink/60 text-lg mb-8">{{ __('landing.mid_cta_subtitle') }}</p>
+            <a href="{{ app()->getLocale() === 'es' ? route('intake') : route('intake.en') }}" class="inline-flex bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
+                {{ __('landing.mid_cta_button') }}
+            </a>
         </div>
     </section>
 
