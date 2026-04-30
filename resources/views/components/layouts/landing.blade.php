@@ -173,14 +173,26 @@
 
                 <section>
                     <h2 class="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-petroleo mb-4">{{ __('landing.footer_get_in_touch_heading') }}</h2>
-                    <address class="not-italic space-y-2.5 font-sans text-ink/78">
+                    <address class="not-italic space-y-4 font-sans text-ink/78">
                         <p>
                             <a href="mailto:contacto@acuarelasoft.dev" class="hover:text-petroleo transition-colors duration-200">contacto@acuarelasoft.dev</a>
                         </p>
-                        <p>
-                            <a href="https://wa.me/5256494401900" rel="noopener noreferrer" target="_blank" class="hover:text-petroleo transition-colors duration-200">+52 56 4944 0190</a>
-                        </p>
-                        <p>{{ __('landing.footer_location') }}</p>
+
+                        <div class="space-y-2">
+                            <div class="rounded-soft border border-acuarela-300/35 bg-paper/70 px-3 py-2.5">
+                                <p class="text-[11px] font-semibold uppercase tracking-[0.1em] text-petroleo/80">
+                                    {{ app()->getLocale() === 'es' ? 'Sede CDMX' : 'CDMX Office' }}
+                                </p>
+                                <a href="https://wa.me/5256494401900" rel="noopener noreferrer" target="_blank" class="mt-1 block hover:text-petroleo transition-colors duration-200" aria-label="{{ app()->getLocale() === 'es' ? 'WhatsApp sede CDMX' : 'CDMX office WhatsApp' }}">+52 56 4944 0190</a>
+                            </div>
+
+                            <div class="rounded-soft border border-acuarela-300/35 bg-paper/70 px-3 py-2.5">
+                                <p class="text-[11px] font-semibold uppercase tracking-[0.1em] text-petroleo/80">
+                                    {{ app()->getLocale() === 'es' ? 'Sede Monterrey' : 'Monterrey Office' }}
+                                </p>
+                                <a href="https://wa.me/5218112495823" rel="noopener noreferrer" target="_blank" class="mt-1 block hover:text-petroleo transition-colors duration-200" aria-label="{{ app()->getLocale() === 'es' ? 'WhatsApp sede Monterrey' : 'Monterrey office WhatsApp' }}">+52 1 81 1249 5823</a>
+                            </div>
+                        </div>
                     </address>
                 </section>
             </div>
