@@ -547,188 +547,221 @@
     </section>
 
     {{-- ============================================================
-         EARLY CLIENTS OFFER — Highlighted section
+         SCHEDULE A CALL — Early offer + scheduling form (merged)
          ============================================================ --}}
-    <section id="oferta" class="relative py-16 px-6 overflow-hidden reveal" aria-labelledby="offer-heading">
+    <section id="contacto" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="contact-heading">
         <div class="absolute inset-0 -z-10" aria-hidden="true"
              style="background:
-                radial-gradient(ellipse 70% 60% at 25% 40%, rgba(242,184,178,0.15) 0%, transparent 65%),
-                radial-gradient(ellipse 50% 50% at 80% 60%, rgba(111,168,216,0.12) 0%, transparent 60%);">
+                radial-gradient(ellipse 65% 70% at 5% 55%, rgba(242,184,178,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 55% at 92% 25%, rgba(111,168,216,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 40% at 50% 98%, rgba(191,231,214,0.10) 0%, transparent 50%);">
         </div>
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 id="offer-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.offer_title') }}</h2>
-            <p class="font-sans text-ink/70 text-lg leading-relaxed mb-8">{{ __('landing.offer_desc') }}</p>
-            <a href="#contacto" class="inline-flex bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
-                {{ __('landing.offer_cta') }}
-            </a>
-            <p class="mt-4 font-sans text-sm text-ink/50">{{ __('landing.offer_scarcity') }}</p>
-        </div>
-    </section>
 
-    {{-- Brush-stroke separator --}}
-    <svg viewBox="0 0 1200 30" preserveAspectRatio="none" class="w-full h-6" aria-hidden="true">
-        <path d="M0,13 Q200,20 400,12 T800,16 T1200,14" stroke="rgba(242,184,178,0.3)" stroke-width="3" fill="none" stroke-linecap="round"/>
-    </svg>
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
-    {{-- ============================================================
-         CONTACT FORM
-         ============================================================ --}}
-    <section id="contacto" class="py-20 px-6 reveal" aria-labelledby="contact-heading">
-        <div class="max-w-2xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 id="contact-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.contact_title') }}</h2>
-                <p class="font-sans text-ink/60 text-lg">{{ __('landing.contact_subtitle') }}</p>
-            </div>
+                {{-- Left: Offer content --}}
+                <div class="lg:sticky lg:top-24">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-pill border border-orange-300/50 bg-orange-50/70 text-orange-700 font-sans text-sm font-semibold mb-6">
+                        <span class="size-2 rounded-full bg-orange-400"></span>
+                        {{ __('landing.offer_badge') }}
+                    </span>
 
-            @session('success')
-                <div role="status" aria-live="polite" class="mb-8 p-4 rounded-soft bg-mint/20 border border-mint/40 text-center">
-                    <p class="font-sans text-ink font-medium">{{ $value }}</p>
-                </div>
-            @endsession
+                    <h2 id="contact-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-5 leading-tight">
+                        {{ __('landing.offer_title') }}
+                    </h2>
 
-            <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
-                @csrf
+                    <p class="font-sans text-ink/70 text-lg leading-relaxed mb-8">{{ __('landing.offer_desc') }}</p>
 
-                {{-- Honeypot anti-spam --}}
-                <div aria-hidden="true" hidden>
-                    <label for="website">Website</label>
-                    <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
-                </div>
+                    <ul class="space-y-4 mb-8 list-none">
+                        <li class="flex items-start gap-3">
+                            <span class="mt-0.5 shrink-0 size-5 rounded-full bg-mint/30 flex items-center justify-center">
+                                <svg class="w-3 h-3 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                            </span>
+                            <span class="font-sans text-ink/80 text-base">{{ __('landing.offer_benefit_1') }}</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-0.5 shrink-0 size-5 rounded-full bg-mint/30 flex items-center justify-center">
+                                <svg class="w-3 h-3 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                            </span>
+                            <span class="font-sans text-ink/80 text-base">{{ __('landing.offer_benefit_2') }}</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-0.5 shrink-0 size-5 rounded-full bg-mint/30 flex items-center justify-center">
+                                <svg class="w-3 h-3 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                            </span>
+                            <span class="font-sans text-ink/80 text-base">{{ __('landing.offer_benefit_3') }}</span>
+                        </li>
+                    </ul>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    {{-- Name --}}
-                    <div>
-                        <label for="name" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_name') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            autocomplete="name"
-                            value="{{ old('name') }}"
-                            class="w-full px-4 py-3 rounded-soft bg-paper border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30 {{ $errors->has('name') ? 'border-salmon' : '' }}"
-                            aria-describedby="{{ $errors->has('name') ? 'name-error' : '' }}"
-                            {{ $errors->has('name') ? 'aria-invalid=true' : '' }}
-                        >
-                        @error('name')
-                            <p id="name-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    {{-- Email --}}
-                    <div>
-                        <label for="email" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_email') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            required
-                            autocomplete="email"
-                            value="{{ old('email') }}"
-                            class="w-full px-4 py-3 rounded-soft bg-paper border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30 {{ $errors->has('email') ? 'border-salmon' : '' }}"
-                            aria-describedby="{{ $errors->has('email') ? 'email-error' : '' }}"
-                            {{ $errors->has('email') ? 'aria-invalid=true' : '' }}
-                        >
-                        @error('email')
-                            <p id="email-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
-                        @enderror
-                    </div>
+                    <p class="font-sans text-sm text-ink/50 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-salmon/70 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                        {{ __('landing.offer_scarcity') }}
+                    </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    {{-- Company --}}
-                    <div>
-                        <label for="company" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_company') }}</label>
-                        <input
-                            type="text"
-                            id="company"
-                            name="company"
-                            autocomplete="organization"
-                            value="{{ old('company') }}"
-                            class="w-full px-4 py-3 rounded-soft bg-paper border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30"
-                        >
-                    </div>
-
-                    {{-- Phone --}}
-                    <div>
-                        <label for="phone" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_phone') }}</label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            autocomplete="tel"
-                            value="{{ old('phone') }}"
-                            class="w-full px-4 py-3 rounded-soft bg-paper border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30"
-                        >
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    {{-- Project type --}}
-                    <div>
-                        <label for="project_type" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_project_type') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
-                        <select
-                            id="project_type"
-                            name="project_type"
-                            required
-                            class="w-full px-4 py-3 rounded-soft bg-paper border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 {{ $errors->has('project_type') ? 'border-salmon' : '' }}"
-                            aria-describedby="{{ $errors->has('project_type') ? 'project-type-error' : '' }}"
-                            {{ $errors->has('project_type') ? 'aria-invalid=true' : '' }}
-                        >
-                            <option value="">{{ __('landing.contact_select_placeholder') }}</option>
-                            <option value="new" @selected(old('project_type') === 'new')>{{ __('landing.contact_project_type_new') }}</option>
-                            <option value="modernization" @selected(old('project_type') === 'modernization')>{{ __('landing.contact_project_type_modernization') }}</option>
-                            <option value="consulting" @selected(old('project_type') === 'consulting')>{{ __('landing.contact_project_type_consulting') }}</option>
-                            <option value="other" @selected(old('project_type') === 'other')>{{ __('landing.contact_project_type_other') }}</option>
-                        </select>
-                        @error('project_type')
-                            <p id="project-type-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    {{-- Budget --}}
-                    <div>
-                        <label for="budget" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_budget') }}</label>
-                        <select id="budget" name="budget"
-                            class="w-full px-4 py-3 rounded-soft bg-paper border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15">
-                            <option value="">{{ __('landing.contact_select_placeholder') }}</option>
-                            <option value="under_20k" @selected(old('budget') === 'under_20k')>{{ __('landing.contact_budget_under_20k') }}</option>
-                            <option value="20k_50k" @selected(old('budget') === '20k_50k')>{{ __('landing.contact_budget_20k_50k') }}</option>
-                            <option value="50k_100k" @selected(old('budget') === '50k_100k')>{{ __('landing.contact_budget_50k_100k') }}</option>
-                            <option value="over_100k" @selected(old('budget') === 'over_100k')>{{ __('landing.contact_budget_over_100k') }}</option>
-                            <option value="unsure" @selected(old('budget') === 'unsure')>{{ __('landing.contact_budget_unsure') }}</option>
-                        </select>
-                    </div>
-                </div>
-
-                {{-- Message --}}
+                {{-- Right: Scheduling form --}}
                 <div>
-                    <label for="message" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_message') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        required
-                        maxlength="500"
-                        rows="5"
-                        class="w-full px-4 py-3 rounded-soft bg-paper border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 resize-y focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30 {{ $errors->has('message') ? 'border-salmon' : '' }}"
-                        aria-describedby="message-hint {{ $errors->has('message') ? 'message-error' : '' }}"
-                        {{ $errors->has('message') ? 'aria-invalid=true' : '' }}
-                    >{{ old('message') }}</textarea>
-                    <p id="message-hint" class="mt-1 font-sans text-xs text-ink/40">{{ app()->getLocale() === 'es' ? 'Máximo 500 caracteres.' : 'Maximum 500 characters.' }}</p>
-                    @error('message')
-                        <p id="message-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
-                    @enderror
+                    @session('success')
+                        <div role="status" aria-live="polite" class="mb-6 p-4 rounded-soft bg-mint/20 border border-mint/40 text-center">
+                            <p class="font-sans text-ink font-medium">{{ $value }}</p>
+                        </div>
+                    @endsession
+
+                    <div class="mb-6">
+                        <h3 class="font-heading text-ink text-xl font-semibold mb-1">{{ __('landing.contact_title') }}</h3>
+                        <p class="font-sans text-ink/60 text-base">{{ __('landing.contact_subtitle') }}</p>
+                    </div>
+
+                    <form action="{{ route('contact.submit') }}" method="POST" class="bg-paper rounded-soft border border-acuarela-400/20 p-6 md:p-8 space-y-6 shadow-sm">
+                        @csrf
+
+                        {{-- Honeypot anti-spam --}}
+                        <div aria-hidden="true" hidden>
+                            <label for="website">Website</label>
+                            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            {{-- Name --}}
+                            <div>
+                                <label for="name" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_name') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    autocomplete="name"
+                                    value="{{ old('name') }}"
+                                    class="w-full px-4 py-3 rounded-soft bg-white border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30 {{ $errors->has('name') ? 'border-salmon' : '' }}"
+                                    aria-describedby="{{ $errors->has('name') ? 'name-error' : '' }}"
+                                    {{ $errors->has('name') ? 'aria-invalid=true' : '' }}
+                                >
+                                @error('name')
+                                    <p id="name-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{-- Email --}}
+                            <div>
+                                <label for="email" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_email') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    autocomplete="email"
+                                    value="{{ old('email') }}"
+                                    class="w-full px-4 py-3 rounded-soft bg-white border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30 {{ $errors->has('email') ? 'border-salmon' : '' }}"
+                                    aria-describedby="{{ $errors->has('email') ? 'email-error' : '' }}"
+                                    {{ $errors->has('email') ? 'aria-invalid=true' : '' }}
+                                >
+                                @error('email')
+                                    <p id="email-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            {{-- Company --}}
+                            <div>
+                                <label for="company" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_company') }}</label>
+                                <input
+                                    type="text"
+                                    id="company"
+                                    name="company"
+                                    autocomplete="organization"
+                                    value="{{ old('company') }}"
+                                    class="w-full px-4 py-3 rounded-soft bg-white border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30"
+                                >
+                            </div>
+
+                            {{-- Phone --}}
+                            <div>
+                                <label for="phone" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_phone') }}</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    autocomplete="tel"
+                                    value="{{ old('phone') }}"
+                                    class="w-full px-4 py-3 rounded-soft bg-white border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            {{-- Topic --}}
+                            <div>
+                                <label for="project_type" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_topic') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
+                                <select
+                                    id="project_type"
+                                    name="project_type"
+                                    required
+                                    class="w-full px-4 py-3 rounded-soft bg-white border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 {{ $errors->has('project_type') ? 'border-salmon' : '' }}"
+                                    aria-describedby="{{ $errors->has('project_type') ? 'project-type-error' : '' }}"
+                                    {{ $errors->has('project_type') ? 'aria-invalid=true' : '' }}
+                                >
+                                    <option value="">{{ __('landing.contact_select_placeholder') }}</option>
+                                    <option value="new" @selected(old('project_type') === 'new')>{{ __('landing.contact_project_type_new') }}</option>
+                                    <option value="modernization" @selected(old('project_type') === 'modernization')>{{ __('landing.contact_project_type_modernization') }}</option>
+                                    <option value="consulting" @selected(old('project_type') === 'consulting')>{{ __('landing.contact_project_type_consulting') }}</option>
+                                    <option value="other" @selected(old('project_type') === 'other')>{{ __('landing.contact_project_type_other') }}</option>
+                                </select>
+                                @error('project_type')
+                                    <p id="project-type-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{-- Availability --}}
+                            <div>
+                                <label for="availability" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_availability') }}</label>
+                                <select
+                                    id="availability"
+                                    name="availability"
+                                    class="w-full px-4 py-3 rounded-soft bg-white border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15"
+                                >
+                                    <option value="">{{ __('landing.contact_select_placeholder') }}</option>
+                                    <option value="morning" @selected(old('availability') === 'morning')>{{ __('landing.contact_availability_morning') }}</option>
+                                    <option value="afternoon" @selected(old('availability') === 'afternoon')>{{ __('landing.contact_availability_afternoon') }}</option>
+                                    <option value="evening" @selected(old('availability') === 'evening')>{{ __('landing.contact_availability_evening') }}</option>
+                                    <option value="flexible" @selected(old('availability') === 'flexible')>{{ __('landing.contact_availability_flexible') }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {{-- Message --}}
+                        <div>
+                            <label for="message" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_message') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                required
+                                maxlength="500"
+                                rows="4"
+                                class="w-full px-4 py-3 rounded-soft bg-white border border-acuarela-400/20 font-sans text-ink text-base transition-all duration-200 resize-y focus:outline-none focus:border-acuarela-400/50 focus:ring-2 focus:ring-acuarela-400/15 placeholder:text-ink/30 {{ $errors->has('message') ? 'border-salmon' : '' }}"
+                                aria-describedby="message-hint {{ $errors->has('message') ? 'message-error' : '' }}"
+                                {{ $errors->has('message') ? 'aria-invalid=true' : '' }}
+                            >{{ old('message') }}</textarea>
+                            <p id="message-hint" class="mt-1 font-sans text-xs text-ink/40">{{ app()->getLocale() === 'es' ? 'Máximo 500 caracteres.' : 'Maximum 500 characters.' }}</p>
+                            @error('message')
+                                <p id="message-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Submit --}}
+                        <div class="pt-2">
+                            <button type="submit" class="w-full flex items-center justify-center gap-2 bg-petroleo text-paper font-sans font-medium px-10 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>
+                                {{ __('landing.contact_submit') }}
+                            </button>
+                            <p class="mt-4 font-sans text-sm text-ink/50 text-center">{{ __('landing.contact_note') }}</p>
+                            <p class="mt-1 font-sans text-xs text-ink/40 text-center">{{ __('landing.contact_privacy') }}</p>
+                        </div>
+                    </form>
                 </div>
 
-                {{-- Submit --}}
-                <div class="text-center pt-2">
-                    <button type="submit" class="bg-petroleo text-paper font-sans font-medium px-10 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base w-full sm:w-auto">
-                        {{ __('landing.contact_submit') }}
-                    </button>
-                    <p class="mt-4 font-sans text-sm text-ink/50">{{ __('landing.contact_note') }}</p>
-                    <p class="mt-1 font-sans text-xs text-ink/40">{{ __('landing.contact_privacy') }}</p>
-                </div>
-            </form>
+            </div>
         </div>
     </section>
 

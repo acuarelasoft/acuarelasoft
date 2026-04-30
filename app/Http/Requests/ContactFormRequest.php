@@ -26,7 +26,7 @@ class ContactFormRequest extends FormRequest
             'company' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'project_type' => ['required', 'string', 'in:new,modernization,consulting,other'],
-            'budget' => ['nullable', 'string', 'in:under_20k,20k_50k,50k_100k,over_100k,unsure'],
+            'availability' => ['nullable', 'string', 'in:morning,afternoon,evening,flexible'],
             'message' => ['required', 'string', 'max:500'],
         ];
     }
