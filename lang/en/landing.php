@@ -177,6 +177,7 @@ return [
     'contact_note' => 'We\'ll confirm within 24 hours • No commitment',
     'contact_privacy' => 'Your information is confidential.',
     'contact_success' => 'Thank you! We\'ve received your request. We\'ll contact you within 24 hours to confirm your call.',
+    'contact_success_close' => 'Dismiss notification',
     'contact_select_placeholder' => 'Select an option',
 
     // CTA mid-page

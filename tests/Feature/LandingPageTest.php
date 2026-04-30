@@ -121,7 +121,21 @@ test('contact form submits successfully with valid data', function () {
         'message' => 'I need a web application for my business.',
     ])
         ->assertRedirect()
-        ->assertSessionHas('success');
+        ->assertSessionHas('success_key', 'landing.contact_success');
+});
+
+test('contact success banner is translated to current page locale', function () {
+    $this->withSession(['success_key' => 'landing.contact_success'])
+        ->get('/en')
+        ->assertStatus(200)
+        ->assertSee('Thank you! We\'ve received your request. We\'ll contact you within 24 hours to confirm your call.')
+        ->assertSee('Dismiss notification');
+
+    $this->withSession(['success_key' => 'landing.contact_success'])
+        ->get('/')
+        ->assertStatus(200)
+        ->assertSee('¡Gracias! Hemos recibido tu solicitud. Te contactaremos en menos de 24 horas para confirmar tu llamada.')
+        ->assertSee('Cerrar notificacion');
 });
 
 test('contact form honeypot blocks spam', function () {

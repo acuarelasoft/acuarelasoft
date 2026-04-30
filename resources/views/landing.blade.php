@@ -1,5 +1,30 @@
 <x-layouts.landing>
 
+    @if (session()->has('success_key') || session()->has('success'))
+        <div id="contact-success-banner" class="fixed inset-x-0 top-8 z-90 px-4 sm:px-6 pointer-events-none">
+            <div role="status" aria-live="polite" class="mx-auto max-w-3xl pointer-events-auto rounded-soft border border-mint/45 bg-paper/95 backdrop-blur px-4 py-3 shadow-lg shadow-petroleo/10 sm:px-5">
+                <div class="flex items-start gap-3">
+                    <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint/45 text-petroleo" aria-hidden="true">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                    </span>
+
+                    <p class="flex-1 font-sans text-sm sm:text-base text-ink font-medium leading-relaxed">
+                        {{ session()->has('success_key') ? __(session('success_key')) : session('success') }}
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="document.getElementById('contact-success-banner')?.remove()"
+                        class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-soft text-ink/60 transition hover:bg-acuarela-100 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo"
+                        aria-label="{{ __('landing.contact_success_close') }}"
+                    >
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
+
     {{-- JSON-LD: Organization + WebSite --}}
     @push('structured-data')
     <script type="application/ld+json">
@@ -618,12 +643,6 @@
 
                 {{-- Right: Scheduling form --}}
                 <div>
-                    @session('success')
-                        <div role="status" aria-live="polite" class="mb-6 p-4 rounded-soft bg-mint/20 border border-mint/40 text-center">
-                            <p class="font-sans text-ink font-medium">{{ $value }}</p>
-                        </div>
-                    @endsession
-
                     <div class="mb-6">
                         <h3 class="font-heading text-ink text-xl font-semibold mb-1">{{ __('landing.contact_title') }}</h3>
                         <p class="font-sans text-ink/60 text-base">{{ __('landing.contact_subtitle') }}</p>

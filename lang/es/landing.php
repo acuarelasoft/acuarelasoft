@@ -177,6 +177,7 @@ return [
     'contact_note' => 'Te confirmamos en menos de 24 h • Sin compromiso',
     'contact_privacy' => 'Tu información es confidencial.',
     'contact_success' => '¡Gracias! Hemos recibido tu solicitud. Te contactaremos en menos de 24 horas para confirmar tu llamada.',
+    'contact_success_close' => 'Cerrar notificacion',
     'contact_select_placeholder' => 'Selecciona una opción',
 
     // CTA mid-page

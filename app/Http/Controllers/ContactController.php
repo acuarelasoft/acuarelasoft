@@ -29,7 +29,7 @@ class ContactController extends Controller
                 ->subject('Solicitud de llamada: '.$validated['name'].' — '.$validated['project_type']);
         });
 
-        return redirect()->back()->with('success', __('landing.contact_success'));
+        return redirect()->back()->with('success_key', 'landing.contact_success');
     }
 
     /**
