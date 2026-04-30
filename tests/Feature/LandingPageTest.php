@@ -49,6 +49,54 @@ test('landing page contains hreflang tags', function () {
         ->assertSee('hreflang="x-default"', false);
 });
 
+test('service page cta points to spanish landing contact form', function () {
+    $this->get('/servicios/diseno-web')
+        ->assertStatus(200)
+        ->assertSee('href="'.route('home').'#contacto"', false);
+});
+
+test('english service page cta points to english landing contact form', function () {
+    $this->get('/en/services/web-apps')
+        ->assertStatus(200)
+        ->assertSee('href="'.route('home.en').'#contacto"', false);
+});
+
+test('service page company footer links point to spanish landing sections', function () {
+    $this->get('/servicios/diseno-web')
+        ->assertStatus(200)
+        ->assertSee('href="'.route('home').'#servicios"', false)
+        ->assertSee('href="'.route('home').'#por-que-nosotros"', false)
+        ->assertSee('href="'.route('home').'#contacto"', false);
+});
+
+test('english service page company footer links point to english landing sections', function () {
+    $this->get('/en/services/web-apps')
+        ->assertStatus(200)
+        ->assertSee('href="'.route('home.en').'#servicios"', false)
+        ->assertSee('href="'.route('home.en').'#por-que-nosotros"', false)
+        ->assertSee('href="'.route('home.en').'#contacto"', false);
+});
+
+test('landing footer lists links for all spanish services', function () {
+    $response = $this->get('/');
+
+    $response->assertStatus(200);
+
+    foreach (config('site_services') as $service) {
+        $response->assertSee(route('service', ['service' => $service['slug']]), false);
+    }
+});
+
+test('landing footer lists links for all english services', function () {
+    $response = $this->get('/en');
+
+    $response->assertStatus(200);
+
+    foreach (config('site_services') as $service) {
+        $response->assertSee(route('service.en', ['service' => $service['slug']]), false);
+    }
+});
+
 test('contact form rejects invalid data', function () {
     $this->post(route('contact.submit'), [])
         ->assertSessionHasErrors(['name', 'email', 'project_type', 'message']);

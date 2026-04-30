@@ -186,7 +186,7 @@ return [
 
     // Footer
     'footer_tagline' => 'The art of crafting software',
-    'footer_tagline_description' => 'Custom software that fits your business. No compromises, no workarounds.',
+    'footer_tagline_description' => 'We design custom software that powers your operations and scales with you: clear, elegant, and built to last.',
     'footer_services_heading' => 'Services',
     'footer_services_web' => 'Web Applications',
     'footer_services_mobile' => 'Mobile Apps',

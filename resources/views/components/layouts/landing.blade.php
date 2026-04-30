@@ -53,6 +53,12 @@
         </defs>
     </svg>
 
+    @php($landingBaseUrl = app()->getLocale() === 'es' ? route('home') : route('home.en'))
+    @php($landingServicesUrl = $landingBaseUrl . '#servicios')
+    @php($landingProcessUrl = $landingBaseUrl . '#proceso')
+    @php($landingWhyUsUrl = $landingBaseUrl . '#por-que-nosotros')
+    @php($landingContactUrl = $landingBaseUrl . '#contacto')
+
     {{-- ============ HEADER / NAV ============ --}}
     <header class="sticky top-0 z-50 bg-paper/85 backdrop-blur-[12px] border-b border-acuarela-400/15 transition-colors duration-300">
         <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between" aria-label="{{ app()->getLocale() === 'es' ? 'Navegación principal' : 'Main navigation' }}">
@@ -61,10 +67,10 @@
 
             {{-- Desktop nav links --}}
             <ul class="hidden md:flex gap-8 font-sans text-sm font-medium text-ink/70">
-                <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_services') }}</a></li>
-                <li><a href="#proceso" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_process') }}</a></li>
-                <li><a href="#por-que-nosotros" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_why_us') }}</a></li>
-                <li><a href="#contacto" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_contact') }}</a></li>
+                <li><a href="{{ $landingServicesUrl }}" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_services') }}</a></li>
+                <li><a href="{{ $landingProcessUrl }}" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_process') }}</a></li>
+                <li><a href="{{ $landingWhyUsUrl }}" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_why_us') }}</a></li>
+                <li><a href="{{ $landingContactUrl }}" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_contact') }}</a></li>
             </ul>
 
             <div class="flex items-center gap-4">
@@ -79,7 +85,7 @@
                 </nav>
 
                 {{-- CTA button --}}
-                <a href="#contacto" class="hidden sm:inline-flex bg-petroleo text-paper font-sans text-sm font-medium px-5 py-2.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
+                <a href="{{ $landingContactUrl }}" class="hidden sm:inline-flex bg-petroleo text-paper font-sans text-sm font-medium px-5 py-2.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
                     {{ __('landing.nav_cta') }}
                 </a>
             </div>
@@ -93,13 +99,13 @@
         {{-- Mobile menu panel --}}
         <div id="mobile-menu" class="md:hidden hidden border-t border-acuarela-400/10 bg-paper/95 backdrop-blur-[12px]">
             <ul class="flex flex-col gap-1 px-6 py-4 font-sans text-sm font-medium text-ink/70">
-                <li><a href="#servicios" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_services') }}</a></li>
-                <li><a href="#proceso" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_process') }}</a></li>
-                <li><a href="#por-que-nosotros" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_why_us') }}</a></li>
-                <li><a href="#contacto" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_contact') }}</a></li>
+                <li><a href="{{ $landingServicesUrl }}" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_services') }}</a></li>
+                <li><a href="{{ $landingProcessUrl }}" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_process') }}</a></li>
+                <li><a href="{{ $landingWhyUsUrl }}" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_why_us') }}</a></li>
+                <li><a href="{{ $landingContactUrl }}" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_contact') }}</a></li>
             </ul>
             <div class="px-6 pb-4">
-                <a href="#contacto" class="block text-center bg-petroleo text-paper font-sans text-sm font-medium px-5 py-2.5 rounded-soft transition-all duration-200 hover:bg-[#245A65]">
+                <a href="{{ $landingContactUrl }}" class="block text-center bg-petroleo text-paper font-sans text-sm font-medium px-5 py-2.5 rounded-soft transition-all duration-200 hover:bg-[#245A65]">
                     {{ __('landing.nav_cta') }}
                 </a>
             </div>
@@ -146,19 +152,22 @@
                 <section>
                     <h2 class="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-petroleo mb-4">{{ __('landing.footer_services_heading') }}</h2>
                     <ul class="space-y-2.5 font-sans text-ink/78">
-                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_services_web') }}</a></li>
-                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_services_mobile') }}</a></li>
-                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_services_integrations') }}</a></li>
-                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_services_modernization') }}</a></li>
+                        @foreach (config('site_services') as $service)
+                            <li>
+                                <a href="{{ app()->getLocale() === 'es' ? route('service', ['service' => $service['slug']]) : route('service.en', ['service' => $service['slug']]) }}" class="hover:text-petroleo transition-colors duration-200">
+                                    {{ __('services.' . $service['key'] . '.title') }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </section>
 
                 <section>
                     <h2 class="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-petroleo mb-4">{{ __('landing.footer_company_heading') }}</h2>
                     <ul class="space-y-2.5 font-sans text-ink/78">
-                        <li><a href="#por-que-nosotros" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_company_about') }}</a></li>
-                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_services') }}</a></li>
-                        <li><a href="#contacto" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_contact') }}</a></li>
+                        <li><a href="{{ $landingWhyUsUrl }}" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_company_about') }}</a></li>
+                        <li><a href="{{ $landingServicesUrl }}" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_services') }}</a></li>
+                        <li><a href="{{ $landingContactUrl }}" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_contact') }}</a></li>
                     </ul>
                 </section>
 
@@ -176,13 +185,6 @@
                 </section>
             </div>
 
-            <div class="mt-10 pt-6 border-t border-acuarela-300/30 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p class="font-sans text-sm text-ink/60">{{ __('landing.footer_copyright', ['year' => date('Y')]) }}</p>
-                <nav class="flex items-center gap-8" aria-label="{{ __('landing.footer_legal_heading') }}">
-                    <a href="#" class="font-sans text-sm text-ink/60 hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_privacy') }}</a>
-                    <a href="#" class="font-sans text-sm text-ink/60 hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_terms') }}</a>
-                </nav>
-            </div>
         </div>
     </footer>
 

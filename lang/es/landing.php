@@ -186,7 +186,7 @@ return [
 
     // Footer
     'footer_tagline' => 'El arte de crear software',
-    'footer_tagline_description' => 'Software a medida que se adapta a tu negocio. Sin compromisos, sin soluciones improvisadas.',
+    'footer_tagline_description' => 'Diseñamos software a medida que impulsa tu operación y escala contigo: claro, elegante y construido para durar.',
     'footer_services_heading' => 'Servicios',
     'footer_services_web' => 'Aplicaciones Web',
     'footer_services_mobile' => 'Apps Móviles',
