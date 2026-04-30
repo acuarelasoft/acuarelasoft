@@ -57,9 +57,7 @@
     <header class="sticky top-0 z-50 bg-paper/85 backdrop-blur-[12px] border-b border-acuarela-400/15 transition-colors duration-300">
         <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between" aria-label="{{ app()->getLocale() === 'es' ? 'Navegación principal' : 'Main navigation' }}">
             {{-- Logo --}}
-            <a href="{{ route('home') }}" class="font-heading text-xl font-bold text-ink hover:text-petroleo transition-colors duration-200" aria-label="AcuarelaSoft - {{ __('landing.footer_tagline') }}">
-                AcuarelaSoft
-            </a>
+            <x-brand-logo size="md" />
 
             {{-- Desktop nav links --}}
             <ul class="hidden md:flex gap-8 font-sans text-sm font-medium text-ink/70">
@@ -122,12 +120,7 @@
         <div class="relative z-10 max-w-6xl mx-auto px-6 py-14 md:py-16">
             <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
                 <section>
-                    <a href="{{ route('home') }}" class="inline-flex items-center gap-2 font-heading text-ink text-3xl font-bold leading-none hover:text-petroleo transition-colors duration-200" aria-label="AcuarelaSoft - {{ __('landing.footer_tagline') }}">
-                        <span class="inline-flex items-center justify-center size-7 rounded-soft bg-acuarela-100 text-petroleo">
-                            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 12.75 9 16.5 18.75 6.75"/></svg>
-                        </span>
-                        AcuarelaSoft
-                    </a>
+                    <x-brand-logo size="lg" />
 
                     <p class="mt-5 max-w-xs font-sans text-base leading-relaxed text-ink/80">{{ __('landing.footer_tagline_description') }}</p>
 
