@@ -46,6 +46,24 @@ Route::get('/en/intake/thanks', function () {
     return view('pages.intake-thanks');
 })->name('intake.thanks.en');
 
+// Service pages (Spanish)
+Route::get('/servicios/{service}', function (string $slug) {
+    app()->setLocale('es');
+    $service = collect(config('site_services'))->firstWhere('slug', $slug);
+    abort_if(! $service, 404);
+
+    return view('pages.services.show', ['service' => $service]);
+})->name('service');
+
+// Service pages (English)
+Route::get('/en/services/{service}', function (string $slug) {
+    app()->setLocale('en');
+    $service = collect(config('site_services'))->firstWhere('slug', $slug);
+    abort_if(! $service, 404);
+
+    return view('pages.services.show', ['service' => $service]);
+})->name('service.en');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
 });

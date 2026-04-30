@@ -90,6 +90,38 @@ return [
     'slider_prev' => 'Ver anteriores',
     'slider_next' => 'Ver siguientes',
 
+    'slider_web_design_label' => 'Diseño web',
+    'slider_web_design_title' => 'Sitios que enamoran y convierten',
+    'slider_web_design_desc' => 'Diseño de landing pages, sitios corporativos y portales con identidad visual sólida y experiencia de usuario cuidada al detalle.',
+
+    'slider_web_apps_label' => 'Web Apps',
+    'slider_web_apps_title' => 'Sistemas web a la medida de tu negocio',
+    'slider_web_apps_desc' => 'Aplicaciones web complejas: ERPs, CRMs, paneles de administración, plataformas SaaS y cualquier sistema que tu operación necesite.',
+
+    'slider_mobile_apps_label' => 'Apps Móviles',
+    'slider_mobile_apps_title' => 'Tu negocio en el bolsillo de tus usuarios',
+    'slider_mobile_apps_desc' => 'Aplicaciones nativas y multiplataforma para iOS y Android, con diseño fluido y sincronización en tiempo real.',
+
+    'slider_maintenance_label' => 'Mantenimiento de apps',
+    'slider_maintenance_title' => 'Tu app siempre actualizada y saludable',
+    'slider_maintenance_desc' => 'Actualizaciones de dependencias, corrección de bugs, mejoras de rendimiento y evolución continua de tus aplicaciones existentes.',
+
+    'slider_legacy_label' => 'Migración legacy',
+    'slider_legacy_title' => 'Moderniza sin perder lo que funciona',
+    'slider_legacy_desc' => 'Migramos sistemas obsoletos a tecnología moderna: re-arquitectura, cambio de stack, migración de datos y puesta en producción sin downtime.',
+
+    'slider_servers_label' => 'Servidores web',
+    'slider_servers_title' => 'Infraestructura confiable desde el primer día',
+    'slider_servers_desc' => 'Administración, instalación y configuración de servidores web: Nginx, Apache, PM2, SSL, DNS, firewalls y monitoreo proactivo.',
+
+    'slider_desktop_label' => 'Apps de escritorio',
+    'slider_desktop_title' => 'Software robusto que trabaja sin conexión',
+    'slider_desktop_desc' => 'Aplicaciones de escritorio y offline-first para Windows, macOS y Linux, con sincronización cuando hay red disponible.',
+
+    'slider_web_api_label' => 'APIs web',
+    'slider_web_api_title' => 'Integra todo con una API bien diseñada',
+    'slider_web_api_desc' => 'Diseño e implementación de APIs REST, SOAP y GraphQL: documentadas, seguras, versionadas y listas para integrarse con cualquier cliente.',
+
     // Why us
     'why_title' => '¿Por qué elegirnos?',
     'why_subtitle' => 'Lo que nos diferencia como agencia de desarrollo.',

@@ -387,40 +387,60 @@
         @php
             $sliderCards = [
                 [
-                    'label' => __('landing.service_laravel_title'),
-                    'title' => __('landing.service_laravel_benefit'),
-                    'description' => __('landing.service_laravel_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1630609083938-3acb39a06392?q=80&w=900&auto=format&fit=crop',
+                    'slug' => 'diseno-web',
+                    'label' => __('landing.slider_web_design_label'),
+                    'title' => __('landing.slider_web_design_title'),
+                    'description' => __('landing.slider_web_design_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=900&auto=format&fit=crop',
                 ],
                 [
-                    'label' => __('landing.service_angular_title'),
-                    'title' => __('landing.service_angular_benefit'),
-                    'description' => __('landing.service_angular_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1629194893765-3a904e9080dd?q=80&w=900&auto=format&fit=crop',
+                    'slug' => 'web-apps',
+                    'label' => __('landing.slider_web_apps_label'),
+                    'title' => __('landing.slider_web_apps_title'),
+                    'description' => __('landing.slider_web_apps_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=900&auto=format&fit=crop',
                 ],
                 [
-                    'label' => __('landing.service_node_title'),
-                    'title' => __('landing.service_node_benefit'),
-                    'description' => __('landing.service_node_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1703587820365-dad81a7c5908?q=80&w=900&auto=format&fit=crop',
+                    'slug' => 'apps-moviles',
+                    'label' => __('landing.slider_mobile_apps_label'),
+                    'title' => __('landing.slider_mobile_apps_title'),
+                    'description' => __('landing.slider_mobile_apps_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=900&auto=format&fit=crop',
                 ],
                 [
-                    'label' => __('landing.service_db_title'),
-                    'title' => __('landing.service_db_benefit'),
-                    'description' => __('landing.service_db_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1629196613836-0a7e2541990a?q=80&w=900&auto=format&fit=crop',
+                    'slug' => 'mantenimiento-apps',
+                    'label' => __('landing.slider_maintenance_label'),
+                    'title' => __('landing.slider_maintenance_title'),
+                    'description' => __('landing.slider_maintenance_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=900&auto=format&fit=crop',
                 ],
                 [
-                    'label' => __('landing.service_cloud_title'),
-                    'title' => __('landing.service_cloud_benefit'),
-                    'description' => __('landing.service_cloud_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1630609084037-ddb2b4a3fa67?q=80&w=900&auto=format&fit=crop',
+                    'slug' => 'migracion-legacy',
+                    'label' => __('landing.slider_legacy_label'),
+                    'title' => __('landing.slider_legacy_title'),
+                    'description' => __('landing.slider_legacy_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=900&auto=format&fit=crop',
                 ],
                 [
-                    'label' => __('landing.service_consulting_title'),
-                    'title' => __('landing.service_consulting_benefit'),
-                    'description' => __('landing.service_consulting_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1629654858857-615c2c8be8a8?q=80&w=900&auto=format&fit=crop',
+                    'slug' => 'servidores-web',
+                    'label' => __('landing.slider_servers_label'),
+                    'title' => __('landing.slider_servers_title'),
+                    'description' => __('landing.slider_servers_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'apps-escritorio',
+                    'label' => __('landing.slider_desktop_label'),
+                    'title' => __('landing.slider_desktop_title'),
+                    'description' => __('landing.slider_desktop_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'apis-web',
+                    'label' => __('landing.slider_web_api_label'),
+                    'title' => __('landing.slider_web_api_title'),
+                    'description' => __('landing.slider_web_api_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=900&auto=format&fit=crop',
                 ],
             ];
         @endphp
@@ -461,7 +481,7 @@
                                         <p class="font-sans text-sm text-ink/70 leading-relaxed">{{ $card['description'] }}</p>
                                     </div>
 
-                                    <a href="#contacto" class="shrink-0 inline-flex items-center justify-center size-10 rounded-full bg-paper border border-acuarela-400/25 text-petroleo transition-colors duration-200 hover:bg-acuarela-50 hover:border-acuarela-400/45" aria-label="{{ __('landing.offer_cta') }}">
+                                    <a href="{{ app()->getLocale() === 'es' ? route('service', $card['slug']) : route('service.en', $card['slug']) }}" class="shrink-0 inline-flex items-center justify-center size-10 rounded-full bg-paper border border-acuarela-400/25 text-petroleo transition-colors duration-200 hover:bg-acuarela-50 hover:border-acuarela-400/45" aria-label="{{ __('landing.offer_cta') }}">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
                                     </a>
                                 </div>

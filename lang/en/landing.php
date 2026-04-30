@@ -90,6 +90,38 @@ return [
     'slider_prev' => 'View previous',
     'slider_next' => 'View next',
 
+    'slider_web_design_label' => 'Web Design',
+    'slider_web_design_title' => 'Sites that look great and convert',
+    'slider_web_design_desc' => 'Landing pages, corporate sites, and portals with a solid visual identity and user experience crafted down to the last detail.',
+
+    'slider_web_apps_label' => 'Web Apps',
+    'slider_web_apps_title' => 'Custom web systems for your business',
+    'slider_web_apps_desc' => 'Complex web applications: ERPs, CRMs, admin panels, SaaS platforms, and any system your operations need.',
+
+    'slider_mobile_apps_label' => 'Mobile Apps',
+    'slider_mobile_apps_title' => "Your business in your users' pockets",
+    'slider_mobile_apps_desc' => 'Native and cross-platform apps for iOS and Android, with fluid design and real-time sync.',
+
+    'slider_maintenance_label' => 'App Maintenance',
+    'slider_maintenance_title' => 'Your app always up-to-date and healthy',
+    'slider_maintenance_desc' => 'Dependency updates, bug fixes, performance improvements, and continuous evolution of your existing applications.',
+
+    'slider_legacy_label' => 'Legacy Migration',
+    'slider_legacy_title' => 'Modernize without losing what works',
+    'slider_legacy_desc' => 'We migrate outdated systems to modern technology: re-architecture, stack changes, data migration, and zero-downtime production deploys.',
+
+    'slider_servers_label' => 'Web Servers',
+    'slider_servers_title' => 'Reliable infrastructure from day one',
+    'slider_servers_desc' => 'Administration, installation, and configuration of web servers: Nginx, Apache, PM2, SSL, DNS, firewalls, and proactive monitoring.',
+
+    'slider_desktop_label' => 'Desktop Apps',
+    'slider_desktop_title' => 'Robust software that works offline',
+    'slider_desktop_desc' => 'Desktop and offline-first applications for Windows, macOS, and Linux, with sync when a network is available.',
+
+    'slider_web_api_label' => 'Web APIs',
+    'slider_web_api_title' => 'Integrate everything with a well-designed API',
+    'slider_web_api_desc' => 'Design and implementation of REST, SOAP, and GraphQL APIs: documented, secure, versioned, and ready to integrate with any client.',
+
     // Why us
     'why_title' => 'Why choose us?',
     'why_subtitle' => 'What sets us apart as a development agency.',
