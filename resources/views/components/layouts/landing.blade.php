@@ -113,60 +113,82 @@
     </main>
 
     {{-- ============ FOOTER ============ --}}
-    <footer class="relative bg-acuarela-900 text-paper/80 overflow-hidden">
-        {{-- Subtle wash overlay --}}
+    <footer class="relative bg-paper border-t border-acuarela-300/25 overflow-hidden" aria-label="Footer">
         <div class="absolute inset-0" aria-hidden="true"
-             style="background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(111,168,216,0.08) 0%, transparent 70%);"></div>
+             style="background:
+                radial-gradient(ellipse 62% 54% at 14% 24%, rgba(111,168,216,0.12) 0%, transparent 68%),
+                radial-gradient(ellipse 44% 42% at 84% 70%, rgba(242,184,178,0.10) 0%, transparent 62%);"></div>
 
-        <div class="relative z-10 max-w-6xl mx-auto px-6 py-16">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                {{-- Brand --}}
-                <div>
-                    <p class="font-heading text-paper text-xl font-bold mb-2">AcuarelaSoft</p>
-                    <p class="font-accent text-acuarela-300 text-lg">{{ __('landing.footer_tagline') }}</p>
-                </div>
+        <div class="relative z-10 max-w-6xl mx-auto px-6 py-14 md:py-16">
+            <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+                <section>
+                    <a href="{{ route('home') }}" class="inline-flex items-center gap-2 font-heading text-ink text-3xl font-bold leading-none hover:text-petroleo transition-colors duration-200" aria-label="AcuarelaSoft - {{ __('landing.footer_tagline') }}">
+                        <span class="inline-flex items-center justify-center size-7 rounded-soft bg-acuarela-100 text-petroleo">
+                            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 12.75 9 16.5 18.75 6.75"/></svg>
+                        </span>
+                        AcuarelaSoft
+                    </a>
 
-                {{-- Contact --}}
-                <div>
-                    <h2 class="font-sans text-paper font-semibold text-sm uppercase tracking-wider mb-4">{{ __('landing.footer_contact_heading') }}</h2>
-                    <address class="not-italic font-sans text-sm space-y-2">
-                        <p><a href="mailto:contacto@acuarelasoft.dev" class="hover:text-acuarela-300 transition-colors duration-200">contacto@acuarelasoft.dev</a></p>
-                        <p><a href="https://wa.me/5256494401900" rel="noopener noreferrer" target="_blank" class="hover:text-acuarela-300 transition-colors duration-200">WhatsApp: +52 56 4944 0190</a></p>
+                    <p class="mt-5 max-w-xs font-sans text-base leading-relaxed text-ink/80">{{ __('landing.footer_tagline_description') }}</p>
+
+                    <ul class="mt-6 flex items-center gap-3" aria-label="{{ __('landing.footer_social_heading') }}">
+                        <li>
+                            <a href="https://www.linkedin.com/in/rodrigo-sanvicente/" rel="noopener noreferrer" target="_blank" class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55" aria-label="LinkedIn">
+                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M8 10H5V19H8V10M6.5 8.31A1.75 1.75 0 1 0 6.5 4.81A1.75 1.75 0 0 0 6.5 8.31M19 19V13.62C19 10.74 17.44 9.38 15.35 9.38C13.66 9.38 12.91 10.31 12.5 10.97V10H9.5V19H12.5V14C12.5 12.69 12.75 11.42 14.38 11.42C15.98 11.42 16 12.92 16 14.08V19H19Z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/5256494401900" rel="noopener noreferrer" target="_blank" class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55" aria-label="WhatsApp">
+                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:contacto@acuarelasoft.dev" class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55" aria-label="Email">
+                                <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 7.5v9a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 16.5v-9m19.5 0A2.25 2.25 0 0 0 19.5 5.25h-15A2.25 2.25 0 0 0 2.25 7.5m19.5 0-9.334 6.223a.75.75 0 0 1-.832 0L2.25 7.5"/></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-petroleo mb-4">{{ __('landing.footer_services_heading') }}</h2>
+                    <ul class="space-y-2.5 font-sans text-ink/78">
+                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_services_web') }}</a></li>
+                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_services_mobile') }}</a></li>
+                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_services_integrations') }}</a></li>
+                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_services_modernization') }}</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-petroleo mb-4">{{ __('landing.footer_company_heading') }}</h2>
+                    <ul class="space-y-2.5 font-sans text-ink/78">
+                        <li><a href="#por-que-nosotros" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_company_about') }}</a></li>
+                        <li><a href="#servicios" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_services') }}</a></li>
+                        <li><a href="#contacto" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_contact') }}</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-petroleo mb-4">{{ __('landing.footer_get_in_touch_heading') }}</h2>
+                    <address class="not-italic space-y-2.5 font-sans text-ink/78">
+                        <p>
+                            <a href="mailto:contacto@acuarelasoft.dev" class="hover:text-petroleo transition-colors duration-200">contacto@acuarelasoft.dev</a>
+                        </p>
+                        <p>
+                            <a href="https://wa.me/5256494401900" rel="noopener noreferrer" target="_blank" class="hover:text-petroleo transition-colors duration-200">+52 56 4944 0190</a>
+                        </p>
+                        <p>{{ __('landing.footer_location') }}</p>
                     </address>
-                </div>
-
-                {{-- Location & Social --}}
-                <div>
-                    <h2 class="font-sans text-paper font-semibold text-sm uppercase tracking-wider mb-4">{{ __('landing.footer_location_heading') }}</h2>
-                    <p class="font-sans text-sm">{{ __('landing.footer_location') }}</p>
-                    <h2 class="font-sans text-paper font-semibold text-sm uppercase tracking-wider mt-6 mb-4">{{ __('landing.footer_social_heading') }}</h2>
-                    <ul class="font-sans text-sm space-y-2">
-                        <li><a href="https://www.linkedin.com/in/rodrigo-sanvicente/" rel="noopener noreferrer" target="_blank" class="hover:text-acuarela-300 transition-colors duration-200">LinkedIn</a></li>
-                    </ul>
-                </div>
-
-                {{-- Legal --}}
-                <div>
-                    <h2 class="font-sans text-paper font-semibold text-sm uppercase tracking-wider mb-4">{{ __('landing.footer_legal_heading') }}</h2>
-                    <ul class="font-sans text-sm space-y-2">
-                        <li><a href="#" class="hover:text-acuarela-300 transition-colors duration-200">{{ __('landing.footer_privacy') }}</a></li>
-                        <li><a href="#" class="hover:text-acuarela-300 transition-colors duration-200">{{ __('landing.footer_terms') }}</a></li>
-                    </ul>
-
-                    {{-- Language switcher --}}
-                    <nav class="mt-6 flex gap-2 text-xs font-sans font-medium" aria-label="{{ app()->getLocale() === 'es' ? 'Selector de idioma' : 'Language selector' }}">
-                        <a href="{{ url('/') }}" lang="es" hreflang="es"
-                           class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'es' ? 'bg-paper/10 text-paper' : 'text-paper/50 hover:text-acuarela-300' }}"
-                           {{ app()->getLocale() === 'es' ? 'aria-current=true' : '' }}>ES</a>
-                        <a href="{{ url('/en') }}" lang="en" hreflang="en"
-                           class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-paper/10 text-paper' : 'text-paper/50 hover:text-acuarela-300' }}"
-                           {{ app()->getLocale() === 'en' ? 'aria-current=true' : '' }}>EN</a>
-                    </nav>
-                </div>
+                </section>
             </div>
 
-            <div class="border-t border-paper/10 pt-6 text-center">
-                <p class="font-sans text-xs text-paper/50">{{ __('landing.footer_copyright', ['year' => date('Y')]) }}</p>
+            <div class="mt-10 pt-6 border-t border-acuarela-300/30 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p class="font-sans text-sm text-ink/60">{{ __('landing.footer_copyright', ['year' => date('Y')]) }}</p>
+                <nav class="flex items-center gap-8" aria-label="{{ __('landing.footer_legal_heading') }}">
+                    <a href="#" class="font-sans text-sm text-ink/60 hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_privacy') }}</a>
+                    <a href="#" class="font-sans text-sm text-ink/60 hover:text-petroleo transition-colors duration-200">{{ __('landing.footer_terms') }}</a>
+                </nav>
             </div>
         </div>
     </footer>

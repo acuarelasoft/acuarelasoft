@@ -144,6 +144,15 @@ return [
 
     // Footer
     'footer_tagline' => 'El arte de crear software',
+    'footer_tagline_description' => 'Software a medida que se adapta a tu negocio. Sin compromisos, sin soluciones improvisadas.',
+    'footer_services_heading' => 'Servicios',
+    'footer_services_web' => 'Aplicaciones Web',
+    'footer_services_mobile' => 'Apps Móviles',
+    'footer_services_integrations' => 'Integraciones',
+    'footer_services_modernization' => 'Modernización',
+    'footer_company_heading' => 'Compañía',
+    'footer_company_about' => 'Nosotros',
+    'footer_get_in_touch_heading' => 'Contacto',
     'footer_contact_heading' => 'Contacto',
     'footer_location_heading' => 'Ubicación',
     'footer_location' => 'Ciudad de México, México',

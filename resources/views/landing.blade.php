@@ -59,49 +59,119 @@
     @endpush
 
     {{-- ============================================================
-         HERO SECTION — Watercolor wash background
+         HERO SECTION — Split composition inspired by product mockup
          ============================================================ --}}
-    <section id="hero" class="relative min-h-[80vh] flex items-center overflow-hidden" aria-label="{{ __('landing.hero_headline') }}">
-        {{-- Multi-color watercolor wash --}}
+    <section id="hero" class="relative min-h-[86vh] flex items-center overflow-hidden" aria-label="El arte de crear software">
+        <div class="absolute inset-0 -z-20 bg-paper" aria-hidden="true"></div>
         <div class="absolute inset-0 -z-10" aria-hidden="true"
-             style="background:
-                radial-gradient(ellipse 70% 50% at 15% 25%, rgba(111,168,216,0.20) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 60% at 80% 60%, rgba(242,184,178,0.15) 0%, transparent 65%),
-                radial-gradient(ellipse 40% 40% at 50% 85%, rgba(191,231,214,0.12) 0%, transparent 60%);">
-        </div>
+             style="background-image:
+                linear-gradient(to right, rgba(46,107,120,0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(46,107,120,0.08) 1px, transparent 1px),
+                radial-gradient(ellipse 78% 58% at 14% 26%, rgba(111,168,216,0.22) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 52% at 84% 62%, rgba(242,184,178,0.16) 0%, transparent 64%),
+                radial-gradient(ellipse 44% 42% at 56% 85%, rgba(191,231,214,0.14) 0%, transparent 58%);
+                background-size: 32px 32px, 32px 32px, auto, auto, auto;
+                background-position: center;"></div>
 
-        <div class="max-w-4xl mx-auto px-6 py-20 text-center">
-            <p class="font-accent text-acuarela-400 text-xl md:text-2xl mb-4">{{ __('landing.footer_tagline') }}</p>
-            <h1 class="font-heading text-ink text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">{{ __('landing.hero_headline') }}</h1>
-            <p class="font-sans text-ink/75 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">{{ __('landing.hero_subheadline') }}</p>
+        <div class="absolute top-16 right-8 md:right-16 w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-[#F08A3C]/90 -z-10" aria-hidden="true"></div>
+        <div class="absolute bottom-18 left-[48%] hidden md:block w-18 h-18 rounded-3xl bg-acuarela-400/55 blur-[0.5px] -z-10" aria-hidden="true"></div>
 
-            <nav class="flex flex-col sm:flex-row gap-4 justify-center mb-12" aria-label="{{ app()->getLocale() === 'es' ? 'Acciones principales' : 'Main actions' }}">
-                <a href="#contacto" class="bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
-                    {{ __('landing.hero_cta_primary') }}
-                </a>
-                <a href="#servicios" class="bg-transparent text-petroleo font-sans font-medium px-8 py-3.5 rounded-soft border border-salmon transition-all duration-200 hover:bg-salmon/10 hover:border-salmon/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-salmon text-base">
-                    {{ __('landing.hero_cta_secondary') }}
-                </a>
-            </nav>
+        <div class="max-w-7xl mx-auto px-6 py-18 md:py-24 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="max-w-xl">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-pill border border-acuarela-300/50 bg-acuarela-50/70 text-acuarela-700 font-sans text-sm font-semibold mb-6">
+                        <span class="size-2 rounded-full bg-orange-400"></span>
+                        {{ app()->getLocale() === 'es' ? 'Desarrollo de software a medida' : 'Custom software development' }}
+                    </span>
 
-            <ul class="flex flex-wrap justify-center gap-x-8 gap-y-3 font-sans text-sm text-ink/60" aria-label="{{ app()->getLocale() === 'es' ? 'Indicadores de confianza' : 'Trust indicators' }}">
-                <li class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    {{ __('landing.hero_trust_experience') }}
-                </li>
-                <li class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    {{ __('landing.hero_trust_stack') }}
-                </li>
-                <li class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    {{ __('landing.hero_trust_ux') }}
-                </li>
-                <li class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    {{ __('landing.hero_trust_cloud') }}
-                </li>
-            </ul>
+                    <h1 class="font-heading text-ink text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.06] tracking-tight mb-6">
+                        {{ app()->getLocale() === 'es' ? 'El arte de' : 'The art of' }}
+                        <span class="block bg-clip-text text-transparent" style="background-image: linear-gradient(96deg, #4C62D7 0%, #915489 47%, #DB6E2F 100%);">
+                            {{ app()->getLocale() === 'es' ? 'crear software' : 'crafting software' }}
+                        </span>
+                    </h1>
+
+                    <p class="font-sans text-ink/78 text-lg md:text-2xl max-w-2xl mb-10 leading-relaxed">
+                        {{ __('landing.hero_subheadline') }}
+                    </p>
+
+                    <nav class="flex flex-col sm:flex-row gap-4 mb-10" aria-label="{{ app()->getLocale() === 'es' ? 'Acciones principales' : 'Main actions' }}">
+                        <a href="#contacto" class="bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base text-center">
+                            {{ __('landing.hero_cta_primary') }}
+                        </a>
+                        <a href="#servicios" class="bg-paper/80 text-ink font-sans font-semibold px-8 py-3.5 rounded-soft border border-ink/15 transition-all duration-200 hover:bg-paper hover:border-ink/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acuarela-400 text-base text-center">
+                            {{ __('landing.hero_cta_secondary') }}
+                        </a>
+                    </nav>
+
+                    <ul class="flex flex-wrap gap-x-7 gap-y-3 font-sans text-sm text-ink/60" aria-label="{{ app()->getLocale() === 'es' ? 'Indicadores de confianza' : 'Trust indicators' }}">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            {{ __('landing.hero_trust_experience') }}
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            {{ __('landing.hero_trust_stack') }}
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            {{ __('landing.hero_trust_ux') }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="relative">
+                    <div class="rounded-[18px] border border-acuarela-300/35 bg-paper/90 backdrop-blur-[3px] p-3 sm:p-4">
+                        <div class="rounded-[14px] border border-acuarela-300/25 bg-white/75 overflow-hidden">
+                            <div class="h-10 px-4 flex items-center justify-between border-b border-acuarela-300/20 bg-paper/70">
+                                <div class="flex items-center gap-2">
+                                    <span class="size-2.5 rounded-full bg-red-300"></span>
+                                    <span class="size-2.5 rounded-full bg-amber-300"></span>
+                                    <span class="size-2.5 rounded-full bg-emerald-400"></span>
+                                </div>
+                                <span class="w-26 h-2 rounded-pill bg-ink/8"></span>
+                            </div>
+
+                            <div class="p-4 sm:p-5 space-y-4">
+                                <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                                    <div class="rounded-soft border border-acuarela-200/70 bg-paper/70 p-3">
+                                        <span class="w-8 h-1.5 block rounded-pill bg-ink/12 mb-2"></span>
+                                        <p class="font-sans text-xl text-ink font-semibold leading-none">516</p>
+                                        <p class="font-sans text-xs text-emerald-500 mt-1">+12.5%</p>
+                                    </div>
+                                    <div class="rounded-soft border border-acuarela-200/70 bg-paper/70 p-3">
+                                        <span class="w-8 h-1.5 block rounded-pill bg-ink/12 mb-2"></span>
+                                        <p class="font-sans text-xl text-ink font-semibold leading-none">1,444</p>
+                                        <p class="font-sans text-xs text-emerald-500 mt-1">+8.2%</p>
+                                    </div>
+                                    <div class="rounded-soft border border-acuarela-200/70 bg-paper/70 p-3">
+                                        <span class="w-8 h-1.5 block rounded-pill bg-ink/12 mb-2"></span>
+                                        <p class="font-sans text-xl text-ink font-semibold leading-none">91</p>
+                                        <p class="font-sans text-xs text-emerald-500 mt-1">+24.1%</p>
+                                    </div>
+                                </div>
+
+                                <div class="h-36 rounded-soft border border-acuarela-200/70 bg-linear-to-r from-acuarela-100/40 via-salmon/15 to-acuarela-300/25 relative overflow-hidden">
+                                    <div class="absolute inset-x-0 bottom-0 h-[68%]" style="background: linear-gradient(90deg, rgba(108,112,255,0.75) 0%, rgba(118,96,214,0.65) 22%, rgba(226,118,52,0.80) 52%, rgba(120,110,239,0.70) 77%, rgba(143,151,255,0.70) 100%); clip-path: polygon(0 68%, 12% 58%, 24% 63%, 38% 40%, 49% 45%, 61% 22%, 71% 26%, 83% 14%, 100% 18%, 100% 100%, 0 100%);"></div>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="size-6 rounded-full bg-acuarela-300/55"></span>
+                                        <span class="h-2.5 w-full rounded-pill bg-ink/10"></span>
+                                        <span class="px-2 py-0.5 rounded-soft bg-mint/35 font-sans text-[11px] text-emerald-700">Done</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="size-6 rounded-full bg-salmon/45"></span>
+                                        <span class="h-2.5 w-full rounded-pill bg-ink/10"></span>
+                                        <span class="px-2 py-0.5 rounded-soft bg-acuarela-100 font-sans text-[11px] text-acuarela-700">Active</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

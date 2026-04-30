@@ -144,6 +144,15 @@ return [
 
     // Footer
     'footer_tagline' => 'The art of crafting software',
+    'footer_tagline_description' => 'Custom software that fits your business. No compromises, no workarounds.',
+    'footer_services_heading' => 'Services',
+    'footer_services_web' => 'Web Applications',
+    'footer_services_mobile' => 'Mobile Apps',
+    'footer_services_integrations' => 'Integrations',
+    'footer_services_modernization' => 'Modernization',
+    'footer_company_heading' => 'Company',
+    'footer_company_about' => 'About',
+    'footer_get_in_touch_heading' => 'Get in touch',
     'footer_contact_heading' => 'Contact',
     'footer_location_heading' => 'Location',
     'footer_location' => 'Mexico City, Mexico',

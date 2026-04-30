@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Mail;
 test('landing page loads in spanish by default', function () {
     $this->get('/')
         ->assertStatus(200)
-        ->assertSee('El arte de crear software a tu medida')
+        ->assertSee('El arte de')
+        ->assertSee('crear software')
         ->assertSee('AcuarelaSoft')
         ->assertSee('Soluciones que construimos')
         ->assertSee('Solicitar Consulta Gratuita');
@@ -14,7 +15,8 @@ test('landing page loads in spanish by default', function () {
 test('landing page loads in english', function () {
     $this->get('/en')
         ->assertStatus(200)
-        ->assertSee('The art of crafting custom software')
+        ->assertSee('The art of')
+        ->assertSee('crafting software')
         ->assertSee('AcuarelaSoft')
         ->assertSee('Solutions we build')
         ->assertSee('Request Free Consultation');
