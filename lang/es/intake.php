@@ -9,8 +9,11 @@ return [
 
     'sections' => [
         'client' => 'Información del cliente',
+        'client_hint' => 'Usamos estos datos únicamente para enviarte la confirmación y coordinar la videollamada de discovery.',
         'modules' => 'Selección de módulos',
+        'modules_hint' => 'Cada módulo representa una funcionalidad de tu sistema. Elige todos los que creas necesitar — la suma de su complejidad genera la estimación preliminar de esfuerzo.',
         'summary' => 'Resumen de tu selección',
+        'summary_hint' => 'Revisa tu selección antes de enviar. Si necesitas ajustar algo, regresa a la sección de módulos.',
     ],
 
     'fields' => [
@@ -18,6 +21,7 @@ return [
         'email' => 'Correo electrónico',
         'phone' => 'Teléfono',
         'project_summary' => 'Resumen del proyecto',
+        'project_summary_hint' => 'Describe el sistema que quieres construir: qué hace, quiénes lo usan y el problema principal que resuelve. Mínimo 20 caracteres.',
         'module_search' => 'Buscar módulos',
         'module_search_placeholder' => 'Buscar por nombre de módulo...',
         'category_filter' => 'Categoría',
@@ -79,6 +83,15 @@ return [
         'dependencies' => 'Dependencias',
         'use_cases' => 'Casos de uso',
         'complexity_tag' => 'Complejidad',
+        'steps_label' => 'Así funciona',
+        'step_1_title' => 'Completa tus datos',
+        'step_1_desc' => 'Nombre, correo y teléfono para coordinar el siguiente paso.',
+        'step_2_title' => 'Elige los módulos',
+        'step_2_desc' => 'Selecciona todas las funcionalidades que necesita tu sistema.',
+        'step_3_title' => 'Revisa y envía',
+        'step_3_desc' => 'Confirmamos en menos de 24 h con una estimación preliminar.',
+        'module_tip' => 'Selecciona todos los módulos que crees que formarán parte de tu sistema. Haz clic en «Ver detalle completo» en cada tarjeta para leer la descripción, dependencias y casos de uso típicos.',
+        'submit_note' => 'Recibirás un correo de confirmación al enviar. Nuestro equipo lo revisará y te contactará en menos de 24 horas hábiles.',
     ],
 
     'thank_you' => [

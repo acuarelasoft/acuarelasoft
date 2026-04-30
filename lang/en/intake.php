@@ -9,8 +9,11 @@ return [
 
     'sections' => [
         'client' => 'Client Information',
+        'client_hint' => 'We only use this information to send you the confirmation email and schedule the discovery call.',
         'modules' => 'Module Selection',
+        'modules_hint' => 'Each module represents a feature of your system. Select everything you think you will need — combined complexity scores generate the preliminary effort estimate.',
         'summary' => 'Your Selection Summary',
+        'summary_hint' => 'Review your selection before submitting. Go back to the module section to adjust if needed.',
     ],
 
     'fields' => [
@@ -18,6 +21,7 @@ return [
         'email' => 'Email',
         'phone' => 'Phone',
         'project_summary' => 'Project summary',
+        'project_summary_hint' => 'Describe the system you want to build: what it does, who uses it, and the main problem it solves. Minimum 20 characters.',
         'module_search' => 'Search modules',
         'module_search_placeholder' => 'Search by module name...',
         'category_filter' => 'Category',
@@ -79,6 +83,15 @@ return [
         'dependencies' => 'Dependencies',
         'use_cases' => 'Example use cases',
         'complexity_tag' => 'Complexity',
+        'steps_label' => 'How it works',
+        'step_1_title' => 'Fill in your details',
+        'step_1_desc' => 'Name, email, and phone so we can coordinate next steps.',
+        'step_2_title' => 'Choose modules',
+        'step_2_desc' => 'Select all the features your system needs.',
+        'step_3_title' => 'Review and submit',
+        'step_3_desc' => "We'll confirm within 24 hours with a preliminary estimate.",
+        'module_tip' => 'Select all modules you think your system will need. Click “View full details” on each card to read the description, dependencies, and example use cases.',
+        'submit_note' => "You'll receive a confirmation email after submitting. Our team will review it and reach out within 24 business hours.",
     ],
 
     'thank_you' => [

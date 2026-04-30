@@ -209,9 +209,27 @@ new #[Title('Project Intake')] class extends Component {
                 <p class="mt-4 text-base leading-relaxed text-ink/80 md:text-lg">{{ __('intake.hero_subtitle') }}</p>
             </header>
 
+            {{-- 3-step guide --}}
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-0" aria-label="{{ __('intake.helpers.steps_label') }}" role="list">
+                @foreach ([
+                    ['n' => '1', 'title' => __('intake.helpers.step_1_title'), 'desc' => __('intake.helpers.step_1_desc')],
+                    ['n' => '2', 'title' => __('intake.helpers.step_2_title'), 'desc' => __('intake.helpers.step_2_desc')],
+                    ['n' => '3', 'title' => __('intake.helpers.step_3_title'), 'desc' => __('intake.helpers.step_3_desc')],
+                ] as $i => $step)
+                    <div class="flex flex-1 items-start gap-3 {{ $i > 0 ? 'sm:border-l sm:border-acuarela-300/35 sm:pl-6' : '' }}" role="listitem">
+                        <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-petroleo text-xs font-bold text-paper" aria-hidden="true">{{ $step['n'] }}</span>
+                        <div>
+                            <p class="font-semibold text-ink text-sm">{{ $step['title'] }}</p>
+                            <p class="text-xs text-ink/60 mt-0.5">{{ $step['desc'] }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
             <form wire:submit="submit" class="mt-10 space-y-10">
                 <section class="rounded-soft border border-acuarela-300/35 bg-paper/85 p-6 backdrop-blur-sm md:p-8" aria-labelledby="client-section">
                     <h2 id="client-section" class="font-heading text-2xl font-semibold text-ink">{{ __('intake.sections.client') }}</h2>
+                    <p class="mt-1.5 text-sm text-ink/60">{{ __('intake.sections.client_hint') }}</p>
 
                     <div class="mt-6 grid gap-5 md:grid-cols-2">
                         <div>
@@ -234,6 +252,7 @@ new #[Title('Project Intake')] class extends Component {
 
                         <div class="md:col-span-2">
                             <label for="projectSummary" class="text-sm font-medium text-ink">{{ __('intake.fields.project_summary') }}</label>
+                            <p class="mt-0.5 text-xs text-ink/55">{{ __('intake.fields.project_summary_hint') }}</p>
                             <textarea id="projectSummary" wire:model="projectSummary" rows="5" class="mt-2 w-full rounded-soft border border-acuarela-300/45 bg-white/75 px-4 py-3 text-ink outline-none transition focus:border-petroleo focus:ring-2 focus:ring-petroleo/20" aria-required="true"></textarea>
                             @error('projectSummary') <p class="mt-1.5 text-sm text-[#9e3a34]" role="alert">{{ $message }}</p> @enderror
                         </div>
@@ -245,6 +264,7 @@ new #[Title('Project Intake')] class extends Component {
                         <h2 id="module-section" class="font-heading text-2xl font-semibold text-ink">{{ __('intake.sections.modules') }}</h2>
                         <p class="text-sm text-ink/70">{{ __('intake.helpers.selected_count', ['count' => count($selectedModules)]) }}</p>
                     </div>
+                    <p class="mt-1.5 text-sm text-ink/60">{{ __('intake.sections.modules_hint') }}</p>
 
                     <div class="mt-6 grid gap-4 md:grid-cols-3">
                         <div class="md:col-span-2">
@@ -264,6 +284,12 @@ new #[Title('Project Intake')] class extends Component {
                     </div>
 
                     @error('selectedModules') <p class="mt-4 text-sm text-[#9e3a34]" role="alert">{{ $message }}</p> @enderror
+
+                    {{-- Module tip callout --}}
+                    <div class="mt-5 flex items-start gap-3 rounded-soft border border-acuarela-200/70 bg-acuarela-50/60 px-4 py-3" role="note">
+                        <svg class="mt-0.5 h-4 w-4 shrink-0 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg>
+                        <p class="text-sm text-ink/75">{{ __('intake.helpers.module_tip') }}</p>
+                    </div>
 
                     <div class="mt-6 space-y-7">
                         @forelse ($this->groupedModules as $category => $modules)
@@ -322,6 +348,7 @@ new #[Title('Project Intake')] class extends Component {
                             <span class="rounded-full bg-petroleo/10 px-3 py-1 text-sm font-medium text-petroleo">{{ __('intake.helpers.selected_count', ['count' => count($selectedModules)]) }}</span>
                         @endif
                     </div>
+                    <p class="mt-1.5 text-sm text-ink/60">{{ __('intake.sections.summary_hint') }}</p>
 
                     @if ($this->selectedModuleRecords !== [])
                         <ul class="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -339,10 +366,11 @@ new #[Title('Project Intake')] class extends Component {
                     @endif
                 </section>
 
-                <div class="flex justify-end">
+                <div class="flex flex-col items-end gap-2">
                     <button type="submit" class="inline-flex items-center rounded-soft bg-petroleo px-6 py-3 text-sm font-semibold text-paper transition-all hover:scale-[1.02] hover:bg-[#245A65] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
                         {{ __('intake.actions.submit') }}
                     </button>
+                    <p class="text-xs text-ink/50">{{ __('intake.helpers.submit_note') }}</p>
                 </div>
             </form>
         </div>
