@@ -22,6 +22,30 @@ Route::post('/contacto', [ContactController::class, 'submit'])
     ->middleware('throttle:5,1')
     ->name('contact.submit');
 
+Route::get('/intake', function () {
+    app()->setLocale('es');
+
+    return view('pages.intake');
+})->middleware('throttle:20,1')->name('intake');
+
+Route::get('/en/intake', function () {
+    app()->setLocale('en');
+
+    return view('pages.intake');
+})->middleware('throttle:20,1')->name('intake.en');
+
+Route::get('/intake/gracias', function () {
+    app()->setLocale('es');
+
+    return view('pages.intake-thanks');
+})->name('intake.thanks');
+
+Route::get('/en/intake/thanks', function () {
+    app()->setLocale('en');
+
+    return view('pages.intake-thanks');
+})->name('intake.thanks.en');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
 });

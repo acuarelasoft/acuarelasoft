@@ -10,9 +10,9 @@
     <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
 
     {{-- Hreflang for bilingual SEO --}}
-    <link rel="alternate" hreflang="es" href="{{ url('/') }}">
-    <link rel="alternate" hreflang="en" href="{{ url('/en') }}">
-    <link rel="alternate" hreflang="x-default" href="{{ url('/') }}">
+    <link rel="alternate" hreflang="es" href="{{ $hreflangEs ?? url('/') }}">
+    <link rel="alternate" hreflang="en" href="{{ $hreflangEn ?? url('/en') }}">
+    <link rel="alternate" hreflang="x-default" href="{{ $hreflangDefault ?? ($hreflangEs ?? url('/')) }}">
 
     {{-- Open Graph --}}
     <meta property="og:title" content="{{ $title ?? __('landing.meta_title') }}">
