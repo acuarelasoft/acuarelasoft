@@ -122,6 +122,7 @@ return [
         'selected_modules_min' => 'Select at least one module.',
         'selected_modules_array' => 'Invalid module selection format.',
         'selected_modules_in' => 'One or more selected modules are invalid.',
+        'captcha_invalid' => 'CAPTCHA verification failed. Please try again.',
     ],
 
     'modules' => [

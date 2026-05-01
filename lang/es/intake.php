@@ -122,6 +122,7 @@ return [
         'selected_modules_min' => 'Debes seleccionar al menos un módulo.',
         'selected_modules_array' => 'El formato de módulos seleccionados es inválido.',
         'selected_modules_in' => 'Uno o más módulos seleccionados no son válidos.',
+        'captcha_invalid' => 'Verificación CAPTCHA fallida. Por favor intenta de nuevo.',
     ],
 
     'modules' => [

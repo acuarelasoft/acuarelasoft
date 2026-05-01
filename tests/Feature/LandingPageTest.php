@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\TurnstileService;
 use Illuminate\Support\Facades\Mail;
 
 test('landing page loads in spanish by default', function () {
@@ -168,4 +169,38 @@ test('contact form is rate limited', function () {
 
     $this->post(route('contact.submit'), $data)
         ->assertStatus(429);
+});
+
+test('contact form skips turnstile validation outside production', function () {
+    Mail::fake();
+
+    // TurnstileService always returns true outside production — no token needed
+    $this->post(route('contact.submit'), [
+        'name' => 'Local Dev',
+        'email' => 'dev@example.com',
+        'project_type' => 'new',
+        'message' => 'Testing without captcha in local.',
+    ])
+        ->assertRedirect()
+        ->assertSessionHas('success_key', 'landing.contact_success');
+});
+
+test('contact form blocks submission when turnstile fails in production', function () {
+    Mail::fake();
+
+    $turnstile = Mockery::mock(TurnstileService::class);
+    $turnstile->shouldReceive('verify')->once()->andReturn(false);
+    app()->instance(TurnstileService::class, $turnstile);
+
+    $this->post(route('contact.submit'), [
+        'name' => 'Bad Actor',
+        'email' => 'bad@example.com',
+        'project_type' => 'new',
+        'message' => 'This should be blocked by captcha.',
+        'cf-turnstile-response' => 'invalid-token',
+    ])
+        ->assertRedirect()
+        ->assertSessionHasErrors('cf-turnstile-response');
+
+    Mail::assertNothingSent();
 });

@@ -28,6 +28,7 @@ class ContactFormRequest extends FormRequest
             'project_type' => ['required', 'string', 'in:new,modernization,consulting,other'],
             'availability' => ['nullable', 'string', 'in:morning,afternoon,evening,flexible'],
             'message' => ['required', 'string', 'max:500'],
+            'cf-turnstile-response' => app()->isProduction() ? ['required', 'string'] : ['nullable', 'string'],
         ];
     }
 }

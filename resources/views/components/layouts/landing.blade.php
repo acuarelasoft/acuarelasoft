@@ -32,6 +32,8 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+    <link rel="preconnect" href="https://challenges.cloudflare.com">
+
     {{-- Bunny Fonts (GDPR-friendly) --}}
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=playfair-display:600,700|inter:400,500,600|pacifico:400" rel="stylesheet">
@@ -230,5 +232,7 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
+
+    @stack('scripts')
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 use App\Mail\IntakeSubmissionConfirmation;
 use App\Models\ProjectIntakeSubmission;
+use App\Services\TurnstileService;
 use App\Support\IntakeEstimator;
 use App\Support\IntakeModuleCatalog;
 use Illuminate\Support\Facades\Mail;
@@ -17,6 +18,7 @@ new #[Title('Project Intake')] class extends Component {
     public string $projectSummary = '';
     public string $searchTerm = '';
     public string $categoryFilter = 'all';
+    public string $turnstileToken = '';
 
     /**
      * @var list<string>
@@ -88,6 +90,17 @@ new #[Title('Project Intake')] class extends Component {
 
     public function submit(): void
     {
+        if (app()->isProduction()) {
+            /** @var TurnstileService $turnstile */
+            $turnstile = app(TurnstileService::class);
+
+            if (! $turnstile->verify($this->turnstileToken, request()->ip())) {
+                $this->addError('turnstileToken', __('intake.validation.captcha_invalid'));
+
+                return;
+            }
+        }
+
         $validated = $this->validate();
         $estimate = IntakeEstimator::estimate($validated['selectedModules']);
 
@@ -367,6 +380,25 @@ new #[Title('Project Intake')] class extends Component {
                 </section>
 
                 <div class="flex flex-col items-end gap-2">
+                    @production
+                    <div
+                        x-data
+                        x-on:turnstile-intake-token.window="$wire.set('turnstileToken', $event.detail)"
+                        class="self-start"
+                    >
+                        <div
+                            class="cf-turnstile"
+                            data-sitekey="{{ config('services.turnstile.sitekey') }}"
+                            data-theme="light"
+                            data-callback="onIntakeTurnstileSuccess"
+                            data-expired-callback="onIntakeTurnstileExpired"
+                        ></div>
+                        @error('turnstileToken')
+                            <p role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    @endproduction
+
                     <button type="submit" class="inline-flex items-center rounded-soft bg-petroleo px-6 py-3 text-sm font-semibold text-paper transition-all hover:scale-[1.02] hover:bg-[#245A65] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
                         {{ __('intake.actions.submit') }}
                     </button>
@@ -375,3 +407,17 @@ new #[Title('Project Intake')] class extends Component {
             </form>
         </div>
     </section>
+
+@production
+@push('scripts')
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script>
+    function onIntakeTurnstileSuccess(token) {
+        window.dispatchEvent(new CustomEvent('turnstile-intake-token', { detail: token }));
+    }
+    function onIntakeTurnstileExpired() {
+        window.dispatchEvent(new CustomEvent('turnstile-intake-token', { detail: '' }));
+    }
+</script>
+@endpush
+@endproduction

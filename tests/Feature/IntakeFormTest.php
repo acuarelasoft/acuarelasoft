@@ -2,6 +2,7 @@
 
 use App\Mail\IntakeSubmissionConfirmation;
 use App\Models\ProjectIntakeSubmission;
+use App\Services\TurnstileService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
@@ -54,4 +55,37 @@ test('stores submission and sends confirmation email', function () {
 test('thanks pages render in both locales', function () {
     get('/intake/gracias')->assertSuccessful();
     get('/en/intake/thanks')->assertSuccessful();
+});
+
+test('intake form skips turnstile validation outside production', function () {
+    Mail::fake();
+
+    // No turnstileToken set — TurnstileService always passes outside production
+    Livewire::test('pages::intake')
+        ->set('fullName', 'Dev User')
+        ->set('email', 'dev@example.com')
+        ->set('phone', '+52 5500001111')
+        ->set('projectSummary', 'A local development submission without captcha token.')
+        ->set('selectedModules', ['portal-cliente-selfservice'])
+        ->call('submit')
+        ->assertRedirect(route('intake.thanks'));
+});
+
+test('intake form blocks submission when turnstile fails in production', function () {
+    $turnstile = Mockery::mock(TurnstileService::class);
+    $turnstile->shouldReceive('verify')->once()->andReturn(false);
+    app()->instance(TurnstileService::class, $turnstile);
+
+    // Temporarily fake production to exercise the guard
+    app()->bind('env', fn () => 'production');
+
+    Livewire::test('pages::intake')
+        ->set('fullName', 'Bad Actor')
+        ->set('email', 'bad@example.com')
+        ->set('phone', '+52 5500009999')
+        ->set('projectSummary', 'This submission should be blocked by captcha.')
+        ->set('selectedModules', ['portal-cliente-selfservice'])
+        ->set('turnstileToken', 'fake-token')
+        ->call('submit')
+        ->assertHasErrors('turnstileToken');
 });

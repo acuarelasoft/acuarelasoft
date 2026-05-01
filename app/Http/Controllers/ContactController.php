@@ -3,16 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
+use App\Services\TurnstileService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    public function __construct(private readonly TurnstileService $turnstile) {}
+
     public function submit(ContactFormRequest $request): RedirectResponse
     {
         if ($request->filled('website')) {
             return redirect()->back();
+        }
+
+        if (! $this->turnstile->verify($request->input('cf-turnstile-response', ''), $request->ip())) {
+            return redirect()->back()
+                ->withErrors(['cf-turnstile-response' => app()->getLocale() === 'es'
+                    ? 'Verificación CAPTCHA fallida. Por favor intenta de nuevo.'
+                    : 'CAPTCHA verification failed. Please try again.'])
+                ->withInput();
         }
 
         $validated = $request->validated();

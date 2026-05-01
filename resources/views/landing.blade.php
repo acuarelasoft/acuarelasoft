@@ -784,6 +784,16 @@
                             @enderror
                         </div>
 
+                        {{-- Turnstile CAPTCHA --}}
+                        @production
+                        <div>
+                            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.sitekey') }}" data-theme="light"></div>
+                            @error('cf-turnstile-response')
+                                <p role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        @endproduction
+
                         {{-- Submit --}}
                         <div class="pt-2">
                             <button type="submit" class="w-full flex items-center justify-center gap-2 bg-petroleo text-paper font-sans font-medium px-10 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
@@ -801,3 +811,9 @@
     </section>
 
 </x-layouts.landing>
+
+@production
+@push('scripts')
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+@endpush
+@endproduction
