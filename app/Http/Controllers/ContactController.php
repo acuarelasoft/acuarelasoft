@@ -35,7 +35,7 @@ class ContactController extends Controller
         ]);
 
         Mail::raw($this->buildEmailBody($validated), function ($mail) use ($validated) {
-            $mail->to('contacto@acuarelasoft.dev')
+            $mail->to('acuarelasoft@gmail.com')
                 ->replyTo($validated['email'], $validated['name'])
                 ->subject('Solicitud de llamada: '.$validated['name'].' — '.$validated['project_type']);
         });

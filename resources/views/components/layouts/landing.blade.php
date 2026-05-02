@@ -144,7 +144,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:contacto@acuarelasoft.dev" class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55" aria-label="Email">
+                            <a href="mailto:contacto@acuarelasoft.com" class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55" aria-label="Email">
                                 <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 7.5v9a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 16.5v-9m19.5 0A2.25 2.25 0 0 0 19.5 5.25h-15A2.25 2.25 0 0 0 2.25 7.5m19.5 0-9.334 6.223a.75.75 0 0 1-.832 0L2.25 7.5"/></svg>
                             </a>
                         </li>
@@ -177,7 +177,7 @@
                     <h2 class="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-petroleo mb-4">{{ __('landing.footer_get_in_touch_heading') }}</h2>
                     <address class="not-italic space-y-4 font-sans text-ink/78">
                         <p>
-                            <a href="mailto:contacto@acuarelasoft.dev" class="hover:text-petroleo transition-colors duration-200">contacto@acuarelasoft.dev</a>
+                            <a href="mailto:contacto@acuarelasoft.com" class="hover:text-petroleo transition-colors duration-200">contacto@acuarelasoft.com</a>
                         </p>
 
                         <div class="space-y-2">

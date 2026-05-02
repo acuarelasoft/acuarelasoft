@@ -35,7 +35,7 @@
         "alternateName": "Acuarela Soft",
         "url": "https://acuarelasoft.dev",
         "description": "{{ __('landing.meta_description') }}",
-        "email": "contacto@acuarelasoft.dev",
+        "email": "contacto@acuarelasoft.com",
         "telephone": "+525649440190",
         "foundingDate": "2026",
         "address": {
@@ -47,7 +47,7 @@
         "contactPoint": {
             "@@type": "ContactPoint",
             "telephone": "+525649440190",
-            "email": "contacto@acuarelasoft.dev",
+            "email": "contacto@acuarelasoft.com",
             "contactType": "sales"
         },
         "sameAs": [
