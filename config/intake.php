@@ -57,7 +57,6 @@ return [
                 'registro-eventos-telemetria',
                 'kpis-dashboards',
                 'scheduler-background-jobs',
-                'monitorizacion-alertas',
             ],
         ],
     ],
@@ -123,12 +122,6 @@ return [
             'dependencies' => ['Stripe/PayU/Adyen', 'Fraud systems', 'Webhooks'],
             'use_cases' => ['Subscription billing', 'E-commerce checkout', 'Micropayments'],
         ],
-        'generacion-archivos' => [
-            'category' => 'ai_data',
-            'complexity' => 'baja-media',
-            'dependencies' => ['PDF/XLSX libraries', 'Storage and streaming'],
-            'use_cases' => ['PDF invoices', 'Downloadable reports', 'Contracts'],
-        ],
         'sistema-agendar' => [
             'category' => 'operations',
             'complexity' => 'media',
@@ -192,14 +185,14 @@ return [
         'kpis-dashboards' => [
             'category' => 'ai_data',
             'complexity' => 'media',
-            'dependencies' => ['Data warehouse', 'ETL', 'Visualization engine'],
-            'use_cases' => ['Sales tracking', 'SLA monitoring', 'System health'],
+            'dependencies' => ['Data warehouse', 'ETL', 'Visualization engine', 'Alerting system'],
+            'use_cases' => ['Business KPI tracking', 'Sales tracking', 'SLA monitoring', 'System health', 'Capacity alerts', 'Operational monitoring'],
         ],
         'informes-exportacion' => [
             'category' => 'ai_data',
             'complexity' => 'media',
-            'dependencies' => ['File generation engine', 'Storage', 'Scheduler'],
-            'use_cases' => ['Accounting reports', 'Statements', 'Third-party exports'],
+            'dependencies' => ['File generation engine', 'PDF/XLSX libraries', 'Storage', 'Scheduler'],
+            'use_cases' => ['Accounting reports', 'Downloadable reports', 'Statements', 'Contracts', 'Third-party exports'],
         ],
         'sistema-arriendo' => [
             'category' => 'commerce',
@@ -260,12 +253,6 @@ return [
             'complexity' => 'media',
             'dependencies' => ['Experiment SDKs', 'Event storage', 'Analytics'],
             'use_cases' => ['Conversion optimization', 'UI experiments', 'Hypothesis validation'],
-        ],
-        'monitorizacion-alertas' => [
-            'category' => 'infrastructure',
-            'complexity' => 'media',
-            'dependencies' => ['Prometheus/Grafana', 'Exporters', 'Alerting system'],
-            'use_cases' => ['Health checks', 'Capacity alerts', 'SLO tracking'],
         ],
         'trazabilidad-tracing-error-tracking' => [
             'category' => 'infrastructure',

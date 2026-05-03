@@ -163,14 +163,19 @@ new #[Title('Project Intake')] class extends Component {
                 continue;
             }
 
+            $translatedUseCases = $trans['use_cases'] ?? null;
+
+            if (! is_array($translatedUseCases) || $translatedUseCases === []) {
+                $translatedUseCases = (array) ($moduleData['use_cases'] ?? []);
+            }
+
             $groups[$category][$moduleId] = [
                 'id' => $moduleId,
                 'short' => (string) ($trans['short'] ?? $label),
                 'label' => $label,
                 'description' => $description,
                 'complexity' => $complexity,
-                'dependencies' => (array) ($moduleData['dependencies'] ?? []),
-                'use_cases' => (array) ($moduleData['use_cases'] ?? []),
+                'use_cases' => array_values(array_map(static fn (mixed $useCase): string => (string) $useCase, $translatedUseCases)),
             ];
         }
 
@@ -329,13 +334,6 @@ new #[Title('Project Intake')] class extends Component {
                                             <details class="mt-3 rounded-soft border border-acuarela-200/70 bg-paper/85 p-3 text-sm text-ink/80">
                                                 <summary class="cursor-pointer font-medium text-petroleo">{{ __('intake.actions.toggle_details') }}</summary>
                                                 <p class="mt-2 leading-relaxed">{{ $module['description'] }}</p>
-
-                                                <p class="mt-3 font-medium text-ink">{{ __('intake.helpers.dependencies') }}</p>
-                                                <ul class="mt-1 list-disc space-y-1 pl-5">
-                                                    @foreach ($module['dependencies'] as $dependency)
-                                                        <li>{{ $dependency }}</li>
-                                                    @endforeach
-                                                </ul>
 
                                                 <p class="mt-3 font-medium text-ink">{{ __('intake.helpers.use_cases') }}</p>
                                                 <ul class="mt-1 list-disc space-y-1 pl-5">
