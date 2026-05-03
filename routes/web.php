@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Middleware\DetectIntakeBrowserLocale;
 use Illuminate\Support\Facades\Route;
 
 // Landing page (Spanish — default)
@@ -26,7 +27,7 @@ Route::get('/intake', function () {
     app()->setLocale('es');
 
     return view('pages.intake');
-})->middleware('throttle:20,1')->name('intake');
+})->middleware([DetectIntakeBrowserLocale::class, 'throttle:20,1'])->name('intake');
 
 Route::get('/en/intake', function () {
     app()->setLocale('en');
@@ -38,7 +39,7 @@ Route::get('/intake/gracias', function () {
     app()->setLocale('es');
 
     return view('pages.intake-thanks');
-})->name('intake.thanks');
+})->middleware(DetectIntakeBrowserLocale::class)->name('intake.thanks');
 
 Route::get('/en/intake/thanks', function () {
     app()->setLocale('en');
