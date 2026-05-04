@@ -1,9 +1,9 @@
 <x-layouts.landing
     :title="__('intake.meta_title')"
     :metaDescription="__('intake.meta_description')"
-    :canonical="app()->getLocale() === 'en' ? route('intake.en') : route('intake')"
+    :canonical="route('intake')"
     :hreflangEs="route('intake')"
-    :hreflangEn="route('intake.en')"
+    :hreflangEn="route('intake')"
 >
     @push('structured-data')
         <script type="application/ld+json">

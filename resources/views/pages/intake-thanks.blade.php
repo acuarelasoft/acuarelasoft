@@ -1,9 +1,9 @@
 <x-layouts.landing
     :title="__('intake.thank_you.title')"
     :metaDescription="__('intake.meta_description')"
-    :canonical="app()->getLocale() === 'en' ? route('intake.thanks.en') : route('intake.thanks')"
+    :canonical="route('intake.thanks')"
     :hreflangEs="route('intake.thanks')"
-    :hreflangEn="route('intake.thanks.en')"
+    :hreflangEn="route('intake.thanks')"
 >
     @push('structured-data')
         <script type="application/ld+json">
@@ -25,7 +25,7 @@
             <h1 class="mt-2 font-heading text-4xl font-bold text-ink md:text-5xl">{{ __('intake.thank_you.title') }}</h1>
             <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink/80 md:text-lg">{{ __('intake.thank_you.subtitle') }}</p>
 
-            <a href="{{ app()->getLocale() === 'en' ? route('home.en') : route('home') }}" class="mt-8 inline-flex rounded-soft bg-petroleo px-6 py-3 text-sm font-semibold text-paper transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
+            <a href="{{ app()->getLocale() === 'en' ? route('home.lang', ['lang' => 'en']) : route('home') }}" class="mt-8 inline-flex rounded-soft bg-petroleo px-6 py-3 text-sm font-semibold text-paper transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
                 {{ __('intake.thank_you.cta') }}
             </a>
         </div>

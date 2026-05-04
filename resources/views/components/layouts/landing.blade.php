@@ -55,7 +55,7 @@
         </defs>
     </svg>
 
-    @php($landingBaseUrl = app()->getLocale() === 'es' ? route('home') : route('home.en'))
+    @php($landingBaseUrl = app()->getLocale() === 'es' ? route('home') : route('home.lang', ['lang' => 'en']))
     @php($landingServicesUrl = $landingBaseUrl . '#servicios')
     @php($landingProcessUrl = $landingBaseUrl . '#proceso')
     @php($landingWhyUsUrl = $landingBaseUrl . '#por-que-nosotros')
@@ -85,10 +85,10 @@
             <div class="flex items-center gap-4">
                 {{-- Language switcher --}}
                 <nav class="flex gap-1 text-xs font-sans font-medium" aria-label="{{ app()->getLocale() === 'es' ? 'Selector de idioma' : 'Language selector' }}">
-                    <a href="{{ url('/') }}" lang="es" hreflang="es"
+                          <a href="{{ route('home.lang', ['lang' => 'es']) }}" lang="es" hreflang="es"
                        class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'es' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
                        {{ app()->getLocale() === 'es' ? 'aria-current=true' : '' }}>ES</a>
-                    <a href="{{ url('/en') }}" lang="en" hreflang="en"
+                          <a href="{{ route('home.lang', ['lang' => 'en']) }}" lang="en" hreflang="en"
                        class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
                        {{ app()->getLocale() === 'en' ? 'aria-current=true' : '' }}>EN</a>
                 </nav>
@@ -165,7 +165,7 @@
                     <ul class="space-y-2.5 font-sans text-[1rem] font-medium text-ink/88">
                         @foreach (config('site_services') as $service)
                             <li>
-                                <a href="{{ app()->getLocale() === 'es' ? route('service', ['service' => $service['slug']]) : route('service.en', ['service' => $service['slug']]) }}" class="hover:text-petroleo transition-colors duration-200">
+                                <a href="{{ route('service', ['service' => $service['slug']]) }}" class="hover:text-petroleo transition-colors duration-200">
                                     {{ __('services.' . $service['key'] . '.title') }}
                                 </a>
                             </li>

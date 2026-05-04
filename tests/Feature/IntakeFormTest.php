@@ -15,13 +15,6 @@ test('intake page renders in spanish for spanish browser locale', function () {
     get('/intake', ['Accept-Language' => 'es-MX,es;q=0.9,en;q=0.8'])
         ->assertSuccessful()
         ->assertSee('<html lang="es">', false);
-
-    get('/en/intake')->assertSuccessful();
-});
-
-test('intake page redirects to english for non spanish browser locale', function () {
-    get('/intake', ['Accept-Language' => 'fr-FR,fr;q=0.9,en;q=0.8'])
-        ->assertRedirect(route('intake.en'));
 });
 
 test('requires at least one module', function () {
@@ -61,16 +54,9 @@ test('stores submission and sends confirmation email', function () {
 });
 
 test('thanks page renders in spanish for spanish browser locale', function () {
-    get('/intake/gracias', ['Accept-Language' => 'es-MX,es;q=0.9,en;q=0.8'])
+    get('/intake/thanks', ['Accept-Language' => 'es-MX,es;q=0.9,en;q=0.8'])
         ->assertSuccessful()
         ->assertSee('<html lang="es">', false);
-
-    get('/en/intake/thanks')->assertSuccessful();
-});
-
-test('thanks page redirects to english for non spanish browser locale', function () {
-    get('/intake/gracias', ['Accept-Language' => 'de-DE,de;q=0.9,en;q=0.8'])
-        ->assertRedirect(route('intake.thanks.en'));
 });
 
 test('intake form skips turnstile validation outside production', function () {

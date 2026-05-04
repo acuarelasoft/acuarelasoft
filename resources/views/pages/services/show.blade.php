@@ -1,11 +1,9 @@
 <x-layouts.landing
     :title="__('services.' . $service['key'] . '.meta_title')"
     :metaDescription="__('services.' . $service['key'] . '.meta_description')"
-    :canonical="app()->getLocale() === 'es'
-        ? route('service', $service['slug'])
-        : route('service.en', $service['slug'])"
+    :canonical="route('service', $service['slug'])"
     :hreflangEs="route('service', $service['slug'])"
-    :hreflangEn="route('service.en', $service['slug'])"
+    :hreflangEn="route('service', $service['slug'])"
 >
 
     @push('structured-data')
@@ -21,9 +19,7 @@
             'url' => url('/'),
         ],
         'areaServed' => ['MX', 'US', 'LATAM'],
-        'url' => app()->getLocale() === 'es'
-            ? route('service', $service['slug'])
-            : route('service.en', $service['slug']),
+        'url' => route('service', $service['slug']),
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
     @endpush
@@ -48,7 +44,7 @@
         <div class="max-w-6xl mx-auto px-6 pt-28 pb-20 md:pt-36 md:pb-28 w-full">
             {{-- Breadcrumb --}}
             <nav class="mb-8 flex items-center gap-2 font-sans text-sm text-ink/50" aria-label="{{ app()->getLocale() === 'es' ? 'Ruta de navegación' : 'Breadcrumb' }}">
-                <a href="{{ app()->getLocale() === 'es' ? route('home') : route('home.en') }}"
+                <a href="{{ app()->getLocale() === 'es' ? route('home') : route('home.lang', ['lang' => 'en']) }}"
                    class="hover:text-petroleo transition-colors duration-200">
                     {{ app()->getLocale() === 'es' ? 'Inicio' : 'Home' }}
                 </a>
@@ -77,11 +73,11 @@
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="{{ app()->getLocale() === 'es' ? route('home') . '#contacto' : route('home.en') . '#contacto' }}"
+                        <a href="{{ app()->getLocale() === 'es' ? route('home') . '#contacto' : route('home.lang', ['lang' => 'en']) . '#contacto' }}"
                            class="bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base text-center">
                             {{ __('services.cta_contact') }}
                         </a>
-                        <a href="{{ app()->getLocale() === 'es' ? route('intake') : route('intake.en') }}"
+                        <a href="{{ route('intake') }}"
                            class="bg-paper/80 text-ink font-sans font-semibold px-8 py-3.5 rounded-soft border border-ink/15 transition-all duration-200 hover:bg-paper hover:border-ink/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acuarela-400 text-base text-center">
                             {{ __('services.cta_intake') }}
                         </a>
@@ -245,7 +241,7 @@
             <ul class="grid sm:grid-cols-3 gap-6 list-none">
                 @foreach ($otherServices as $other)
                     <li>
-                        <a href="{{ app()->getLocale() === 'es' ? route('service', $other['slug']) : route('service.en', $other['slug']) }}"
+                        <a href="{{ route('service', $other['slug']) }}"
                            class="group flex flex-col h-full bg-paper rounded-soft p-6 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5 no-underline">
                             <div class="w-10 h-10 mb-4 flex items-center justify-center rounded-soft {{ $other['icon_bg'] }} transition-transform duration-200 group-hover:scale-110">
                                 <svg class="w-5 h-5 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -296,11 +292,11 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 md:mb-24">
-                <a href="{{ app()->getLocale() === 'es' ? route('home') . '#contacto' : route('home.en') . '#contacto' }}"
+                <a href="{{ app()->getLocale() === 'es' ? route('home') . '#contacto' : route('home.lang', ['lang' => 'en']) . '#contacto' }}"
                    class="bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base text-center">
                     {{ __('services.cta_contact') }}
                 </a>
-                <a href="{{ app()->getLocale() === 'es' ? route('intake') : route('intake.en') }}"
+                <a href="{{ route('intake') }}"
                    class="bg-paper/80 text-ink font-sans font-semibold px-8 py-3.5 rounded-soft border border-ink/15 transition-all duration-200 hover:bg-paper hover:border-ink/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acuarela-400 text-base text-center">
                     {{ __('services.cta_intake') }}
                 </a>

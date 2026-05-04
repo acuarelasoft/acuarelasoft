@@ -25,15 +25,6 @@ new #[Title('Project Intake')] class extends Component {
      */
     public array $selectedModules = [];
 
-    public function mount(): void
-    {
-        if (request()->is('en/*')) {
-            app()->setLocale('en');
-        } else {
-            app()->setLocale('es');
-        }
-    }
-
     /**
      * @return array<string, mixed>
      */
@@ -124,9 +115,7 @@ new #[Title('Project Intake')] class extends Component {
             estimate: $estimate,
         ));
 
-        $thanksRoute = app()->getLocale() === 'en' ? 'intake.thanks.en' : 'intake.thanks';
-
-        $this->redirectRoute($thanksRoute);
+        $this->redirectRoute('intake.thanks');
     }
 
     /**

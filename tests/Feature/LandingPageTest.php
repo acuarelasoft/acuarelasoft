@@ -14,13 +14,34 @@ test('landing page loads in spanish by default', function () {
 });
 
 test('landing page loads in english', function () {
-    $this->get('/en')
+    $this->followingRedirects()
+        ->get('/en')
         ->assertStatus(200)
         ->assertSee('The art of')
         ->assertSee('crafting software')
         ->assertSee('AcuarelaSoft')
         ->assertSee('Solutions we build')
         ->assertSee('Request Free Consultation');
+});
+
+test('language route stores selected language in session', function () {
+    $this->get('/en')
+        ->assertRedirect(route('home'))
+        ->assertSessionHas('lang', 'en');
+});
+
+test('landing page uses selected language from session', function () {
+    $this->withSession(['lang' => 'en'])
+        ->get('/')
+        ->assertStatus(200)
+        ->assertSee('The art of')
+        ->assertSee('crafting software');
+
+    $this->withSession(['lang' => 'es'])
+        ->get('/')
+        ->assertStatus(200)
+        ->assertSee('El arte de')
+        ->assertSee('crear software');
 });
 
 test('landing page contains all main sections in spanish', function () {
@@ -50,6 +71,13 @@ test('landing page contains hreflang tags', function () {
         ->assertSee('hreflang="x-default"', false);
 });
 
+test('landing page language switcher uses lang route', function () {
+    $this->get('/')
+        ->assertStatus(200)
+        ->assertSee('href="'.route('home.lang', ['lang' => 'es']).'"', false)
+        ->assertSee('href="'.route('home.lang', ['lang' => 'en']).'"', false);
+});
+
 test('landing page renders watercolor texture assets', function () {
     $this->get('/')
         ->assertStatus(200)
@@ -62,19 +90,20 @@ test('landing page renders watercolor texture assets', function () {
 });
 
 test('service page cta points to spanish landing contact form', function () {
-    $this->get('/servicios/diseno-web')
+    $this->get('/services/diseno-web')
         ->assertStatus(200)
         ->assertSee('href="'.route('home').'#contacto"', false);
 });
 
 test('english service page cta points to english landing contact form', function () {
-    $this->get('/en/services/web-apps')
+    $this->withSession(['lang' => 'en'])
+        ->get('/services/web-apps')
         ->assertStatus(200)
-        ->assertSee('href="'.route('home.en').'#contacto"', false);
+        ->assertSee('href="'.route('home.lang', ['lang' => 'en']).'#contacto"', false);
 });
 
 test('service page company footer links point to spanish landing sections', function () {
-    $this->get('/servicios/diseno-web')
+    $this->get('/services/diseno-web')
         ->assertStatus(200)
         ->assertSee('href="'.route('home').'#servicios"', false)
         ->assertSee('href="'.route('home').'#por-que-nosotros"', false)
@@ -82,11 +111,12 @@ test('service page company footer links point to spanish landing sections', func
 });
 
 test('english service page company footer links point to english landing sections', function () {
-    $this->get('/en/services/web-apps')
+    $this->withSession(['lang' => 'en'])
+        ->get('/services/web-apps')
         ->assertStatus(200)
-        ->assertSee('href="'.route('home.en').'#servicios"', false)
-        ->assertSee('href="'.route('home.en').'#por-que-nosotros"', false)
-        ->assertSee('href="'.route('home.en').'#contacto"', false);
+        ->assertSee('href="'.route('home.lang', ['lang' => 'en']).'#servicios"', false)
+        ->assertSee('href="'.route('home.lang', ['lang' => 'en']).'#por-que-nosotros"', false)
+        ->assertSee('href="'.route('home.lang', ['lang' => 'en']).'#contacto"', false);
 });
 
 test('landing footer lists links for all spanish services', function () {
@@ -100,12 +130,12 @@ test('landing footer lists links for all spanish services', function () {
 });
 
 test('landing footer lists links for all english services', function () {
-    $response = $this->get('/en');
+    $response = $this->followingRedirects()->get('/en');
 
     $response->assertStatus(200);
 
     foreach (config('site_services') as $service) {
-        $response->assertSee(route('service.en', ['service' => $service['slug']]), false);
+        $response->assertSee(route('service', ['service' => $service['slug']]), false);
     }
 });
 
@@ -137,13 +167,13 @@ test('contact form submits successfully with valid data', function () {
 });
 
 test('contact success banner is translated to current page locale', function () {
-    $this->withSession(['success_key' => 'landing.contact_success'])
-        ->get('/en')
+    $this->withSession(['success_key' => 'landing.contact_success', 'lang' => 'en'])
+        ->get('/')
         ->assertStatus(200)
         ->assertSee('Thank you! We\'ve received your request. We\'ll contact you within 24 hours to confirm your call.')
         ->assertSee('Dismiss notification');
 
-    $this->withSession(['success_key' => 'landing.contact_success'])
+    $this->withSession(['success_key' => 'landing.contact_success', 'lang' => 'es'])
         ->get('/')
         ->assertStatus(200)
         ->assertSee('¡Gracias! Hemos recibido tu solicitud. Te contactaremos en menos de 24 horas para confirmar tu llamada.')

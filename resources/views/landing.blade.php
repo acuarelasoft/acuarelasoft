@@ -296,7 +296,7 @@
                 <ul class="flex transition-transform duration-500 ease-out" data-carousel-track>
                     @foreach ($sliderCards as $card)
                         <li class="shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 px-2.5">
-                            <a href="{{ app()->getLocale() === 'es' ? route('service', $card['slug']) : route('service.en', $card['slug']) }}" class="group block h-full rounded-soft border border-acuarela-400/20 bg-paper overflow-hidden transition-all duration-250 hover:-translate-y-0.5 hover:border-acuarela-400/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.offer_cta') }}: {{ $card['title'] }}">
+                            <a href="{{ route('service', $card['slug']) }}" class="group block h-full rounded-soft border border-acuarela-400/20 bg-paper overflow-hidden transition-all duration-250 hover:-translate-y-0.5 hover:border-acuarela-400/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.offer_cta') }}: {{ $card['title'] }}">
                                 <div class="relative h-44">
                                     <div class="absolute inset-0" style="background-image: url('{{ $card['image'] }}'); background-size: cover; background-position: center;"></div>
                                     <div class="absolute inset-0 bg-linear-to-tr from-petroleo/25 via-acuarela-400/10 to-salmon/15"></div>
@@ -335,7 +335,7 @@
         <div class="max-w-2xl mx-auto text-center">
             <h2 id="mid-cta-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.mid_cta_title') }}</h2>
             <p class="font-sans text-ink/60 text-lg mb-8">{{ __('landing.mid_cta_subtitle') }}</p>
-            <a href="{{ app()->getLocale() === 'es' ? route('intake') : route('intake.en') }}" class="inline-flex bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
+            <a href="{{ route('intake') }}" class="inline-flex bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
                 {{ __('landing.mid_cta_button') }}
             </a>
         </div>
