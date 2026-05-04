@@ -206,6 +206,182 @@
     </svg>
 
     {{-- ============================================================
+         FEATURED WORK SLIDER
+         ============================================================ --}}
+    <section id="muestras" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="slider-heading">
+        <div class="absolute inset-0 -z-10" aria-hidden="true"
+             style="background:
+                radial-gradient(ellipse 68% 50% at 24% 38%, rgba(111,168,216,0.10) 0%, transparent 70%),
+                radial-gradient(ellipse 56% 45% at 78% 62%, rgba(242,184,178,0.10) 0%, transparent 65%);"></div>
+
+        @php
+            $sliderCards = [
+                [
+                    'slug' => 'diseno-web',
+                    'label' => __('landing.slider_web_design_label'),
+                    'title' => __('landing.slider_web_design_title'),
+                    'description' => __('landing.slider_web_design_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'web-apps',
+                    'label' => __('landing.slider_web_apps_label'),
+                    'title' => __('landing.slider_web_apps_title'),
+                    'description' => __('landing.slider_web_apps_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'apps-moviles',
+                    'label' => __('landing.slider_mobile_apps_label'),
+                    'title' => __('landing.slider_mobile_apps_title'),
+                    'description' => __('landing.slider_mobile_apps_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'mantenimiento-apps',
+                    'label' => __('landing.slider_maintenance_label'),
+                    'title' => __('landing.slider_maintenance_title'),
+                    'description' => __('landing.slider_maintenance_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'migracion-legacy',
+                    'label' => __('landing.slider_legacy_label'),
+                    'title' => __('landing.slider_legacy_title'),
+                    'description' => __('landing.slider_legacy_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'servidores-web',
+                    'label' => __('landing.slider_servers_label'),
+                    'title' => __('landing.slider_servers_title'),
+                    'description' => __('landing.slider_servers_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'apps-escritorio',
+                    'label' => __('landing.slider_desktop_label'),
+                    'title' => __('landing.slider_desktop_title'),
+                    'description' => __('landing.slider_desktop_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=900&auto=format&fit=crop',
+                ],
+                [
+                    'slug' => 'apis-web',
+                    'label' => __('landing.slider_web_api_label'),
+                    'title' => __('landing.slider_web_api_title'),
+                    'description' => __('landing.slider_web_api_desc'),
+                    'image' => 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=900&auto=format&fit=crop',
+                ],
+            ];
+        @endphp
+
+        <div class="max-w-6xl mx-auto" data-acuarela-carousel>
+            <div class="mb-8 md:mb-10 grid grid-cols-2 items-center gap-3">
+                <div>
+                    <h2 id="slider-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-2">{{ __('landing.slider_title') }}</h2>
+                    <p class="font-sans text-ink/60 text-base md:text-lg">{{ __('landing.slider_subtitle') }}</p>
+                </div>
+
+                <div class="ms-auto flex items-center gap-x-2">
+                    <button type="button" data-carousel-prev class="inline-flex justify-center items-center size-9 sm:size-10 bg-paper border border-acuarela-400/25 text-petroleo rounded-full transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed hover:border-acuarela-400/45 hover:bg-acuarela-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.slider_prev') }}">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button type="button" data-carousel-next class="inline-flex justify-center items-center size-9 sm:size-10 bg-paper border border-acuarela-400/25 text-petroleo rounded-full transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed hover:border-acuarela-400/45 hover:bg-acuarela-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.slider_next') }}">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-hidden -mx-2.5" data-carousel-viewport>
+                <ul class="flex transition-transform duration-500 ease-out" data-carousel-track>
+                    @foreach ($sliderCards as $card)
+                        <li class="shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 px-2.5">
+                            <a href="{{ app()->getLocale() === 'es' ? route('service', $card['slug']) : route('service.en', $card['slug']) }}" class="group block h-full rounded-soft border border-acuarela-400/20 bg-paper overflow-hidden transition-all duration-250 hover:-translate-y-0.5 hover:border-acuarela-400/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.offer_cta') }}: {{ $card['title'] }}">
+                                <div class="relative h-44">
+                                    <div class="absolute inset-0" style="background-image: url('{{ $card['image'] }}'); background-size: cover; background-position: center;"></div>
+                                    <div class="absolute inset-0 bg-linear-to-tr from-petroleo/25 via-acuarela-400/10 to-salmon/15"></div>
+                                    <div class="absolute top-4 left-4 inline-flex px-3 py-1 rounded-pill bg-paper/90 text-petroleo font-sans text-xs font-semibold">
+                                        {{ $card['label'] }}
+                                    </div>
+                                </div>
+
+                                <div class="p-5 flex items-start gap-4">
+                                    <div class="grow">
+                                        <h3 class="font-heading text-ink text-lg font-semibold mb-2">{{ $card['title'] }}</h3>
+                                        <p class="font-sans text-sm text-ink/70 leading-relaxed">{{ $card['description'] }}</p>
+                                    </div>
+
+                                    <span class="shrink-0 inline-flex items-center justify-center size-10 rounded-full bg-paper border border-acuarela-400/25 text-petroleo transition-colors duration-200 group-hover:bg-acuarela-50 group-hover:border-acuarela-400/45" aria-hidden="true">
+                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    {{-- ============================================================
+        MID-PAGE CTA — Watercolor wash accent
+        ============================================================ --}}
+    <section id="cta-mid" class="relative py-16 px-6 overflow-hidden reveal" aria-labelledby="mid-cta-heading">
+        <div class="absolute inset-0 -z-10" aria-hidden="true"
+             style="background:
+                radial-gradient(ellipse 60% 70% at 30% 50%, rgba(242,184,178,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 75% 40%, rgba(191,231,214,0.10) 0%, transparent 55%);">
+        </div>
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 id="mid-cta-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.mid_cta_title') }}</h2>
+            <p class="font-sans text-ink/60 text-lg mb-8">{{ __('landing.mid_cta_subtitle') }}</p>
+            <a href="{{ app()->getLocale() === 'es' ? route('intake') : route('intake.en') }}" class="inline-flex bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
+                {{ __('landing.mid_cta_button') }}
+            </a>
+        </div>
+    </section>
+
+    {{-- ============================================================
+         PROCESS — Timeline style
+         ============================================================ --}}
+    <section id="proceso" class="py-20 px-6 reveal" aria-labelledby="process-heading">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 id="process-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.process_title') }}</h2>
+                <p class="font-sans text-ink/60 text-lg max-w-xl mx-auto">{{ __('landing.process_subtitle') }}</p>
+            </div>
+
+            <ol class="relative border-l-2 border-acuarela-400/20 ml-4 space-y-10 list-none">
+                <li class="pl-10 relative">
+                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">1</span>
+                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_1_name') }}</h3>
+                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_1_desc') }}</p>
+                </li>
+                <li class="pl-10 relative">
+                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">2</span>
+                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_2_name') }}</h3>
+                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_2_desc') }}</p>
+                </li>
+                <li class="pl-10 relative">
+                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">3</span>
+                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_3_name') }}</h3>
+                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_3_desc') }}</p>
+                </li>
+                <li class="pl-10 relative">
+                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">4</span>
+                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_4_name') }}</h3>
+                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_4_desc') }}</p>
+                </li>
+                <li class="pl-10 relative">
+                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">5</span>
+                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_5_name') }}</h3>
+                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_5_desc') }}</p>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    {{-- ============================================================
          PROBLEM → SOLUTION
          ============================================================ --}}
     <section id="problemas" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="problems-heading">
@@ -332,45 +508,7 @@
         </div>
     </section>
 
-    {{-- ============================================================
-         PROCESS — Timeline style
-         ============================================================ --}}
-    <section id="proceso" class="py-20 px-6 reveal" aria-labelledby="process-heading">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 id="process-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.process_title') }}</h2>
-                <p class="font-sans text-ink/60 text-lg max-w-xl mx-auto">{{ __('landing.process_subtitle') }}</p>
-            </div>
 
-            <ol class="relative border-l-2 border-acuarela-400/20 ml-4 space-y-10 list-none">
-                <li class="pl-10 relative">
-                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">1</span>
-                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_1_name') }}</h3>
-                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_1_desc') }}</p>
-                </li>
-                <li class="pl-10 relative">
-                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">2</span>
-                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_2_name') }}</h3>
-                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_2_desc') }}</p>
-                </li>
-                <li class="pl-10 relative">
-                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">3</span>
-                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_3_name') }}</h3>
-                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_3_desc') }}</p>
-                </li>
-                <li class="pl-10 relative">
-                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">4</span>
-                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_4_name') }}</h3>
-                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_4_desc') }}</p>
-                </li>
-                <li class="pl-10 relative">
-                    <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">5</span>
-                    <h3 class="font-heading text-ink text-xl font-semibold mb-2">{{ __('landing.process_5_name') }}</h3>
-                    <p class="font-sans text-ink/70 leading-relaxed">{{ __('landing.process_5_desc') }}</p>
-                </li>
-            </ol>
-        </div>
-    </section>
 
 
     {{-- ============================================================
@@ -400,123 +538,7 @@
         </div>
     </section>
 
-    {{-- ============================================================
-         FEATURED WORK SLIDER
-         ============================================================ --}}
-    <section id="muestras" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="slider-heading">
-        <div class="absolute inset-0 -z-10" aria-hidden="true"
-             style="background:
-                radial-gradient(ellipse 68% 50% at 24% 38%, rgba(111,168,216,0.10) 0%, transparent 70%),
-                radial-gradient(ellipse 56% 45% at 78% 62%, rgba(242,184,178,0.10) 0%, transparent 65%);"></div>
 
-        @php
-            $sliderCards = [
-                [
-                    'slug' => 'diseno-web',
-                    'label' => __('landing.slider_web_design_label'),
-                    'title' => __('landing.slider_web_design_title'),
-                    'description' => __('landing.slider_web_design_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=900&auto=format&fit=crop',
-                ],
-                [
-                    'slug' => 'web-apps',
-                    'label' => __('landing.slider_web_apps_label'),
-                    'title' => __('landing.slider_web_apps_title'),
-                    'description' => __('landing.slider_web_apps_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=900&auto=format&fit=crop',
-                ],
-                [
-                    'slug' => 'apps-moviles',
-                    'label' => __('landing.slider_mobile_apps_label'),
-                    'title' => __('landing.slider_mobile_apps_title'),
-                    'description' => __('landing.slider_mobile_apps_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=900&auto=format&fit=crop',
-                ],
-                [
-                    'slug' => 'mantenimiento-apps',
-                    'label' => __('landing.slider_maintenance_label'),
-                    'title' => __('landing.slider_maintenance_title'),
-                    'description' => __('landing.slider_maintenance_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=900&auto=format&fit=crop',
-                ],
-                [
-                    'slug' => 'migracion-legacy',
-                    'label' => __('landing.slider_legacy_label'),
-                    'title' => __('landing.slider_legacy_title'),
-                    'description' => __('landing.slider_legacy_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=900&auto=format&fit=crop',
-                ],
-                [
-                    'slug' => 'servidores-web',
-                    'label' => __('landing.slider_servers_label'),
-                    'title' => __('landing.slider_servers_title'),
-                    'description' => __('landing.slider_servers_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=900&auto=format&fit=crop',
-                ],
-                [
-                    'slug' => 'apps-escritorio',
-                    'label' => __('landing.slider_desktop_label'),
-                    'title' => __('landing.slider_desktop_title'),
-                    'description' => __('landing.slider_desktop_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=900&auto=format&fit=crop',
-                ],
-                [
-                    'slug' => 'apis-web',
-                    'label' => __('landing.slider_web_api_label'),
-                    'title' => __('landing.slider_web_api_title'),
-                    'description' => __('landing.slider_web_api_desc'),
-                    'image' => 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=900&auto=format&fit=crop',
-                ],
-            ];
-        @endphp
-
-        <div class="max-w-6xl mx-auto" data-acuarela-carousel>
-            <div class="mb-8 md:mb-10 grid grid-cols-2 items-center gap-3">
-                <div>
-                    <h2 id="slider-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-2">{{ __('landing.slider_title') }}</h2>
-                    <p class="font-sans text-ink/60 text-base md:text-lg">{{ __('landing.slider_subtitle') }}</p>
-                </div>
-
-                <div class="ms-auto flex items-center gap-x-2">
-                    <button type="button" data-carousel-prev class="inline-flex justify-center items-center size-9 sm:size-10 bg-paper border border-acuarela-400/25 text-petroleo rounded-full transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed hover:border-acuarela-400/45 hover:bg-acuarela-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.slider_prev') }}">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6"/></svg>
-                    </button>
-                    <button type="button" data-carousel-next class="inline-flex justify-center items-center size-9 sm:size-10 bg-paper border border-acuarela-400/25 text-petroleo rounded-full transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed hover:border-acuarela-400/45 hover:bg-acuarela-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.slider_next') }}">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="overflow-hidden -mx-2.5" data-carousel-viewport>
-                <ul class="flex transition-transform duration-500 ease-out" data-carousel-track>
-                    @foreach ($sliderCards as $card)
-                        <li class="shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 px-2.5">
-                            <article class="h-full rounded-soft border border-acuarela-400/20 bg-paper overflow-hidden transition-all duration-250 hover:-translate-y-0.5 hover:border-acuarela-400/35">
-                                <div class="relative h-44">
-                                    <div class="absolute inset-0" style="background-image: url('{{ $card['image'] }}'); background-size: cover; background-position: center;"></div>
-                                    <div class="absolute inset-0 bg-linear-to-tr from-petroleo/25 via-acuarela-400/10 to-salmon/15"></div>
-                                    <div class="absolute top-4 left-4 inline-flex px-3 py-1 rounded-pill bg-paper/90 text-petroleo font-sans text-xs font-semibold">
-                                        {{ $card['label'] }}
-                                    </div>
-                                </div>
-
-                                <div class="p-5 flex items-start gap-4">
-                                    <div class="grow">
-                                        <h3 class="font-heading text-ink text-lg font-semibold mb-2">{{ $card['title'] }}</h3>
-                                        <p class="font-sans text-sm text-ink/70 leading-relaxed">{{ $card['description'] }}</p>
-                                    </div>
-
-                                    <a href="{{ app()->getLocale() === 'es' ? route('service', $card['slug']) : route('service.en', $card['slug']) }}" class="shrink-0 inline-flex items-center justify-center size-10 rounded-full bg-paper border border-acuarela-400/25 text-petroleo transition-colors duration-200 hover:bg-acuarela-50 hover:border-acuarela-400/45" aria-label="{{ __('landing.offer_cta') }}">
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-                                    </a>
-                                </div>
-                            </article>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </section>
 
     {{-- ============================================================
          WHY US
@@ -569,23 +591,7 @@
         </div>
     </section>
 
-    {{-- ============================================================
-        MID-PAGE CTA — Watercolor wash accent
-        ============================================================ --}}
-    <section id="cta-mid" class="relative py-16 px-6 overflow-hidden reveal" aria-labelledby="mid-cta-heading">
-        <div class="absolute inset-0 -z-10" aria-hidden="true"
-             style="background:
-                radial-gradient(ellipse 60% 70% at 30% 50%, rgba(242,184,178,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 50% at 75% 40%, rgba(191,231,214,0.10) 0%, transparent 55%);">
-        </div>
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 id="mid-cta-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.mid_cta_title') }}</h2>
-            <p class="font-sans text-ink/60 text-lg mb-8">{{ __('landing.mid_cta_subtitle') }}</p>
-            <a href="{{ app()->getLocale() === 'es' ? route('intake') : route('intake.en') }}" class="inline-flex bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
-                {{ __('landing.mid_cta_button') }}
-            </a>
-        </div>
-    </section>
+
 
     {{-- ============================================================
          SCHEDULE A CALL — Early offer + scheduling form (merged)
