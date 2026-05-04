@@ -64,7 +64,7 @@
 
     {{-- ============ HEADER / NAV ============ --}}
     <div class="pointer-events-none fixed inset-0 z-1 overflow-hidden" aria-hidden="true">
-        <div class="absolute inset-0 opacity-[0.075] mix-blend-multiply"
+        <div class="absolute inset-0 opacity-[0.15] mix-blend-multiply"
              style="background-image: url('{{ $landingTextureUrl }}'); background-repeat: no-repeat; background-size: cover; background-position: center top;"></div>
     </div>
 
