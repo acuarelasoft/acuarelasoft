@@ -31,7 +31,7 @@ test('landing page contains all main sections in spanish', function () {
         ->assertSee('Soluciones que construimos')
         ->assertSee('Así trabajamos contigo')
         ->assertSee('¿Por qué elegirnos?')
-        ->assertSee('Cuéntanos sobre tu proyecto');
+        ->assertSee('Agenda tu llamada gratuita');
 });
 
 test('landing page contains json-ld structured data', function () {
@@ -48,6 +48,17 @@ test('landing page contains hreflang tags', function () {
         ->assertSee('hreflang="es"', false)
         ->assertSee('hreflang="en"', false)
         ->assertSee('hreflang="x-default"', false);
+});
+
+test('landing page renders watercolor texture assets', function () {
+    $this->get('/')
+        ->assertStatus(200)
+        ->assertSee(asset('assets/textures/texture5.jpg'), false)
+        ->assertSee(asset('assets/textures/palete.jpg'), false)
+        ->assertDontSee(asset('assets/textures/texture6.jpg'), false)
+        ->assertDontSee(asset('assets/textures/texture3.jpg'), false)
+        ->assertDontSee(asset('assets/textures/texture4.jpg'), false)
+        ->assertDontSee(asset('assets/textures/texture1.jpg'), false);
 });
 
 test('service page cta points to spanish landing contact form', function () {

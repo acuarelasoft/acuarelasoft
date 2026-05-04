@@ -654,7 +654,7 @@
                         <p class="font-sans text-ink/60 text-base">{{ __('landing.contact_subtitle') }}</p>
                     </div>
 
-                    <form action="{{ route('contact.submit') }}" method="POST" class="bg-paper rounded-soft border border-acuarela-400/20 p-6 md:p-8 space-y-6 shadow-sm">
+                    <form action="{{ route('contact.submit') }}" method="POST" class="bg-paper/95 rounded-soft border border-acuarela-400/20 p-6 md:p-8 space-y-6 shadow-sm">
                         @csrf
 
                         {{-- Honeypot anti-spam --}}
