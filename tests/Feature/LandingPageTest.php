@@ -81,8 +81,10 @@ test('landing page language switcher uses lang route', function () {
 test('landing page renders watercolor texture assets', function () {
     $this->get('/')
         ->assertStatus(200)
-        ->assertSee(asset('assets/textures/texture5.jpg'), false)
-        ->assertSee(asset('assets/textures/palete.jpg'), false)
+        ->assertSee(asset('assets/textures/texture.webp'), false)
+        ->assertSee(asset('assets/textures/palete.webp'), false)
+        ->assertDontSee(asset('assets/textures/texture5.jpg'), false)
+        ->assertDontSee(asset('assets/textures/palete.jpg'), false)
         ->assertDontSee(asset('assets/textures/texture6.jpg'), false)
         ->assertDontSee(asset('assets/textures/texture3.jpg'), false)
         ->assertDontSee(asset('assets/textures/texture4.jpg'), false)
