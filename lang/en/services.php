@@ -13,7 +13,7 @@ return [
     'cta_section_subtitle' => 'Schedule 30 minutes with our team. No commitment, no cost.',
 
     // ─── Web Design ───────────────────────────────────────────────────────────
-    'diseno_web' => [
+    'web_design' => [
         'meta_title' => 'Professional Web Design — AcuarelaSoft',
         'meta_description' => 'We create landing pages, corporate sites, and portals with a solid visual identity and impeccable user experience. Mexico City.',
         'badge' => 'Web Design',
@@ -57,7 +57,7 @@ return [
     ],
 
     // ─── Mobile Apps ─────────────────────────────────────────────────────────
-    'apps_moviles' => [
+    'mobile_apps' => [
         'meta_title' => 'Mobile App Development — AcuarelaSoft',
         'meta_description' => 'We build native and cross-platform apps for iOS and Android with fluid design and real-time sync.',
         'badge' => 'Mobile Apps',
@@ -79,7 +79,7 @@ return [
     ],
 
     // ─── App Maintenance ──────────────────────────────────────────────────────
-    'mantenimiento_apps' => [
+    'app_maintenance' => [
         'meta_title' => 'App Maintenance & Updates — AcuarelaSoft',
         'meta_description' => 'We update dependencies, fix bugs, and improve the performance of your existing applications. Tailored maintenance plans.',
         'badge' => 'Maintenance',
@@ -101,7 +101,7 @@ return [
     ],
 
     // ─── Legacy Migration ─────────────────────────────────────────────────────
-    'migracion_legacy' => [
+    'legacy_migration' => [
         'meta_title' => 'Legacy System Migration — AcuarelaSoft',
         'meta_description' => 'We modernize outdated systems to current technology without losing data or functionality. Zero-downtime migration with minimal risk.',
         'badge' => 'Legacy Migration',
@@ -123,7 +123,7 @@ return [
     ],
 
     // ─── Web Servers ──────────────────────────────────────────────────────────
-    'servidores_web' => [
+    'web_servers' => [
         'meta_title' => 'Web Server Administration — AcuarelaSoft',
         'meta_description' => 'Installation, configuration, and administration of web servers: Nginx, Apache, SSL, DNS, firewalls, and proactive monitoring.',
         'badge' => 'Web Servers',
@@ -145,7 +145,7 @@ return [
     ],
 
     // ─── Desktop Apps ─────────────────────────────────────────────────────────
-    'apps_escritorio' => [
+    'desktop_apps' => [
         'meta_title' => 'Desktop App Development — AcuarelaSoft',
         'meta_description' => 'We develop desktop apps for Windows, macOS, and Linux with offline support and cloud synchronization.',
         'badge' => 'Desktop Apps',
@@ -167,7 +167,7 @@ return [
     ],
 
     // ─── Web APIs ─────────────────────────────────────────────────────────────
-    'apis_web' => [
+    'web_apis' => [
         'meta_title' => 'Web API Design & Development — AcuarelaSoft',
         'meta_description' => 'We develop documented, secure, and versioned REST, SOAP, and GraphQL APIs to integrate your systems with any client.',
         'badge' => 'Web APIs',

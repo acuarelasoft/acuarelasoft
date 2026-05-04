@@ -92,7 +92,7 @@ test('landing page renders watercolor texture assets', function () {
 });
 
 test('service page cta points to spanish landing contact form', function () {
-    $this->get('/services/diseno-web')
+    $this->get('/services/web-design')
         ->assertStatus(200)
         ->assertSee('href="'.route('home').'#contacto"', false);
 });
@@ -105,7 +105,7 @@ test('english service page cta points to english landing contact form', function
 });
 
 test('service page company footer links point to spanish landing sections', function () {
-    $this->get('/services/diseno-web')
+    $this->get('/services/web-design')
         ->assertStatus(200)
         ->assertSee('href="'.route('home').'#servicios"', false)
         ->assertSee('href="'.route('home').'#por-que-nosotros"', false)

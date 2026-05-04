@@ -13,7 +13,7 @@ return [
     'cta_section_subtitle' => 'Agenda 30 minutos con nuestro equipo. Sin compromisos, sin costo.',
 
     // ─── Diseño web ──────────────────────────────────────────────────────────
-    'diseno_web' => [
+    'web_design' => [
         'meta_title' => 'Diseño web profesional — AcuarelaSoft',
         'meta_description' => 'Creamos landing pages, sitios corporativos y portales con identidad visual sólida y experiencia de usuario impecable. Ciudad de México.',
         'badge' => 'Diseño web',
@@ -57,7 +57,7 @@ return [
     ],
 
     // ─── Apps móviles ────────────────────────────────────────────────────────
-    'apps_moviles' => [
+    'mobile_apps' => [
         'meta_title' => 'Desarrollo de apps móviles — AcuarelaSoft',
         'meta_description' => 'Creamos apps nativas y multiplataforma para iOS y Android con diseño fluido y sincronización en tiempo real.',
         'badge' => 'Apps móviles',
@@ -79,7 +79,7 @@ return [
     ],
 
     // ─── Mantenimiento de apps ────────────────────────────────────────────────
-    'mantenimiento_apps' => [
+    'app_maintenance' => [
         'meta_title' => 'Mantenimiento y actualización de software — AcuarelaSoft',
         'meta_description' => 'Actualizamos dependencias, corregimos bugs y mejoramos el rendimiento de tus aplicaciones existentes. Planes de mantenimiento a medida.',
         'badge' => 'Mantenimiento',
@@ -101,7 +101,7 @@ return [
     ],
 
     // ─── Migración legacy ─────────────────────────────────────────────────────
-    'migracion_legacy' => [
+    'legacy_migration' => [
         'meta_title' => 'Migración de sistemas legacy — AcuarelaSoft',
         'meta_description' => 'Modernizamos sistemas obsoletos a tecnología actual sin perder datos ni funcionalidad. Migración sin downtime y con riesgo mínimo.',
         'badge' => 'Migración legacy',
@@ -123,7 +123,7 @@ return [
     ],
 
     // ─── Servidores web ───────────────────────────────────────────────────────
-    'servidores_web' => [
+    'web_servers' => [
         'meta_title' => 'Administración de servidores web — AcuarelaSoft',
         'meta_description' => 'Instalación, configuración y administración de servidores web: Nginx, Apache, SSL, DNS, firewalls y monitoreo proactivo.',
         'badge' => 'Servidores web',
@@ -145,7 +145,7 @@ return [
     ],
 
     // ─── Apps de escritorio ───────────────────────────────────────────────────
-    'apps_escritorio' => [
+    'desktop_apps' => [
         'meta_title' => 'Desarrollo de apps de escritorio — AcuarelaSoft',
         'meta_description' => 'Desarrollamos apps de escritorio para Windows, macOS y Linux con soporte offline y sincronización en la nube.',
         'badge' => 'Apps de escritorio',
@@ -167,7 +167,7 @@ return [
     ],
 
     // ─── APIs web ─────────────────────────────────────────────────────────────
-    'apis_web' => [
+    'web_apis' => [
         'meta_title' => 'Diseño e implementación de APIs web — AcuarelaSoft',
         'meta_description' => 'Desarrollamos APIs REST, SOAP y GraphQL documentadas, seguras y versionadas para integrar tus sistemas con cualquier cliente.',
         'badge' => 'APIs web',

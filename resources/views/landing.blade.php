@@ -217,7 +217,7 @@
         @php
             $sliderCards = [
                 [
-                    'slug' => 'diseno-web',
+                    'slug' => 'web-design',
                     'label' => __('landing.slider_web_design_label'),
                     'title' => __('landing.slider_web_design_title'),
                     'description' => __('landing.slider_web_design_desc'),
@@ -231,42 +231,42 @@
                     'image' => asset('assets/solutions/web-apps.jpeg'),
                 ],
                 [
-                    'slug' => 'apps-moviles',
+                    'slug' => 'mobile-apps',
                     'label' => __('landing.slider_mobile_apps_label'),
                     'title' => __('landing.slider_mobile_apps_title'),
                     'description' => __('landing.slider_mobile_apps_desc'),
                     'image' => asset('assets/solutions/mobile-apps.jpeg'),
                 ],
                 [
-                    'slug' => 'mantenimiento-apps',
+                    'slug' => 'app-maintenance',
                     'label' => __('landing.slider_maintenance_label'),
                     'title' => __('landing.slider_maintenance_title'),
                     'description' => __('landing.slider_maintenance_desc'),
                     'image' => asset('assets/solutions/maintenance.jpeg'),
                 ],
                 [
-                    'slug' => 'migracion-legacy',
+                    'slug' => 'legacy-migration',
                     'label' => __('landing.slider_legacy_label'),
                     'title' => __('landing.slider_legacy_title'),
                     'description' => __('landing.slider_legacy_desc'),
                     'image' => asset('assets/solutions/legacy-migration.jpeg'),
                 ],
                 [
-                    'slug' => 'servidores-web',
+                    'slug' => 'web-servers',
                     'label' => __('landing.slider_servers_label'),
                     'title' => __('landing.slider_servers_title'),
                     'description' => __('landing.slider_servers_desc'),
                     'image' => asset('assets/solutions/servers.jpeg'),
                 ],
                 [
-                    'slug' => 'apps-escritorio',
+                    'slug' => 'desktop-apps',
                     'label' => __('landing.slider_desktop_label'),
                     'title' => __('landing.slider_desktop_title'),
                     'description' => __('landing.slider_desktop_desc'),
                     'image' => asset('assets/solutions/desktop-apps.jpeg'),
                 ],
                 [
-                    'slug' => 'apis-web',
+                    'slug' => 'web-apis',
                     'label' => __('landing.slider_web_api_label'),
                     'title' => __('landing.slider_web_api_title'),
                     'description' => __('landing.slider_web_api_desc'),
