@@ -81,6 +81,8 @@ new #[Title('Project Intake')] class extends Component {
 
     public function submit(): void
     {
+        $validated = $this->validate();
+
         if (app()->isProduction()) {
             /** @var TurnstileService $turnstile */
             $turnstile = app(TurnstileService::class);
@@ -92,7 +94,6 @@ new #[Title('Project Intake')] class extends Component {
             }
         }
 
-        $validated = $this->validate();
         $estimate = IntakeEstimator::estimate($validated['selectedModules']);
 
         $submission = ProjectIntakeSubmission::query()->create([
