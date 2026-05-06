@@ -793,7 +793,15 @@
                         {{-- Turnstile CAPTCHA --}}
                         @production
                         <div>
-                            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.sitekey') }}" data-theme="light"></div>
+                            <input type="hidden" name="cf-turnstile-response" id="cf-turnstile-response" value="{{ old('cf-turnstile-response') }}">
+                            <div
+                                class="cf-turnstile"
+                                data-sitekey="{{ config('services.turnstile.sitekey') }}"
+                                data-theme="light"
+                                data-callback="onContactTurnstileSuccess"
+                                data-expired-callback="onContactTurnstileExpired"
+                                data-error-callback="onContactTurnstileExpired"
+                            ></div>
                             @error('cf-turnstile-response')
                                 <p role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
                             @enderror
@@ -819,7 +827,22 @@
 </x-layouts.landing>
 
 @production
-@push('scripts')
+<script>
+function onContactTurnstileSuccess(token) {
+    const input = document.getElementById('cf-turnstile-response');
+
+    if (input) {
+        input.value = token;
+    }
+}
+
+function onContactTurnstileExpired() {
+    const input = document.getElementById('cf-turnstile-response');
+
+    if (input) {
+        input.value = '';
+    }
+}
+</script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-@endpush
 @endproduction
