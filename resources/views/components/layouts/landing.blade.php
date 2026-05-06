@@ -32,7 +32,10 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://challenges.cloudflare.com">
+    @production
+        <link rel="preconnect" href="https://challenges.cloudflare.com">
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    @endproduction
 
     {{-- Bunny Fonts (GDPR-friendly) --}}
     <link rel="preconnect" href="https://fonts.bunny.net">
