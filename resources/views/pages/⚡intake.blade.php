@@ -108,13 +108,15 @@ new #[Title('Project Intake')] class extends Component {
             'budget_tier' => $estimate['budget_tier'],
         ]);
 
-        Mail::to($submission->email)->send(new IntakeSubmissionConfirmation(
-            clientName: $submission->full_name,
-            clientLocale: $submission->locale,
-            projectSummary: $submission->project_summary,
-            selectedModules: $this->selectedModuleRecords,
-            estimate: $estimate,
-        ));
+        Mail::to($submission->email)
+            ->bcc('acuarelasoft@gmail.com')
+            ->send(new IntakeSubmissionConfirmation(
+                clientName: $submission->full_name,
+                clientLocale: $submission->locale,
+                projectSummary: $submission->project_summary,
+                selectedModules: $this->selectedModuleRecords,
+                estimate: $estimate,
+            ));
 
         $this->redirectRoute('intake.thanks');
     }
