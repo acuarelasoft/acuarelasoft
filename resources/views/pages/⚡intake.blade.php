@@ -379,6 +379,7 @@ new #[Title('Project Intake')] class extends Component {
                             data-theme="light"
                             data-callback="onIntakeTurnstileSuccess"
                             data-expired-callback="onIntakeTurnstileExpired"
+                            data-error-callback="onIntakeTurnstileExpired"
                         ></div>
                         @error('turnstileToken')
                             <p role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
@@ -396,15 +397,13 @@ new #[Title('Project Intake')] class extends Component {
     </section>
 
 @production
-@push('scripts')
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
     function onIntakeTurnstileSuccess(token) {
         window.dispatchEvent(new CustomEvent('turnstile-intake-token', { detail: token }));
     }
+
     function onIntakeTurnstileExpired() {
         window.dispatchEvent(new CustomEvent('turnstile-intake-token', { detail: '' }));
     }
 </script>
-@endpush
 @endproduction
