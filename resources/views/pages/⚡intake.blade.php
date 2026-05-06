@@ -374,6 +374,7 @@ new #[Title('Project Intake')] class extends Component {
                         class="self-start"
                     >
                         <div
+                            wire:ignore
                             class="cf-turnstile"
                             data-sitekey="{{ config('services.turnstile.sitekey') }}"
                             data-theme="light"
