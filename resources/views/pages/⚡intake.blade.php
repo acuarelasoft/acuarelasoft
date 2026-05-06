@@ -369,9 +369,14 @@ new #[Title('Project Intake')] class extends Component {
                 <div class="flex flex-col items-end gap-2">
                     @production
                     <div
+                        x-data="{ turnstileToken: $wire.entangle('turnstileToken').live }"
+                        x-init="
+                            window.onIntakeTurnstileSuccess = (token) => { turnstileToken = token };
+                            window.onIntakeTurnstileExpired = () => { turnstileToken = '' };
+                        "
                         class="self-start"
                     >
-                        <input type="hidden" id="turnstileToken" wire:model.live="turnstileToken">
+                        <input type="hidden" x-model="turnstileToken">
                         <div
                             wire:ignore
                             class="cf-turnstile"
@@ -395,40 +400,3 @@ new #[Title('Project Intake')] class extends Component {
             </form>
         </div>
     </section>
-
-@production
-<script>
-    function syncIntakeTurnstileToken(token) {
-        const input = document.getElementById('turnstileToken');
-
-        if (input) {
-            input.value = token;
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-            input.dispatchEvent(new Event('change', { bubbles: true }));
-
-            const componentRoot = input.closest('[wire\\:id]') ?? document.querySelector('[wire\\:id]');
-            const componentId = componentRoot?.getAttribute('wire:id');
-
-            if (componentId && window.Livewire && typeof window.Livewire.find === 'function') {
-                const component = window.Livewire.find(componentId);
-
-                if (component) {
-                    if (typeof component.$set === 'function') {
-                        component.$set('turnstileToken', token);
-                    } else if (typeof component.set === 'function') {
-                        component.set('turnstileToken', token);
-                    }
-                }
-            }
-        }
-    }
-
-    function onIntakeTurnstileSuccess(token) {
-        syncIntakeTurnstileToken(token);
-    }
-
-    function onIntakeTurnstileExpired() {
-        syncIntakeTurnstileToken('');
-    }
-</script>
-@endproduction
