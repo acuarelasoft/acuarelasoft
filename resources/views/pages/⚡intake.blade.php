@@ -369,10 +369,9 @@ new #[Title('Project Intake')] class extends Component {
                 <div class="flex flex-col items-end gap-2">
                     @production
                     <div
-                        x-data
-                        x-on:turnstile-intake-token.window="$wire.set('turnstileToken', $event.detail)"
                         class="self-start"
                     >
+                        <input type="hidden" id="turnstileToken" wire:model.live="turnstileToken">
                         <div
                             wire:ignore
                             class="cf-turnstile"
@@ -400,11 +399,21 @@ new #[Title('Project Intake')] class extends Component {
 @production
 <script>
     function onIntakeTurnstileSuccess(token) {
-        window.dispatchEvent(new CustomEvent('turnstile-intake-token', { detail: token }));
+        const input = document.getElementById('turnstileToken');
+
+        if (input) {
+            input.value = token;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
     }
 
     function onIntakeTurnstileExpired() {
-        window.dispatchEvent(new CustomEvent('turnstile-intake-token', { detail: '' }));
+        const input = document.getElementById('turnstileToken');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
     }
 </script>
 @endproduction
