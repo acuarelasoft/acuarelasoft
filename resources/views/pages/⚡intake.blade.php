@@ -398,22 +398,29 @@ new #[Title('Project Intake')] class extends Component {
 
 @production
 <script>
-    function onIntakeTurnstileSuccess(token) {
+    function syncIntakeTurnstileToken(token) {
         const input = document.getElementById('turnstileToken');
 
         if (input) {
             input.value = token;
             input.dispatchEvent(new Event('input', { bubbles: true }));
+
+            const componentRoot = input.closest('[wire\\:id]');
+            const componentId = componentRoot?.getAttribute('wire:id');
+
+            if (componentId && window.Livewire && typeof window.Livewire.find === 'function') {
+                const component = window.Livewire.find(componentId);
+                component?.set('turnstileToken', token);
+            }
         }
     }
 
-    function onIntakeTurnstileExpired() {
-        const input = document.getElementById('turnstileToken');
+    function onIntakeTurnstileSuccess(token) {
+        syncIntakeTurnstileToken(token);
+    }
 
-        if (input) {
-            input.value = '';
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-        }
+    function onIntakeTurnstileExpired() {
+        syncIntakeTurnstileToken('');
     }
 </script>
 @endproduction
