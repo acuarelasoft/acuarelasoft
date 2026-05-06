@@ -404,13 +404,21 @@ new #[Title('Project Intake')] class extends Component {
         if (input) {
             input.value = token;
             input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
 
-            const componentRoot = input.closest('[wire\\:id]');
+            const componentRoot = input.closest('[wire\\:id]') ?? document.querySelector('[wire\\:id]');
             const componentId = componentRoot?.getAttribute('wire:id');
 
             if (componentId && window.Livewire && typeof window.Livewire.find === 'function') {
                 const component = window.Livewire.find(componentId);
-                component?.set('turnstileToken', token);
+
+                if (component) {
+                    if (typeof component.$set === 'function') {
+                        component.$set('turnstileToken', token);
+                    } else if (typeof component.set === 'function') {
+                        component.set('turnstileToken', token);
+                    }
+                }
             }
         }
     }
