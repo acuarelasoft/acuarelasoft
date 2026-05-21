@@ -41,16 +41,20 @@ class SetLocaleFromSession
 
     private function resolveLocale(Request $request): string
     {
+        $routeName = $request->route()?->getName();
+
+        if (is_string($routeName) && str_starts_with($routeName, 'en.')) {
+            return 'en';
+        }
+
+        if (in_array($routeName, self::PUBLIC_ROUTE_NAMES, true)) {
+            return LocalizedRoute::DEFAULT_LOCALE;
+        }
+
         $pathLocale = (string) $request->segment(1);
 
         if (in_array($pathLocale, LocalizedRoute::SUPPORTED_LOCALES, true)) {
             return $pathLocale;
-        }
-
-        $routeName = $request->route()?->getName();
-
-        if (in_array($routeName, self::PUBLIC_ROUTE_NAMES, true)) {
-            return LocalizedRoute::DEFAULT_LOCALE;
         }
 
         if ($request->hasSession()) {

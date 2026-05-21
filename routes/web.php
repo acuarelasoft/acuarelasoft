@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Support\LocalizedRoute;
 use Illuminate\Support\Facades\Route;
 
 $landingPage = static fn () => view('landing');
@@ -49,10 +50,10 @@ Route::prefix('en')->name('en.')->group(function () use ($landingPage, $serviceP
     Route::get('/intake/thanks', $intakeThanksPage)->name('intake.thanks');
 });
 
-Route::get('/es', static fn () => redirect()->route('home', [], 301))->name('es.home');
-Route::get('/services/{service}', static fn (string $service) => redirect()->route('service', ['service' => $service], 301));
-Route::get('/intake', static fn () => redirect()->route('intake', [], 301));
-Route::get('/intake/thanks', static fn () => redirect()->route('intake.thanks', [], 301));
+Route::get('/es', static fn () => redirect(LocalizedRoute::route('home', [], 'es'), 301))->name('es.home');
+Route::get('/services/{service}', static fn (string $service) => redirect(LocalizedRoute::route('service', ['service' => $service], 'es'), 301));
+Route::get('/intake', static fn () => redirect(LocalizedRoute::route('intake', [], 'es'), 301));
+Route::get('/intake/thanks', static fn () => redirect(LocalizedRoute::route('intake.thanks', [], 'es'), 301));
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
