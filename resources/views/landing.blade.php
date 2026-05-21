@@ -37,7 +37,7 @@
         'url' => \App\Support\LocalizedRoute::route('home', [], 'es'),
         'description' => __('landing.meta_description'),
         'email' => 'contacto@acuarelasoft.com',
-        'telephone' => '+5256494401900',
+        'telephone' => '+525649440190',
         'foundingDate' => '2026',
         'areaServed' => [
             ['@type' => 'Country', 'name' => 'Mexico'],
@@ -51,7 +51,7 @@
         ],
         'contactPoint' => [
             '@type' => 'ContactPoint',
-            'telephone' => '+5256494401900',
+            'telephone' => '+525649440190',
             'email' => 'contacto@acuarelasoft.com',
             'contactType' => 'sales',
             'availableLanguage' => ['es', 'en'],
