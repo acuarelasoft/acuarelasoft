@@ -5,9 +5,10 @@ use App\Support\LocalizedRoute;
 use Illuminate\Support\Facades\Route;
 
 $landingPage = static fn () => view('landing');
+$serviceDefinitions = config('site_services');
 
-$servicePage = static function (string $service) {
-    $serviceDefinition = collect(config('site_services'))->firstWhere('slug', $service);
+$servicePage = static function (string $service) use ($serviceDefinitions) {
+    $serviceDefinition = collect($serviceDefinitions)->firstWhere('slug', $service);
     abort_if(! $serviceDefinition, 404);
 
     return view('pages.services.show', ['service' => $serviceDefinition]);

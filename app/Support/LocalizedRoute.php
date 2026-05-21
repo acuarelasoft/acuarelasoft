@@ -35,9 +35,9 @@ class LocalizedRoute
      *
      * @param  array<string, mixed>|string  $parameters
      */
-    public static function route(string $baseName, array|string $parameters = [], ?string $locale = null, bool $absolute = true): string
+    public static function route(string $baseName, array|string $parameters = [], ?string $locale = null): string
     {
-        return route(self::routeName($baseName, $locale), $parameters, $absolute);
+        return route(self::routeName($baseName, $locale), $parameters);
     }
 
     /**

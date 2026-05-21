@@ -16,7 +16,7 @@
             'url' => \App\Support\LocalizedRoute::route('home', [], 'es'),
         ],
         'areaServed' => ['MX', 'US', 'LATAM'],
-        'url' => \App\Support\LocalizedRoute::route('service', ['service' => $service['slug']]),
+        'url' => \App\Support\LocalizedRoute::route('service', ['service' => $service['slug']], app()->getLocale()),
         'inLanguage' => \App\Support\LocalizedRoute::languageTag(),
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>

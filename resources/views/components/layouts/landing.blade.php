@@ -5,7 +5,9 @@
     $currentRoute = request()->route();
     $currentRouteName = $currentRoute?->getName();
     $currentRouteParameters = $currentRoute?->parameters() ?? [];
-    $baseRouteName = $currentRouteName ? Str::after($currentRouteName, 'en.') : null;
+    $baseRouteName = is_string($currentRouteName)
+        ? (Str::startsWith($currentRouteName, 'en.') ? substr($currentRouteName, 3) : $currentRouteName)
+        : null;
     $resolvedCanonical = $canonical ?? ($baseRouteName ? LocalizedRoute::route($baseRouteName, $currentRouteParameters) : url()->current());
     $resolvedAlternates = $alternates ?? ($baseRouteName ? LocalizedRoute::alternates($baseRouteName, $currentRouteParameters) : LocalizedRoute::alternates('home'));
     $robotsContent = $robots ?? 'index, follow';
