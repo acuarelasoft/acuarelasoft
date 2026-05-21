@@ -112,16 +112,16 @@
                 <li><a href="{{ $landingContactUrl }}" class="hover:text-petroleo transition-colors duration-200">{{ __('landing.nav_contact') }}</a></li>
             </ul>
 
-             <div class="flex items-center gap-4">
-                 {{-- Language switcher --}}
-                 <nav class="flex gap-1 text-xs font-sans font-medium" aria-label="{{ app()->getLocale() === 'es' ? 'Selector de idioma' : 'Language selector' }}">
-                          <a href="{{ $resolvedAlternates['es-MX'] }}" lang="es-MX" hreflang="es-MX"
+            <div class="flex items-center gap-4">
+                {{-- Language switcher --}}
+                <nav class="flex gap-1 text-xs font-sans font-medium" aria-label="{{ app()->getLocale() === 'es' ? 'Selector de idioma' : 'Language selector' }}">
+                    <a href="{{ $resolvedAlternates['es-MX'] }}" lang="es-MX" hreflang="es-MX"
                         class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'es' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
                         {{ app()->getLocale() === 'es' ? 'aria-current=true' : '' }}>ES</a>
-                          <a href="{{ $resolvedAlternates['en'] }}" lang="en" hreflang="en"
+                    <a href="{{ $resolvedAlternates['en'] }}" lang="en" hreflang="en"
                         class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
                         {{ app()->getLocale() === 'en' ? 'aria-current=true' : '' }}>EN</a>
-                 </nav>
+                </nav>
 
                 {{-- CTA button --}}
                 <a href="{{ $landingContactUrl }}" class="hidden sm:inline-flex bg-petroleo text-paper font-sans text-sm font-medium px-5 py-2.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
@@ -192,13 +192,13 @@
 
                 <section>
                     <h2 class="font-sans text-sm font-bold uppercase tracking-[0.14em] text-petroleo mb-4">{{ __('landing.footer_services_heading') }}</h2>
-                     <ul class="space-y-2.5 font-sans text-[1rem] font-medium text-ink/88">
-                         @foreach (config('site_services') as $service)
-                             <li>
+                    <ul class="space-y-2.5 font-sans text-[1rem] font-medium text-ink/88">
+                        @foreach (config('site_services') as $service)
+                            <li>
                                 <a href="{{ LocalizedRoute::route('service', ['service' => $service['slug']]) }}" class="hover:text-petroleo transition-colors duration-200">
-                                     {{ __('services.' . $service['key'] . '.title') }}
-                                 </a>
-                             </li>
+                                    {{ __('services.' . $service['key'] . '.title') }}
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </section>

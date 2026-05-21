@@ -30,6 +30,9 @@ class LocalizedRoute
     }
 
     /**
+     * Use an array for standard named-route parameters, or a string when the
+     * underlying route has a single wildcard segment.
+     *
      * @param  array<string, mixed>|string  $parameters
      */
     public static function route(string $baseName, array|string $parameters = [], ?string $locale = null, bool $absolute = true): string
