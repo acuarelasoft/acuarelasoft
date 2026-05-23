@@ -2,6 +2,7 @@
 
 use App\Mail\IntakeSubmissionConfirmation;
 use App\Models\ProjectIntakeSubmission;
+use App\Support\LocalizedRoute;
 use App\Services\TurnstileService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
@@ -12,9 +13,10 @@ use function Pest\Laravel\get;
 uses(RefreshDatabase::class);
 
 test('intake page renders in spanish for spanish browser locale', function () {
-    get('/intake', ['Accept-Language' => 'es-MX,es;q=0.9,en;q=0.8'])
+    get('/requerimientos', ['Accept-Language' => 'es-MX,es;q=0.9,en;q=0.8'])
         ->assertSuccessful()
-        ->assertSee('<html lang="es">', false);
+        ->assertSee('<html lang="es-MX">', false)
+        ->assertSee('rel="canonical" href="'.LocalizedRoute::route('intake', [], 'es').'"', false);
 });
 
 test('requires at least one module', function () {
@@ -38,7 +40,7 @@ test('stores submission and sends confirmation email', function () {
         ->set('projectSummary', 'We need a customer portal with subscriptions, invoices, and analytics dashboards.')
         ->set('selectedModules', ['portal-cliente-selfservice', 'suscripciones', 'kpis-dashboards'])
         ->call('submit')
-        ->assertRedirect(route('intake.thanks'));
+        ->assertRedirect(LocalizedRoute::route('intake.thanks', [], 'es'));
 
     expect(ProjectIntakeSubmission::query()->count())->toBe(1);
 
@@ -54,9 +56,10 @@ test('stores submission and sends confirmation email', function () {
 });
 
 test('thanks page renders in spanish for spanish browser locale', function () {
-    get('/intake/thanks', ['Accept-Language' => 'es-MX,es;q=0.9,en;q=0.8'])
+    get('/requerimientos/gracias', ['Accept-Language' => 'es-MX,es;q=0.9,en;q=0.8'])
         ->assertSuccessful()
-        ->assertSee('<html lang="es">', false);
+        ->assertSee('<html lang="es-MX">', false)
+        ->assertSee('name="robots" content="noindex, follow"', false);
 });
 
 test('intake form skips turnstile validation outside production', function () {
@@ -70,7 +73,7 @@ test('intake form skips turnstile validation outside production', function () {
         ->set('projectSummary', 'A local development submission without captcha token.')
         ->set('selectedModules', ['portal-cliente-selfservice'])
         ->call('submit')
-        ->assertRedirect(route('intake.thanks'));
+        ->assertRedirect(LocalizedRoute::route('intake.thanks', [], 'es'));
 });
 
 test('intake form blocks submission when turnstile fails in production', function () {
@@ -90,4 +93,24 @@ test('intake form blocks submission when turnstile fails in production', functio
         ->set('turnstileToken', 'fake-token')
         ->call('submit')
         ->assertHasErrors('turnstileToken');
+});
+
+test('english intake page uses english canonical and thanks redirect', function () {
+    get('/en/intake')
+        ->assertSuccessful()
+        ->assertSee('<html lang="en">', false)
+        ->assertSee('rel="canonical" href="'.LocalizedRoute::route('intake', [], 'en').'"', false);
+
+    Mail::fake();
+    app()->setLocale('en');
+    session(['lang' => 'en']);
+
+    Livewire::test('pages::intake')
+        ->set('fullName', 'English Client')
+        ->set('email', 'english@example.com')
+        ->set('phone', '+1 555 100 2000')
+        ->set('projectSummary', 'We need a bilingual software intake flow with multilingual SEO URLs and metadata.')
+        ->set('selectedModules', ['portal-cliente-selfservice'])
+        ->call('submit')
+        ->assertRedirect(LocalizedRoute::route('intake.thanks', [], 'en'));
 });

@@ -1,5 +1,19 @@
+@php
+    use App\Support\LocalizedRoute;
+    use Illuminate\Support\Str;
+
+    $currentRoute = request()->route();
+    $currentRouteName = $currentRoute?->getName();
+    $currentRouteParameters = $currentRoute?->parameters() ?? [];
+    $baseRouteName = is_string($currentRouteName)
+        ? (Str::startsWith($currentRouteName, 'en.') ? substr($currentRouteName, 3) : $currentRouteName)
+        : null;
+    $resolvedCanonical = $canonical ?? ($baseRouteName ? LocalizedRoute::route($baseRouteName, $currentRouteParameters) : url()->current());
+    $resolvedAlternates = $alternates ?? ($baseRouteName ? LocalizedRoute::alternates($baseRouteName, $currentRouteParameters) : LocalizedRoute::alternates('home'));
+    $robotsContent = $robots ?? 'index, follow';
+@endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ LocalizedRoute::languageTag() }}">
 <head>
     @production
         <!-- Google Tag Manager -->
@@ -15,22 +29,22 @@
 
     <title>{{ $title ?? __('landing.meta_title') }}</title>
     <meta name="description" content="{{ $metaDescription ?? __('landing.meta_description') }}">
+    <meta name="robots" content="{{ $robotsContent }}">
 
-    <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
+    <link rel="canonical" href="{{ $resolvedCanonical }}">
 
-    {{-- Hreflang for bilingual SEO --}}
-    <link rel="alternate" hreflang="es" href="{{ $hreflangEs ?? url('/') }}">
-    <link rel="alternate" hreflang="en" href="{{ $hreflangEn ?? url('/en') }}">
-    <link rel="alternate" hreflang="x-default" href="{{ $hreflangDefault ?? ($hreflangEs ?? url('/')) }}">
+    @foreach ($resolvedAlternates as $hreflang => $href)
+        <link rel="alternate" hreflang="{{ $hreflang }}" href="{{ $href }}">
+    @endforeach
 
     {{-- Open Graph --}}
     <meta property="og:title" content="{{ $title ?? __('landing.meta_title') }}">
     <meta property="og:description" content="{{ $metaDescription ?? __('landing.meta_description') }}">
-    <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
+    <meta property="og:url" content="{{ $resolvedCanonical }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AcuarelaSoft">
-    <meta property="og:locale" content="{{ app()->getLocale() === 'es' ? 'es_MX' : 'en_US' }}">
-    <meta property="og:locale:alternate" content="{{ app()->getLocale() === 'es' ? 'en_US' : 'es_MX' }}">
+    <meta property="og:locale" content="{{ LocalizedRoute::ogLocale() }}">
+    <meta property="og:locale:alternate" content="{{ LocalizedRoute::alternateOgLocale() }}">
 
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
@@ -54,7 +68,7 @@
 
     {{-- JSON-LD Structured Data --}}
     @stack('structured-data')
-</head>
+    </head>
 <body class="relative bg-paper paper-bg font-sans text-ink antialiased">
     @production
         <!-- Google Tag Manager (noscript) -->
@@ -73,7 +87,7 @@
         </defs>
     </svg>
 
-    @php($landingBaseUrl = app()->getLocale() === 'es' ? route('home') : route('home.lang', ['lang' => 'en']))
+    @php($landingBaseUrl = LocalizedRoute::route('home'))
     @php($landingServicesUrl = $landingBaseUrl . '#servicios')
     @php($landingProcessUrl = $landingBaseUrl . '#proceso')
     @php($landingWhyUsUrl = $landingBaseUrl . '#por-que-nosotros')
@@ -103,12 +117,12 @@
             <div class="flex items-center gap-4">
                 {{-- Language switcher --}}
                 <nav class="flex gap-1 text-xs font-sans font-medium" aria-label="{{ app()->getLocale() === 'es' ? 'Selector de idioma' : 'Language selector' }}">
-                          <a href="{{ route('home.lang', ['lang' => 'es']) }}" lang="es" hreflang="es"
-                       class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'es' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
-                       {{ app()->getLocale() === 'es' ? 'aria-current=true' : '' }}>ES</a>
-                          <a href="{{ route('home.lang', ['lang' => 'en']) }}" lang="en" hreflang="en"
-                       class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
-                       {{ app()->getLocale() === 'en' ? 'aria-current=true' : '' }}>EN</a>
+                    <a href="{{ $resolvedAlternates['es-MX'] }}" lang="es-MX" hreflang="es-MX"
+                        class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'es' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
+                        {{ app()->getLocale() === 'es' ? 'aria-current=true' : '' }}>ES</a>
+                    <a href="{{ $resolvedAlternates['en'] }}" lang="en" hreflang="en"
+                        class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
+                        {{ app()->getLocale() === 'en' ? 'aria-current=true' : '' }}>EN</a>
                 </nav>
 
                 {{-- CTA button --}}
@@ -183,7 +197,7 @@
                     <ul class="space-y-2.5 font-sans text-[1rem] font-medium text-ink/88">
                         @foreach (config('site_services') as $service)
                             <li>
-                                <a href="{{ route('service', ['service' => $service['slug']]) }}" class="hover:text-petroleo transition-colors duration-200">
+                                <a href="{{ LocalizedRoute::route('service', ['service' => $service['slug']]) }}" class="hover:text-petroleo transition-colors duration-200">
                                     {{ __('services.' . $service['key'] . '.title') }}
                                 </a>
                             </li>

@@ -5,6 +5,7 @@ use App\Models\ProjectIntakeSubmission;
 use App\Services\TurnstileService;
 use App\Support\IntakeEstimator;
 use App\Support\IntakeModuleCatalog;
+use App\Support\LocalizedRoute;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
@@ -118,7 +119,7 @@ new #[Title('Project Intake')] class extends Component {
                 estimate: $estimate,
             ));
 
-        $this->redirectRoute('intake.thanks');
+        $this->redirectRoute(LocalizedRoute::routeName('intake.thanks'));
     }
 
     /**

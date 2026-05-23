@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'meta_title' => 'Formulario de Requerimientos | AcuarelaSoft',
-    'meta_description' => 'Comparte los requerimientos de tu proyecto y selecciona los módulos del sistema que necesitas. Recibe una estimación preliminar y correo de confirmación.',
+    'meta_title' => 'Formulario de requerimientos de software | AcuarelaSoft',
+    'meta_description' => 'Comparte los requerimientos de tu proyecto de software en México, selecciona los módulos que necesitas y recibe una estimación preliminar de discovery.',
 
     'hero_title' => 'Formulario de Requerimientos de Proyecto',
     'hero_subtitle' => 'Cuéntanos tu contexto y selecciona los módulos que necesitas. Esta información nos ayuda a preparar una propuesta de discovery de alta calidad.',
