@@ -24,19 +24,6 @@ This repository powers the public AcuarelaSoft website and project intake flow, 
 
 The app includes a module-based intake estimator that helps translate business requirements into an initial effort and budget tier estimate.
 
-## Core Product Features in This App
-
-- Bilingual site experience (Spanish/English localized routes)
-- Service catalog with dedicated pages and structured data (SEO-first)
-- Contact flow with anti-spam protections (Cloudflare Turnstile in production)
-- Livewire-powered project intake form with:
-  - module search and filtering
-  - weighted complexity scoring
-  - estimate size/budget tier generation
-  - persistence of submissions
-  - email confirmation workflow
-- Sitemap and robots endpoints
-
 ## Engineering Principles
 
 - Product and UX first
@@ -45,7 +32,7 @@ The app includes a module-based intake estimator that helps translate business r
 - SEO and performance as baseline concerns
 - Incremental, maintainable delivery over one-off hacks
 
-## Typical Solution Modules
+## Solution Modules
 
 Examples from the intake catalog include:
 
