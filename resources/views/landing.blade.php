@@ -29,7 +29,7 @@
     @push('structured-data')
     <script type="application/ld+json">
     {!! json_encode([
-        '@context' => 'https://schema.org',
+        '@'.'context' => 'https://schema.org',
         '@type' => 'Organization',
         '@id' => \App\Support\LocalizedRoute::route('home', [], 'es').'#organization',
         'name' => 'AcuarelaSoft',
@@ -82,7 +82,7 @@
     </script>
     <script type="application/ld+json">
     {!! json_encode([
-        '@context' => 'https://schema.org',
+        '@'.'context' => 'https://schema.org',
         '@type' => 'WebSite',
         '@id' => \App\Support\LocalizedRoute::route('home').'#website',
         'name' => 'AcuarelaSoft',
@@ -288,51 +288,38 @@
             ];
         @endphp
 
-        <div class="max-w-6xl mx-auto" data-acuarela-carousel>
-            <div class="mb-8 md:mb-10 grid grid-cols-2 items-center gap-3">
-                <div>
-                    <h2 id="slider-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-2">{{ __('landing.slider_title') }}</h2>
-                    <p class="font-sans text-ink/60 text-base md:text-lg">{{ __('landing.slider_subtitle') }}</p>
-                </div>
-
-                <div class="ms-auto flex items-center gap-x-2">
-                    <button type="button" data-carousel-prev class="inline-flex justify-center items-center size-9 sm:size-10 bg-paper border border-acuarela-400/25 text-petroleo rounded-full transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed hover:border-acuarela-400/45 hover:bg-acuarela-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.slider_prev') }}">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6"/></svg>
-                    </button>
-                    <button type="button" data-carousel-next class="inline-flex justify-center items-center size-9 sm:size-10 bg-paper border border-acuarela-400/25 text-petroleo rounded-full transition-all duration-200 disabled:opacity-45 disabled:cursor-not-allowed hover:border-acuarela-400/45 hover:bg-acuarela-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.slider_next') }}">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
-                    </button>
-                </div>
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-8 md:mb-10">
+                <h2 id="slider-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-2">{{ __('landing.slider_title') }}</h2>
+                <p class="font-sans text-ink/60 text-base md:text-lg">{{ __('landing.slider_subtitle') }}</p>
             </div>
 
-            <div class="overflow-hidden -mx-2.5" data-carousel-viewport>
-                <ul class="flex transition-transform duration-500 ease-out" data-carousel-track>
-                    @foreach ($sliderCards as $card)
-                        <li class="shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 px-2.5">
-                            <a href="{{ \App\Support\LocalizedRoute::route('service', ['service' => $card['slug']]) }}" class="group block h-full rounded-soft border border-acuarela-400/20 bg-paper overflow-hidden transition-all duration-250 hover:-translate-y-0.5 hover:border-acuarela-400/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.offer_cta') }}: {{ $card['title'] }}">
-                                <div class="relative h-44">
-                                    <div class="absolute inset-0" style="background-image: url('{{ $card['image'] }}'); background-size: cover; background-position: center;"></div>
-                                    <div class="absolute inset-0 bg-linear-to-tr from-petroleo/25 via-acuarela-400/10 to-salmon/15"></div>
-                                    <div class="absolute top-4 left-4 inline-flex px-3 py-1 rounded-pill bg-paper/90 text-petroleo font-sans text-xs font-semibold">
-                                        {{ $card['label'] }}
-                                    </div>
+            <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                @foreach ($sliderCards as $card)
+                    <li>
+                        <a href="{{ \App\Support\LocalizedRoute::route('service', ['service' => $card['slug']]) }}" class="group block h-full rounded-soft border border-acuarela-400/20 bg-paper overflow-hidden transition-all duration-250 hover:-translate-y-0.5 hover:border-acuarela-400/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo" aria-label="{{ __('landing.offer_cta') }}: {{ $card['title'] }}">
+                            <div class="relative h-44">
+                                <div class="absolute inset-0" style="background-image: url('{{ $card['image'] }}'); background-size: cover; background-position: center;"></div>
+                                <div class="absolute inset-0 bg-linear-to-tr from-petroleo/25 via-acuarela-400/10 to-salmon/15"></div>
+                                <div class="absolute top-4 left-4 inline-flex px-3 py-1 rounded-pill bg-paper/90 text-petroleo font-sans text-xs font-semibold">
+                                    {{ $card['label'] }}
+                                </div>
+                            </div>
+
+                            <div class="p-5 flex items-start gap-4">
+                                <div class="grow">
+                                    <h3 class="font-heading text-ink text-lg font-semibold mb-2">{{ $card['title'] }}</h3>
+                                    <p class="font-sans text-sm text-ink/70 leading-relaxed">{{ $card['description'] }}</p>
                                 </div>
 
-                                <div class="p-5 flex items-start gap-4">
-                                    <div class="grow">
-                                        <h3 class="font-heading text-ink text-lg font-semibold mb-2">{{ $card['title'] }}</h3>
-                                        <p class="font-sans text-sm text-ink/70 leading-relaxed">{{ $card['description'] }}</p>
-                                    </div>
-
-                                    <span class="shrink-0 inline-flex items-center justify-center size-10 rounded-full bg-paper border border-acuarela-400/25 text-petroleo transition-colors duration-200 group-hover:bg-acuarela-50 group-hover:border-acuarela-400/45" aria-hidden="true">
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-                                    </span>
-                                </div>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+                                <span class="shrink-0 inline-flex items-center justify-center size-10 rounded-full bg-paper border border-acuarela-400/25 text-petroleo transition-colors duration-200 group-hover:bg-acuarela-50 group-hover:border-acuarela-400/45" aria-hidden="true">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </section>
 

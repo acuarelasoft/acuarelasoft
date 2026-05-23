@@ -1,49 +1,19 @@
 <?php
 
 return [
-    'meta_title' => 'Formulario de requerimientos de software | AcuarelaSoft',
-    'meta_description' => 'Comparte los requerimientos de tu proyecto de software en México, selecciona los módulos que necesitas y recibe una estimación preliminar de discovery.',
+    'meta_title' => 'Módulos para tu web app | AcuarelaSoft',
+    'meta_description' => 'Explora los módulos que podemos implementar en tu web app: catálogo, pagos, dashboards, automatización, integraciones y más.',
 
-    'hero_title' => 'Formulario de Requerimientos de Proyecto',
-    'hero_subtitle' => 'Cuéntanos tu contexto y selecciona los módulos que necesitas. Esta información nos ayuda a preparar una propuesta de discovery de alta calidad.',
+    'hero_title' => 'Módulos que Podemos Implementar en tu Web App',
+    'hero_subtitle' => 'Explora los módulos y capacidades que podemos construir para tu proyecto.',
 
-    'sections' => [
-        'client' => 'Información del cliente',
-        'client_hint' => 'Usamos estos datos únicamente para enviarte la confirmación y coordinar la videollamada de discovery.',
-        'modules' => 'Selección de módulos',
-        'modules_hint' => 'Cada módulo representa una funcionalidad de tu sistema. Elige todos los que creas necesitar — la suma de su complejidad genera la estimación preliminar de esfuerzo.',
-        'summary' => 'Resumen de tu selección',
-        'summary_hint' => 'Revisa tu selección antes de enviar. Si necesitas ajustar algo, regresa a la sección de módulos.',
-    ],
-
-    'fields' => [
-        'full_name' => 'Nombre completo',
-        'email' => 'Correo electrónico',
-        'phone' => 'Teléfono',
-        'project_summary' => 'Resumen del proyecto',
-        'project_summary_hint' => 'Describe el sistema que quieres construir: qué hace, quiénes lo usan y el problema principal que resuelve. Mínimo 20 caracteres.',
-        'module_search' => 'Buscar módulos',
-        'module_search_placeholder' => 'Buscar por nombre de módulo...',
-        'category_filter' => 'Categoría',
-        'complexity_filter' => 'Complejidad',
-    ],
-
-    'actions' => [
-        'submit' => 'Enviar requerimientos',
-        'toggle_details' => 'Ver detalle completo',
-        'apply_preset' => 'Aplicar preset',
-        'clear_filters' => 'Limpiar filtros',
-    ],
-
-    'presets' => [
-        'title' => 'Stacks recomendados',
-        'ecommerce' => 'Stack E-commerce',
-        'saas_b2b' => 'Stack SaaS B2B',
-        'logistica' => 'Stack Logística',
+    'info' => [
+        'cta_title' => '¿Quieres que prioricemos un stack para tu proyecto?',
+        'cta_description' => 'Cuéntanos tu objetivo de negocio y te ayudamos a definir una primera combinación de módulos, alcance técnico y siguiente paso recomendado.',
+        'cta_action' => 'Contactar al equipo',
     ],
 
     'categories' => [
-        'all' => 'Todas las categorías',
         'platform' => 'Plataforma base',
         'commerce' => 'Comercio y facturación',
         'operations' => 'Operaciones y logística',
@@ -53,7 +23,6 @@ return [
     ],
 
     'complexity' => [
-        'all' => 'Todas las complejidades',
         'baja' => 'Baja',
         'baja-media' => 'Baja-media',
         'media' => 'Media',
@@ -61,68 +30,9 @@ return [
         'alta' => 'Alta',
     ],
 
-    'estimate' => [
-        'score' => 'Puntaje relativo',
-        'size' => 'Talla T-shirt',
-        'budget_tier' => 'Nivel de presupuesto',
-        'budget_low' => 'Bajo',
-        'budget_medium' => 'Medio',
-        'budget_high' => 'Alto',
-        'no_modules' => 'Selecciona al menos un módulo para ver la estimación.',
-        'disclaimer' => 'Esta estimación es preliminar y no vinculante. El alcance, tiempo y presupuesto final se definen después del discovery y la validación técnica.',
-        'weighting_title' => 'Modelo de ponderación',
-        'weighting_copy' => 'Pesos por complejidad: Baja=1, Baja-media=2, Media=3, Media-alta=5, Alta=8. El puntaje total determina talla y nivel de presupuesto.',
-    ],
-
     'helpers' => [
-        'required' => 'Campo obligatorio',
-        'modules_required' => 'Debes seleccionar al menos un módulo.',
-        'selected_count' => ':count módulos seleccionados',
-        'no_results' => 'No hay módulos que coincidan con los filtros actuales.',
-        'no_modules_selected' => 'Aún no has seleccionado ningún módulo.',
         'dependencies' => 'Dependencias',
         'use_cases' => 'Casos de uso',
-        'complexity_tag' => 'Complejidad',
-        'steps_label' => 'Así funciona',
-        'step_1_title' => 'Completa tus datos',
-        'step_1_desc' => 'Nombre, correo y teléfono para coordinar el siguiente paso.',
-        'step_2_title' => 'Elige los módulos',
-        'step_2_desc' => 'Selecciona todas las funcionalidades que necesita tu sistema.',
-        'step_3_title' => 'Revisa y envía',
-        'step_3_desc' => 'Confirmamos en menos de 24 h con una estimación preliminar.',
-        'module_tip' => 'Selecciona todos los módulos que crees que formarán parte de tu sistema. Haz clic en «Ver detalle completo» en cada tarjeta para leer la descripción, dependencias y casos de uso típicos.',
-        'submit_note' => 'Recibirás un correo de confirmación al enviar. Nuestro equipo lo revisará y te contactará en menos de 24 horas hábiles.',
-    ],
-
-    'thank_you' => [
-        'title' => 'Gracias por enviar tu requerimiento',
-        'subtitle' => 'Recibimos tu información y te enviamos un correo de confirmación. Nuestro equipo te contactará en menos de 24 horas hábiles.',
-        'cta' => 'Volver al inicio',
-    ],
-
-    'email' => [
-        'subject' => 'Recibimos tus requerimientos de proyecto',
-        'greeting' => 'Hola :name,',
-        'intro' => 'Gracias por compartir tus requerimientos con AcuarelaSoft. Este es el resumen de tu envío:',
-        'selected_modules' => 'Módulos seleccionados',
-        'summary' => 'Resumen del proyecto',
-        'estimate' => 'Estimación preliminar',
-        'outro' => 'Esta estimación es preliminar. Te contactaremos para ajustar alcance y compartir una propuesta formal.',
-        'signature' => 'Equipo AcuarelaSoft',
-    ],
-
-    'validation' => [
-        'full_name_required' => 'Por favor ingresa tu nombre completo.',
-        'email_required' => 'Por favor ingresa tu correo electrónico.',
-        'email_email' => 'Por favor ingresa un correo electrónico válido.',
-        'phone_required' => 'Por favor ingresa tu teléfono.',
-        'project_summary_required' => 'Por favor describe tu proyecto.',
-        'project_summary_min' => 'El resumen del proyecto debe tener al menos :min caracteres.',
-        'selected_modules_required' => 'Debes seleccionar al menos un módulo.',
-        'selected_modules_min' => 'Debes seleccionar al menos un módulo.',
-        'selected_modules_array' => 'El formato de módulos seleccionados es inválido.',
-        'selected_modules_in' => 'Uno o más módulos seleccionados no son válidos.',
-        'captcha_invalid' => 'Verificación CAPTCHA fallida. Por favor intenta de nuevo.',
     ],
 
     'modules' => [

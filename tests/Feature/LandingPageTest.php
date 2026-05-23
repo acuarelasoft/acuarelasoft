@@ -1,7 +1,7 @@
 <?php
 
-use App\Support\LocalizedRoute;
 use App\Services\TurnstileService;
+use App\Support\LocalizedRoute;
 use Illuminate\Support\Facades\Mail;
 
 test('landing page loads in spanish by default', function () {
@@ -59,9 +59,9 @@ test('landing page contains all main sections in spanish', function () {
 test('landing page contains json-ld structured data', function () {
     $this->get('/')
         ->assertStatus(200)
-        ->assertSee('"@type": "Organization"', false)
-        ->assertSee('"@type": "WebSite"', false)
-        ->assertSee('"name": "AcuarelaSoft"', false);
+        ->assertSee('"@type":"Organization"', false)
+        ->assertSee('"@type":"WebSite"', false)
+        ->assertSee('"name":"AcuarelaSoft"', false);
 });
 
 test('landing page contains hreflang tags', function () {
@@ -166,7 +166,7 @@ test('legacy public urls redirect to spanish canonical urls', function () {
         ->assertRedirect(LocalizedRoute::route('intake', [], 'es'));
 
     $this->get('/intake/thanks')
-        ->assertRedirect(LocalizedRoute::route('intake.thanks', [], 'es'));
+        ->assertNotFound();
 });
 
 test('sitemap exposes canonical public urls for both locales', function () {
@@ -178,9 +178,7 @@ test('sitemap exposes canonical public urls for both locales', function () {
         ->assertSee(LocalizedRoute::route('intake', [], 'es'), false)
         ->assertSee(LocalizedRoute::route('intake', [], 'en'), false)
         ->assertSee(LocalizedRoute::route('service', ['service' => 'web-design'], 'es'), false)
-        ->assertSee(LocalizedRoute::route('service', ['service' => 'web-design'], 'en'), false)
-        ->assertDontSee(LocalizedRoute::route('intake.thanks', [], 'es'), false)
-        ->assertDontSee(LocalizedRoute::route('intake.thanks', [], 'en'), false);
+        ->assertSee(LocalizedRoute::route('service', ['service' => 'web-design'], 'en'), false);
 });
 
 test('robots endpoint references sitemap', function () {

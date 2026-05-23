@@ -17,7 +17,6 @@ class SetLocaleFromSession
         'home',
         'service',
         'intake',
-        'intake.thanks',
         'sitemap',
         'robots',
     ];
