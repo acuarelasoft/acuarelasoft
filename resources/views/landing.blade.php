@@ -59,6 +59,7 @@
         ],
         'sameAs' => [
             'https://www.linkedin.com/in/rodrigo-sanvicente/',
+            'https://github.com/acuarelasoft/',
         ],
         'numberOfEmployees' => [
             '@type' => 'QuantitativeValue',
