@@ -77,14 +77,12 @@
 /* ===== Acuarelasoft — Section reveal animation ===== */
 .reveal {
     opacity: 0;
-    filter: blur(4px);
     transform: translateY(12px);
-    transition: opacity 500ms ease-out, filter 500ms ease-out, transform 500ms ease-out;
+    transition: opacity 420ms ease-out, transform 420ms ease-out;
 }
 
 .reveal.visible {
     opacity: 1;
-    filter: blur(0);
     transform: translateY(0);
 }
 
@@ -92,6 +90,35 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
+}
+
+/* ===== Acuarelasoft — Mobile performance mode ===== */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .paper-bg::after {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 @layer base {

@@ -95,13 +95,13 @@
     @php($landingTextureUrl = asset('assets/textures/texture.webp'))
 
     {{-- ============ HEADER / NAV ============ --}}
-    <div class="pointer-events-none fixed inset-0 z-1 overflow-hidden" aria-hidden="true">
+    <div class="pointer-events-none fixed inset-0 z-1 hidden overflow-hidden md:block" aria-hidden="true">
         <div class="absolute inset-0 opacity-[0.15] mix-blend-multiply"
              style="background-image: url('{{ $landingTextureUrl }}'); background-repeat: no-repeat; background-size: cover; background-position: center top;"></div>
     </div>
 
     <div class="relative z-10">
-    <header class="sticky top-0 z-50 bg-paper/85 backdrop-blur-[12px] border-b border-acuarela-400/15 transition-colors duration-300">
+    <header class="sticky top-0 z-50 border-b border-acuarela-400/15 bg-paper/92 backdrop-blur-0 transition-colors duration-300 md:bg-paper/85 md:backdrop-blur-[12px]">
         <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between" aria-label="{{ app()->getLocale() === 'es' ? 'Navegación principal' : 'Main navigation' }}">
             {{-- Logo --}}
             <x-brand-logo size="md" />
@@ -138,7 +138,7 @@
         </nav>
 
         {{-- Mobile menu panel --}}
-        <div id="mobile-menu" class="md:hidden hidden border-t border-acuarela-400/10 bg-paper/95 backdrop-blur-[12px]">
+        <div id="mobile-menu" class="hidden border-t border-acuarela-400/10 bg-paper/95 backdrop-blur-0 md:hidden">
             <ul class="flex flex-col gap-1 px-6 py-4 font-sans text-sm font-medium text-ink/70">
                 <li><a href="{{ $landingServicesUrl }}" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_services') }}</a></li>
                 <li><a href="{{ $landingProcessUrl }}" class="block py-2 hover:text-petroleo transition-colors">{{ __('landing.nav_process') }}</a></li>
@@ -268,16 +268,32 @@
             menu.classList.toggle('hidden');
         });
 
-        // Intersection Observer for section reveal animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        const revealElements = document.querySelectorAll('.reveal');
+        const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const userAgent = navigator.userAgent || '';
+        const isFirefoxMobile = /Firefox/i.test(userAgent) && /(Mobile|Android|iPhone|iPad)/i.test(userAgent);
+        const lowMotionMode = isSmallScreen || prefersReducedMotion || isFirefoxMobile;
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        if (lowMotionMode) {
+            revealElements.forEach((element) => {
+                element.classList.add('visible');
+            });
+        } else {
+            // Intersection Observer for section reveal animations
+            const observer = new IntersectionObserver((entries, activeObserver) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        activeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+            revealElements.forEach((element) => {
+                observer.observe(element);
+            });
+        }
     </script>
 
     @stack('scripts')
