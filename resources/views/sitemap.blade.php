@@ -6,10 +6,6 @@ $pages = [
         'baseName' => 'home',
         'parameters' => [],
     ],
-    [
-        'baseName' => 'intake',
-        'parameters' => [],
-    ],
 ];
 
 foreach ($serviceSlugs as $serviceSlug) {

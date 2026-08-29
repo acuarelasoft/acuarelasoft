@@ -33,34 +33,6 @@ return [
     'pain_3' => 'Sistemas legacy que frenan el crecimiento de tu negocio',
     'solution_3' => 'Modernizamos tu stack con tecnología probada y migraciones sin riesgo',
 
-    // Services
-    'services_title' => 'Nuestros servicios',
-    'services_subtitle' => 'Soluciones completas de desarrollo de software para cada etapa de tu proyecto.',
-
-    'service_laravel_title' => 'Desarrollo Laravel',
-    'service_laravel_desc' => 'Backend robusto, escalable y seguro. APIs REST, paneles admin, sistemas complejos.',
-    'service_laravel_benefit' => 'La base sólida que tu negocio necesita.',
-
-    'service_angular_title' => 'Desarrollo Angular',
-    'service_angular_desc' => 'Interfaces modernas, SPA reactivas, dashboards interactivos.',
-    'service_angular_benefit' => 'Experiencias web que tus usuarios van a disfrutar.',
-
-    'service_node_title' => 'Desarrollo Node.js',
-    'service_node_desc' => 'APIs de alto rendimiento, microservicios, integraciones en tiempo real.',
-    'service_node_benefit' => 'Velocidad y eficiencia para tus procesos críticos.',
-
-    'service_db_title' => 'Bases de datos',
-    'service_db_desc' => 'Diseño, optimización y migración. MariaDB, PostgreSQL.',
-    'service_db_benefit' => 'Datos organizados, consultas rápidas, cero dolores de cabeza.',
-
-    'service_cloud_title' => 'Infraestructura Cloud',
-    'service_cloud_desc' => 'Deploy en AWS, escalamiento, CI/CD, monitoreo.',
-    'service_cloud_benefit' => 'Tu sistema siempre disponible, escalable y seguro.',
-
-    'service_consulting_title' => 'Consultoría técnica',
-    'service_consulting_desc' => 'Análisis de sistemas existentes, propuestas de modernización, auditoría de código.',
-    'service_consulting_benefit' => 'Antes de construir, te ayudamos a tomar las mejores decisiones.',
-
     // Process
     'process_title' => 'Así trabajamos contigo',
     'process_subtitle' => 'Un proceso claro y transparente desde el primer contacto hasta el soporte continuo.',
@@ -80,12 +52,8 @@ return [
     'process_5_name' => 'Soporte continuo',
     'process_5_desc' => 'Mantenimiento, monitoreo y evolución del sistema.',
 
-    // Technologies
-    'tech_title' => 'Tecnologías',
-    'tech_subtitle' => 'Tecnologías modernas, arquitectura probada.',
-
     // Slider
-    'slider_title' => 'Soluciones que construimos',
+    'slider_title' => 'Nuestros servicios',
     'slider_subtitle' => 'Una muestra del tipo de plataformas y módulos que podemos crear para tu negocio.',
     'slider_prev' => 'Ver anteriores',
     'slider_next' => 'Ver siguientes',
@@ -102,13 +70,9 @@ return [
     'slider_mobile_apps_title' => 'Tu negocio en el bolsillo de tus usuarios',
     'slider_mobile_apps_desc' => 'Aplicaciones nativas y multiplataforma para iOS y Android, con diseño fluido y sincronización en tiempo real.',
 
-    'slider_maintenance_label' => 'Mantenimiento de apps',
-    'slider_maintenance_title' => 'Tu app siempre actualizada y saludable',
-    'slider_maintenance_desc' => 'Actualizaciones de dependencias, corrección de bugs, mejoras de rendimiento y evolución continua de tus aplicaciones existentes.',
-
-    'slider_legacy_label' => 'Migración legacy',
-    'slider_legacy_title' => 'Moderniza sin perder lo que funciona',
-    'slider_legacy_desc' => 'Migramos sistemas obsoletos a tecnología moderna: re-arquitectura, cambio de stack, migración de datos y puesta en producción sin downtime.',
+    'slider_application_maintenance_label' => 'Mantenimiento de aplicaciones',
+    'slider_application_maintenance_title' => 'Mantén y moderniza la aplicación que ya impulsa tu negocio',
+    'slider_application_maintenance_desc' => 'Mantenimiento, corrección de errores, modernización tecnológica, migración segura y monitoreo para tus aplicaciones existentes.',
 
     'slider_servers_label' => 'Servidores web',
     'slider_servers_title' => 'Infraestructura confiable desde el primer día',
@@ -179,11 +143,6 @@ return [
     'contact_success' => '¡Gracias! Hemos recibido tu solicitud. Te contactaremos en menos de 24 horas para confirmar tu llamada.',
     'contact_success_close' => 'Cerrar notificacion',
     'contact_select_placeholder' => 'Selecciona una opción',
-
-    // CTA mid-page
-    'mid_cta_title' => 'Descubre lo que podemos construir para ti',
-    'mid_cta_subtitle' => 'Explora nuestro catálogo de módulos y funcionalidades, selecciona lo que necesitas y recibe una estimación personalizada al instante.',
-    'mid_cta_button' => 'Explorar módulos y funcionalidades',
 
     // Footer
     'footer_tagline' => 'El arte de crear software',

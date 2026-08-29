@@ -94,10 +94,7 @@ render(function (View $view, string $service): View {
                            class="bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base text-center">
                             {{ __('services.cta_contact') }}
                         </a>
-                        <a href="{{ \App\Support\LocalizedRoute::route('intake') }}"
-                           class="bg-paper/80 text-ink font-sans font-semibold px-8 py-3.5 rounded-soft border border-ink/15 transition-all duration-200 hover:bg-paper hover:border-ink/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acuarela-400 text-base text-center">
-                            {{ __('services.cta_intake') }}
-                        </a>
+
                     </div>
                 </div>
 
@@ -243,6 +240,104 @@ render(function (View $view, string $service): View {
     </section>
 
     {{-- ============================================================
+         MODULES CATALOG (web-apps only)
+         ============================================================ --}}
+    @if ($service['slug'] === 'web-apps')
+        @php
+            $categories = config('intake.categories', []);
+            $groupedModules = collect(config('intake.modules', []))
+                ->map(static function (array $moduleConfig, string $moduleId): ?array {
+                    $moduleTrans = trans('intake.modules.'.$moduleId);
+
+                    if (! is_array($moduleTrans)) {
+                        return null;
+                    }
+
+                    return [
+                        'category' => (string) ($moduleConfig['category'] ?? 'platform'),
+                        'short' => (string) ($moduleTrans['short'] ?? $moduleId),
+                        'label' => (string) ($moduleTrans['label'] ?? $moduleId),
+                        'description' => (string) ($moduleTrans['description'] ?? ''),
+                        'complexity' => (string) ($moduleConfig['complexity'] ?? 'media'),
+                        'use_cases' => array_values((array) ($moduleTrans['use_cases'] ?? [])),
+                        'dependencies' => array_values((array) ($moduleConfig['dependencies'] ?? [])),
+                    ];
+                })
+                ->filter()
+                ->groupBy('category')
+                ->sortKeysUsing(static fn (string $left, string $right): int =>
+                    ((int) data_get($categories, $left.'.position', 99)) <=> ((int) data_get($categories, $right.'.position', 99))
+                )
+                ->all();
+        @endphp
+
+        <section id="modulos" class="relative py-20 px-6 md:py-28 overflow-hidden reveal" aria-labelledby="modulos-heading">
+            <div class="absolute inset-0 -z-10" aria-hidden="true"
+                 style="background: radial-gradient(ellipse 70% 54% at 20% 10%, rgba(111,168,216,0.10) 0%, transparent 70%);"></div>
+
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-14">
+                    <h2 id="modulos-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-3">{{ __('intake.hero_title') }}</h2>
+                    <p class="font-sans text-ink/60 text-lg max-w-2xl mx-auto">{{ __('intake.hero_subtitle') }}</p>
+                </div>
+
+                <div class="space-y-10">
+                    @foreach ($groupedModules as $category => $modules)
+                        <section class="space-y-4" aria-labelledby="modulos-category-{{ $category }}">
+                            <h3 id="modulos-category-{{ $category }}" class="font-heading text-ink text-xl font-semibold">{{ __('intake.categories.'.$category) }}</h3>
+
+                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                @foreach ($modules as $module)
+                                    <article class="rounded-soft border border-acuarela-400/15 bg-paper p-4">
+                                        <div class="flex items-start justify-between gap-3">
+                                            <div>
+                                                <p class="font-medium text-ink/70 text-sm">{{ $module['short'] }}</p>
+                                                <h4 class="mt-1 text-base font-semibold text-ink">{{ $module['label'] }}</h4>
+                                            </div>
+                                            <span class="rounded-full bg-petroleo/10 px-2.5 py-1 text-xs font-medium text-petroleo shrink-0">
+                                                {{ __('intake.complexity.'.$module['complexity']) }}
+                                            </span>
+                                        </div>
+
+                                        <p class="mt-3 text-sm leading-relaxed text-ink/70">{{ $module['description'] }}</p>
+
+                                        @if ($module['dependencies'] !== [])
+                                            <p class="mt-3 text-xs font-semibold uppercase tracking-wide text-ink/60">{{ __('intake.helpers.dependencies') }}</p>
+                                            <ul class="mt-1 list-disc space-y-1 pl-5 text-sm text-ink/70">
+                                                @foreach ($module['dependencies'] as $dependency)
+                                                    <li>{{ $dependency }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+
+                                        @if ($module['use_cases'] !== [])
+                                            <p class="mt-3 text-xs font-semibold uppercase tracking-wide text-ink/60">{{ __('intake.helpers.use_cases') }}</p>
+                                            <ul class="mt-1 list-disc space-y-1 pl-5 text-sm text-ink/70">
+                                                @foreach ($module['use_cases'] as $useCase)
+                                                    <li>{{ $useCase }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </article>
+                                @endforeach
+                            </div>
+                        </section>
+                    @endforeach
+                </div>
+
+                <div class="mt-12 rounded-soft border border-acuarela-400/15 bg-paper p-6 text-center md:p-8">
+                    <h3 class="font-heading text-ink text-2xl font-semibold">{{ __('intake.info.cta_title') }}</h3>
+                    <p class="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-ink/70 md:text-base">{{ __('intake.info.cta_description') }}</p>
+                    <a href="{{ \App\Support\LocalizedRoute::route('home') . '#contacto' }}"
+                       class="mt-6 inline-flex rounded-soft bg-petroleo px-6 py-3 text-sm font-semibold text-paper transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
+                        {{ __('intake.info.cta_action') }}
+                    </a>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    {{-- ============================================================
          OTHER SERVICES
          ============================================================ --}}
     @php
@@ -312,10 +407,6 @@ render(function (View $view, string $service): View {
                 <a href="{{ \App\Support\LocalizedRoute::route('home') . '#contacto' }}"
                    class="bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base text-center">
                     {{ __('services.cta_contact') }}
-                </a>
-                <a href="{{ \App\Support\LocalizedRoute::route('intake') }}"
-                   class="bg-paper/80 text-ink font-sans font-semibold px-8 py-3.5 rounded-soft border border-ink/15 transition-all duration-200 hover:bg-paper hover:border-ink/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acuarela-400 text-base text-center">
-                    {{ __('services.cta_intake') }}
                 </a>
             </div>
         </div>

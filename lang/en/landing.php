@@ -33,34 +33,6 @@ return [
     'pain_3' => 'Legacy systems that hold back your business growth',
     'solution_3' => 'We modernize your stack with proven technology and risk-free migrations',
 
-    // Services
-    'services_title' => 'Our services',
-    'services_subtitle' => 'Complete software development solutions for every stage of your project.',
-
-    'service_laravel_title' => 'Laravel Development',
-    'service_laravel_desc' => 'Robust, scalable, and secure backend. REST APIs, admin panels, complex systems.',
-    'service_laravel_benefit' => 'The solid foundation your business needs.',
-
-    'service_angular_title' => 'Angular Development',
-    'service_angular_desc' => 'Modern interfaces, reactive SPAs, interactive dashboards.',
-    'service_angular_benefit' => 'Web experiences your users will enjoy.',
-
-    'service_node_title' => 'Node.js Development',
-    'service_node_desc' => 'High-performance APIs, microservices, real-time integrations.',
-    'service_node_benefit' => 'Speed and efficiency for your critical processes.',
-
-    'service_db_title' => 'Databases',
-    'service_db_desc' => 'Design, optimization, and migration. MariaDB, PostgreSQL.',
-    'service_db_benefit' => 'Organized data, fast queries, zero headaches.',
-
-    'service_cloud_title' => 'Cloud Infrastructure',
-    'service_cloud_desc' => 'Deploy on AWS, scaling, CI/CD, monitoring.',
-    'service_cloud_benefit' => 'Your system always available, scalable, and secure.',
-
-    'service_consulting_title' => 'Technical Consulting',
-    'service_consulting_desc' => 'Existing system analysis, modernization proposals, code auditing.',
-    'service_consulting_benefit' => 'Before building, we help you make the best decisions.',
-
     // Process
     'process_title' => 'How we work with you',
     'process_subtitle' => 'A clear, transparent process from first contact to ongoing support.',
@@ -80,12 +52,8 @@ return [
     'process_5_name' => 'Ongoing support',
     'process_5_desc' => 'Maintenance, monitoring, and system evolution.',
 
-    // Technologies
-    'tech_title' => 'Technologies',
-    'tech_subtitle' => 'Modern technologies, proven architecture.',
-
     // Slider
-    'slider_title' => 'Solutions we build',
+    'slider_title' => 'Our services',
     'slider_subtitle' => 'A sample of the platforms and modules we can craft for your business.',
     'slider_prev' => 'View previous',
     'slider_next' => 'View next',
@@ -102,13 +70,9 @@ return [
     'slider_mobile_apps_title' => "Your business in your users' pockets",
     'slider_mobile_apps_desc' => 'Native and cross-platform apps for iOS and Android, with fluid design and real-time sync.',
 
-    'slider_maintenance_label' => 'App Maintenance',
-    'slider_maintenance_title' => 'Your app always up-to-date and healthy',
-    'slider_maintenance_desc' => 'Dependency updates, bug fixes, performance improvements, and continuous evolution of your existing applications.',
-
-    'slider_legacy_label' => 'Legacy Migration',
-    'slider_legacy_title' => 'Modernize without losing what works',
-    'slider_legacy_desc' => 'We migrate outdated systems to modern technology: re-architecture, stack changes, data migration, and zero-downtime production deploys.',
+    'slider_application_maintenance_label' => 'Application Maintenance',
+    'slider_application_maintenance_title' => 'Maintain and modernize the application that drives your business',
+    'slider_application_maintenance_desc' => 'Maintenance, issue fixes, technology modernization, safe migration, and monitoring for your existing applications.',
 
     'slider_servers_label' => 'Web Servers',
     'slider_servers_title' => 'Reliable infrastructure from day one',
@@ -179,11 +143,6 @@ return [
     'contact_success' => 'Thank you! We\'ve received your request. We\'ll contact you within 24 hours to confirm your call.',
     'contact_success_close' => 'Dismiss notification',
     'contact_select_placeholder' => 'Select an option',
-
-    // CTA mid-page
-    'mid_cta_title' => 'Discover what we can build for you',
-    'mid_cta_subtitle' => 'Explore our catalog of modules and features, pick what you need, and get a personalized estimate instantly.',
-    'mid_cta_button' => 'Explore modules & features',
 
     // Footer
     'footer_tagline' => 'The art of crafting software',

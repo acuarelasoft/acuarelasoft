@@ -10,7 +10,7 @@ test('landing page loads in spanish by default', function () {
         ->assertSee('El arte de')
         ->assertSee('crear software')
         ->assertSee('AcuarelaSoft')
-        ->assertSee('Soluciones que construimos')
+        ->assertSee('Nuestros servicios')
         ->assertSee('Solicitar Consulta Gratuita');
 });
 
@@ -27,7 +27,6 @@ test('landing page contains all main sections in spanish', function () {
         ->assertStatus(200)
         ->assertSee('¿Tu proyecto necesita más que solo código?')
         ->assertSee('Nuestros servicios')
-        ->assertSee('Soluciones que construimos')
         ->assertSee('Así trabajamos contigo')
         ->assertSee('¿Por qué elegirnos?')
         ->assertSee('Agenda tu llamada gratuita');
@@ -64,8 +63,20 @@ test('landing page renders watercolor texture assets', function () {
 test('service page cta points to spanish landing contact form', function () {
     $this->get('/servicios/web-design')
         ->assertStatus(200)
-        ->assertSee('href="'.LocalizedRoute::route('home').'#contacto"', false)
-        ->assertSee('href="'.LocalizedRoute::route('intake').'"', false);
+        ->assertSee('href="'.LocalizedRoute::route('home').'#contacto"', false);
+});
+
+test('application maintenance service page loads', function () {
+    $this->get('/servicios/mantenimiento-de-aplicaciones')
+        ->assertSuccessful()
+        ->assertSee(__('services.application_maintenance.badge'))
+        ->assertSee(__('services.application_maintenance.title'));
+});
+
+test('retired application maintenance and legacy migration service pages return not found', function () {
+    $this->get('/servicios/app-maintenance')->assertNotFound();
+
+    $this->get('/servicios/legacy-migration')->assertNotFound();
 });
 
 test('unknown service page returns not found', function () {
@@ -96,6 +107,8 @@ test('legacy public urls no longer exist', function () {
     $this->get('/intake')->assertNotFound();
 
     $this->get('/intake/thanks')->assertNotFound();
+
+    $this->get('/modulos')->assertNotFound();
 });
 
 test('sitemap exposes canonical public urls', function () {
@@ -103,8 +116,10 @@ test('sitemap exposes canonical public urls', function () {
 
     $response->assertSuccessful()
         ->assertSee(LocalizedRoute::route('home'), false)
-        ->assertSee(LocalizedRoute::route('intake'), false)
-        ->assertSee(LocalizedRoute::route('service', ['service' => 'web-design']), false);
+        ->assertSee(LocalizedRoute::route('service', ['service' => 'web-design']), false)
+        ->assertSee(LocalizedRoute::route('service', ['service' => 'mantenimiento-de-aplicaciones']), false)
+        ->assertDontSee(LocalizedRoute::route('service', ['service' => 'app-maintenance']), false)
+        ->assertDontSee(LocalizedRoute::route('service', ['service' => 'legacy-migration']), false);
 });
 
 test('robots endpoint references sitemap', function () {

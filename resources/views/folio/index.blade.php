@@ -229,7 +229,7 @@ name('home');
     {{-- ============================================================
          FEATURED WORK SLIDER
          ============================================================ --}}
-    <section id="muestras" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="slider-heading">
+    <section id="servicios" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="slider-heading">
         <div class="absolute inset-0 -z-10" aria-hidden="true"
              style="background:
                 radial-gradient(ellipse 68% 50% at 24% 38%, rgba(111,168,216,0.10) 0%, transparent 70%),
@@ -259,18 +259,11 @@ name('home');
                     'image' => asset('assets/solutions/mobile-apps.jpeg'),
                 ],
                 [
-                    'slug' => 'app-maintenance',
-                    'label' => __('landing.slider_maintenance_label'),
-                    'title' => __('landing.slider_maintenance_title'),
-                    'description' => __('landing.slider_maintenance_desc'),
+                    'slug' => 'mantenimiento-de-aplicaciones',
+                    'label' => __('landing.slider_application_maintenance_label'),
+                    'title' => __('landing.slider_application_maintenance_title'),
+                    'description' => __('landing.slider_application_maintenance_desc'),
                     'image' => asset('assets/solutions/maintenance.jpeg'),
-                ],
-                [
-                    'slug' => 'legacy-migration',
-                    'label' => __('landing.slider_legacy_label'),
-                    'title' => __('landing.slider_legacy_title'),
-                    'description' => __('landing.slider_legacy_desc'),
-                    'image' => asset('assets/solutions/legacy-migration.jpeg'),
                 ],
                 [
                     'slug' => 'web-servers',
@@ -328,24 +321,6 @@ name('home');
                     </li>
                 @endforeach
             </ul>
-        </div>
-    </section>
-
-    {{-- ============================================================
-        MID-PAGE CTA — Watercolor wash accent
-        ============================================================ --}}
-    <section id="cta-mid" class="relative py-16 px-6 overflow-hidden reveal" aria-labelledby="mid-cta-heading">
-        <div class="absolute inset-0 -z-10" aria-hidden="true"
-             style="background:
-                radial-gradient(ellipse 60% 70% at 30% 50%, rgba(242,184,178,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 50% at 75% 40%, rgba(191,231,214,0.10) 0%, transparent 55%);">
-        </div>
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 id="mid-cta-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.mid_cta_title') }}</h2>
-            <p class="font-sans text-ink/60 text-lg mb-8">{{ __('landing.mid_cta_subtitle') }}</p>
-            <a href="{{ \App\Support\LocalizedRoute::route('intake') }}" class="inline-flex bg-petroleo text-paper font-sans font-medium px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base">
-                {{ __('landing.mid_cta_button') }}
-            </a>
         </div>
     </section>
 
@@ -440,113 +415,6 @@ name('home');
             </dl>
         </div>
     </section>
-
-    {{-- ============================================================
-         SERVICES
-         ============================================================ --}}
-    <section id="servicios" class="py-20 px-6 reveal" aria-labelledby="services-heading">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 id="services-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.services_title') }}</h2>
-                <p class="font-sans text-ink/60 text-lg max-w-xl mx-auto">{{ __('landing.services_subtitle') }}</p>
-            </div>
-
-            <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 list-none">
-                <li>
-                    <article class="bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5 h-full">
-                        <div class="w-12 h-12 mb-5 flex items-center justify-center rounded-soft bg-acuarela-400/10">
-                            <svg class="w-6 h-6 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
-                        </div>
-                        <h3 class="font-heading text-ink text-xl font-semibold mb-3">{{ __('landing.service_laravel_title') }}</h3>
-                        <p class="font-sans text-ink/70 text-base leading-relaxed mb-3">{{ __('landing.service_laravel_desc') }}</p>
-                        <p class="font-sans text-petroleo text-sm font-medium"><em>{{ __('landing.service_laravel_benefit') }}</em></p>
-                    </article>
-                </li>
-                <li>
-                    <article class="bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5 h-full">
-                        <div class="w-12 h-12 mb-5 flex items-center justify-center rounded-soft bg-salmon/10">
-                            <svg class="w-6 h-6 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
-                        </div>
-                        <h3 class="font-heading text-ink text-xl font-semibold mb-3">{{ __('landing.service_angular_title') }}</h3>
-                        <p class="font-sans text-ink/70 text-base leading-relaxed mb-3">{{ __('landing.service_angular_desc') }}</p>
-                        <p class="font-sans text-petroleo text-sm font-medium"><em>{{ __('landing.service_angular_benefit') }}</em></p>
-                    </article>
-                </li>
-                <li>
-                    <article class="bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5 h-full">
-                        <div class="w-12 h-12 mb-5 flex items-center justify-center rounded-soft bg-mint/20">
-                            <svg class="w-6 h-6 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-                        </div>
-                        <h3 class="font-heading text-ink text-xl font-semibold mb-3">{{ __('landing.service_node_title') }}</h3>
-                        <p class="font-sans text-ink/70 text-base leading-relaxed mb-3">{{ __('landing.service_node_desc') }}</p>
-                        <p class="font-sans text-petroleo text-sm font-medium"><em>{{ __('landing.service_node_benefit') }}</em></p>
-                    </article>
-                </li>
-                <li>
-                    <article class="bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5 h-full">
-                        <div class="w-12 h-12 mb-5 flex items-center justify-center rounded-soft bg-acuarela-400/10">
-                            <svg class="w-6 h-6 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
-                        </div>
-                        <h3 class="font-heading text-ink text-xl font-semibold mb-3">{{ __('landing.service_db_title') }}</h3>
-                        <p class="font-sans text-ink/70 text-base leading-relaxed mb-3">{{ __('landing.service_db_desc') }}</p>
-                        <p class="font-sans text-petroleo text-sm font-medium"><em>{{ __('landing.service_db_benefit') }}</em></p>
-                    </article>
-                </li>
-                <li>
-                    <article class="bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5 h-full">
-                        <div class="w-12 h-12 mb-5 flex items-center justify-center rounded-soft bg-salmon/10">
-                            <svg class="w-6 h-6 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg>
-                        </div>
-                        <h3 class="font-heading text-ink text-xl font-semibold mb-3">{{ __('landing.service_cloud_title') }}</h3>
-                        <p class="font-sans text-ink/70 text-base leading-relaxed mb-3">{{ __('landing.service_cloud_desc') }}</p>
-                        <p class="font-sans text-petroleo text-sm font-medium"><em>{{ __('landing.service_cloud_benefit') }}</em></p>
-                    </article>
-                </li>
-                <li>
-                    <article class="bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5 h-full">
-                        <div class="w-12 h-12 mb-5 flex items-center justify-center rounded-soft bg-mint/20">
-                            <svg class="w-6 h-6 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-                        </div>
-                        <h3 class="font-heading text-ink text-xl font-semibold mb-3">{{ __('landing.service_consulting_title') }}</h3>
-                        <p class="font-sans text-ink/70 text-base leading-relaxed mb-3">{{ __('landing.service_consulting_desc') }}</p>
-                        <p class="font-sans text-petroleo text-sm font-medium"><em>{{ __('landing.service_consulting_benefit') }}</em></p>
-                    </article>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-
-
-
-    {{-- ============================================================
-         TECHNOLOGIES — Pill badges
-         ============================================================ --}}
-    <section id="tecnologias" class="relative py-16 px-6 overflow-hidden reveal" aria-labelledby="tech-heading">
-        <div class="absolute inset-0 -z-10" aria-hidden="true"
-             style="background: radial-gradient(ellipse 70% 50% at 60% 50%, rgba(111,168,216,0.08) 0%, transparent 65%);"></div>
-
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 id="tech-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">{{ __('landing.tech_title') }}</h2>
-            <p class="font-sans text-ink/60 text-lg mb-10">{{ __('landing.tech_subtitle') }}</p>
-
-            <ul class="flex flex-wrap justify-center gap-3 list-none" aria-label="{{ __('landing.tech_title') }}">
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">Laravel</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">Angular</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">Node.js</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">PHP</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">TypeScript</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">MariaDB</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">PostgreSQL</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">AWS</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">Docker</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">Tailwind CSS</li>
-                <li class="px-5 py-2.5 rounded-pill bg-paper border border-acuarela-400/20 font-sans text-sm font-medium text-ink/80 transition-all duration-200 hover:border-acuarela-400/40 hover:text-petroleo">Git</li>
-            </ul>
-        </div>
-    </section>
-
-
 
     {{-- ============================================================
          WHY US
