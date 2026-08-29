@@ -20,16 +20,7 @@ test('intake page is informational and does not expose form submit controls', fu
         ->assertDontSee('wire:submit');
 });
 
-test('english intake page uses english canonical and informational content', function () {
-    get('/en/intake')
-        ->assertSuccessful()
-        ->assertSee('<html lang="en">', false)
-        ->assertSee('rel="canonical" href="'.LocalizedRoute::route('intake', [], 'en').'"', false)
-        ->assertSee(trans('intake.hero_title', [], 'en'));
-});
-
 test('legacy thanks urls no longer exist', function () {
     get('/modulos/gracias')->assertNotFound();
-    get('/en/intake/thanks')->assertNotFound();
     get('/intake/thanks')->assertNotFound();
 });

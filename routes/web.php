@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ContactController;
-use App\Support\LocalizedRoute;
 use Illuminate\Support\Facades\Route;
 
 $landingPage = static fn () => view('landing');
@@ -40,16 +39,6 @@ Route::get('/sitemap.xml', function () {
 Route::get('/', $landingPage)->name('home');
 Route::get('/servicios/{service}', $servicePage)->name('service');
 Route::get('/modulos', $intakePage)->name('intake');
-
-Route::prefix('en')->name('en.')->group(function () use ($landingPage, $servicePage, $intakePage) {
-    Route::get('/', $landingPage)->name('home');
-    Route::get('/services/{service}', $servicePage)->name('service');
-    Route::get('/intake', $intakePage)->name('intake');
-});
-
-Route::get('/es', static fn () => redirect(LocalizedRoute::route('home', [], 'es'), 301))->name('es.home');
-Route::get('/services/{service}', static fn (string $service) => redirect(LocalizedRoute::route('service', ['service' => $service], 'es'), 301));
-Route::get('/intake', static fn () => redirect(LocalizedRoute::route('intake', [], 'es'), 301));
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');

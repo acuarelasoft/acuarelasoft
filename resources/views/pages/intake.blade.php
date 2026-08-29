@@ -12,7 +12,7 @@
                 'provider' => [
                     '@type' => 'Organization',
                     'name' => 'AcuarelaSoft',
-                    'url' => \App\Support\LocalizedRoute::route('home', [], 'es'),
+                    'url' => \App\Support\LocalizedRoute::route('home'),
                 ],
                 'serviceType' => 'Software requirements discovery',
                 'areaServed' => ['MX', 'US'],

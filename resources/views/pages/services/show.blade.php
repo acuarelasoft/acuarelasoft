@@ -13,10 +13,10 @@
         'provider' => [
             '@type' => 'Organization',
             'name' => 'AcuarelaSoft',
-            'url' => \App\Support\LocalizedRoute::route('home', [], 'es'),
+            'url' => \App\Support\LocalizedRoute::route('home'),
         ],
         'areaServed' => ['MX', 'US', 'LATAM'],
-        'url' => \App\Support\LocalizedRoute::route('service', ['service' => $service['slug']], app()->getLocale()),
+        'url' => \App\Support\LocalizedRoute::route('service', ['service' => $service['slug']]),
         'inLanguage' => \App\Support\LocalizedRoute::languageTag(),
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
@@ -41,10 +41,10 @@
 
         <div class="max-w-6xl mx-auto px-6 pt-28 pb-20 md:pt-36 md:pb-28 w-full">
             {{-- Breadcrumb --}}
-            <nav class="mb-8 flex items-center gap-2 font-sans text-sm text-ink/50" aria-label="{{ app()->getLocale() === 'es' ? 'Ruta de navegación' : 'Breadcrumb' }}">
+            <nav class="mb-8 flex items-center gap-2 font-sans text-sm text-ink/50" aria-label="Ruta de navegación">
                 <a href="{{ \App\Support\LocalizedRoute::route('home') }}"
                    class="hover:text-petroleo transition-colors duration-200">
-                    {{ app()->getLocale() === 'es' ? 'Inicio' : 'Home' }}
+                    Inicio
                 </a>
                 <svg class="w-3.5 h-3.5 text-ink/30" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
                 <span class="text-ink/70">{{ __('services.' . $service['key'] . '.badge') }}</span>
@@ -253,7 +253,7 @@
                                 {{ __('services.' . $other['key'] . '.tagline') }}
                             </p>
                             <span class="mt-4 inline-flex items-center gap-1.5 font-sans text-sm font-medium text-petroleo">
-                                {{ app()->getLocale() === 'es' ? 'Ver servicio' : 'View service' }}
+                                Ver servicio
                                 <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
                             </span>
                         </a>
@@ -279,7 +279,7 @@
         <div class="max-w-2xl mx-auto text-center">
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-pill border border-orange-300/50 bg-orange-50/70 text-orange-700 font-sans text-sm font-semibold mb-6">
                 <span class="size-2 rounded-full bg-orange-400"></span>
-                {{ app()->getLocale() === 'es' ? 'Clientes Fundadores' : 'Founding Clients' }}
+                Clientes Fundadores
             </span>
 
             <h2 id="cta-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4 leading-tight">

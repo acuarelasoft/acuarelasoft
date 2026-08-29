@@ -20,9 +20,7 @@ class ContactController extends Controller
 
         if (! $this->turnstile->verify($request->input('cf-turnstile-response', ''), $request->ip())) {
             return redirect()->back()
-                ->withErrors(['cf-turnstile-response' => app()->getLocale() === 'es'
-                    ? 'Verificación CAPTCHA fallida. Por favor intenta de nuevo.'
-                    : 'CAPTCHA verification failed. Please try again.'])
+                ->withErrors(['cf-turnstile-response' => 'Verificación CAPTCHA fallida. Por favor intenta de nuevo.'])
                 ->withInput();
         }
 

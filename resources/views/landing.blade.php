@@ -31,10 +31,10 @@
     {!! json_encode([
         '@'.'context' => 'https://schema.org',
         '@type' => 'Organization',
-        '@id' => \App\Support\LocalizedRoute::route('home', [], 'es').'#organization',
+        '@id' => \App\Support\LocalizedRoute::route('home').'#organization',
         'name' => 'AcuarelaSoft',
         'alternateName' => 'Acuarela Soft',
-        'url' => \App\Support\LocalizedRoute::route('home', [], 'es'),
+        'url' => \App\Support\LocalizedRoute::route('home'),
         'description' => __('landing.meta_description'),
         'email' => 'contacto@acuarelasoft.com',
         'telephone' => '+525649440190',
@@ -54,7 +54,7 @@
             'telephone' => '+525649440190',
             'email' => 'contacto@acuarelasoft.com',
             'contactType' => 'sales',
-            'availableLanguage' => ['es', 'en'],
+            'availableLanguage' => ['es'],
             'areaServed' => 'MX',
         ],
         'sameAs' => [
@@ -90,7 +90,7 @@
         'url' => \App\Support\LocalizedRoute::route('home'),
         'inLanguage' => \App\Support\LocalizedRoute::languageTag(),
         'publisher' => [
-            '@id' => \App\Support\LocalizedRoute::route('home', [], 'es').'#organization',
+            '@id' => \App\Support\LocalizedRoute::route('home').'#organization',
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
@@ -119,13 +119,13 @@
                 <div class="max-w-xl">
                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-pill border border-acuarela-300/50 bg-acuarela-50/70 text-acuarela-700 font-sans text-sm font-semibold mb-6">
                         <span class="size-2 rounded-full bg-orange-400"></span>
-                        {{ app()->getLocale() === 'es' ? 'Desarrollo de software a medida' : 'Custom software development' }}
+                        Desarrollo de software a medida
                     </span>
 
                     <h1 class="font-heading text-ink text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.06] tracking-tight mb-6">
-                        {{ app()->getLocale() === 'es' ? 'El arte de' : 'The art of' }}
+                        El arte de
                         <span class="block bg-clip-text text-transparent" style="background-image: linear-gradient(96deg, #4C62D7 0%, #915489 47%, #DB6E2F 100%);">
-                            {{ app()->getLocale() === 'es' ? 'crear software' : 'crafting software' }}
+                            crear software
                         </span>
                     </h1>
 
@@ -133,7 +133,7 @@
                         {{ __('landing.hero_subheadline') }}
                     </p>
 
-                    <nav class="flex flex-col sm:flex-row gap-4 mb-10" aria-label="{{ app()->getLocale() === 'es' ? 'Acciones principales' : 'Main actions' }}">
+                    <nav class="flex flex-col sm:flex-row gap-4 mb-10" aria-label="Acciones principales">
                         <a href="#contacto" class="bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-[#245A65] hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base text-center">
                             {{ __('landing.hero_cta_primary') }}
                         </a>
@@ -142,7 +142,7 @@
                         </a>
                     </nav>
 
-                    <ul class="flex flex-wrap gap-x-7 gap-y-3 font-sans text-sm text-ink/60" aria-label="{{ app()->getLocale() === 'es' ? 'Indicadores de confianza' : 'Trust indicators' }}">
+                    <ul class="flex flex-wrap gap-x-7 gap-y-3 font-sans text-sm text-ink/60" aria-label="Indicadores de confianza">
                         <li class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             {{ __('landing.hero_trust_experience') }}
@@ -666,7 +666,7 @@
                         <div class="grid md:grid-cols-2 gap-6">
                             {{-- Name --}}
                             <div>
-                                <label for="name" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_name') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
+                                <label for="name" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_name') }} <abbr title="requerido" class="text-salmon no-underline">*</abbr></label>
                                 <input
                                     type="text"
                                     id="name"
@@ -685,7 +685,7 @@
 
                             {{-- Email --}}
                             <div>
-                                <label for="email" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_email') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
+                                <label for="email" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_email') }} <abbr title="requerido" class="text-salmon no-underline">*</abbr></label>
                                 <input
                                     type="email"
                                     id="email"
@@ -734,7 +734,7 @@
                         <div class="grid md:grid-cols-2 gap-6">
                             {{-- Topic --}}
                             <div>
-                                <label for="project_type" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_topic') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
+                                <label for="project_type" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_topic') }} <abbr title="requerido" class="text-salmon no-underline">*</abbr></label>
                                 <select
                                     id="project_type"
                                     name="project_type"
@@ -773,7 +773,7 @@
 
                         {{-- Message --}}
                         <div>
-                            <label for="message" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_message') }} <abbr title="{{ app()->getLocale() === 'es' ? 'requerido' : 'required' }}" class="text-salmon no-underline">*</abbr></label>
+                            <label for="message" class="block font-sans text-sm font-medium text-ink mb-1.5">{{ __('landing.contact_message') }} <abbr title="requerido" class="text-salmon no-underline">*</abbr></label>
                             <textarea
                                 id="message"
                                 name="message"
@@ -784,7 +784,7 @@
                                 aria-describedby="message-hint {{ $errors->has('message') ? 'message-error' : '' }}"
                                 {{ $errors->has('message') ? 'aria-invalid=true' : '' }}
                             >{{ old('message') }}</textarea>
-                            <p id="message-hint" class="mt-1 font-sans text-xs text-ink/40">{{ app()->getLocale() === 'es' ? 'Máximo 500 caracteres.' : 'Maximum 500 characters.' }}</p>
+                            <p id="message-hint" class="mt-1 font-sans text-xs text-ink/40">Máximo 500 caracteres.</p>
                             @error('message')
                                 <p id="message-error" role="alert" class="mt-1.5 font-sans text-sm text-salmon">{{ $message }}</p>
                             @enderror
