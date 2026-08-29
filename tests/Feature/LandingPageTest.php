@@ -68,6 +68,10 @@ test('service page cta points to spanish landing contact form', function () {
         ->assertSee('href="'.LocalizedRoute::route('intake').'"', false);
 });
 
+test('unknown service page returns not found', function () {
+    $this->get('/servicios/unknown-service')->assertNotFound();
+});
+
 test('service page company footer links point to spanish landing sections', function () {
     $this->get('/servicios/web-design')
         ->assertStatus(200)

@@ -1,3 +1,11 @@
+<?php
+
+use function Laravel\Folio\name;
+
+name('intake');
+
+?>
+
 <x-layouts.landing
     :title="__('intake.meta_title')"
     :metaDescription="__('intake.meta_description')"

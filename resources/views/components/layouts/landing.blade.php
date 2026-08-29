@@ -4,6 +4,7 @@
     $currentRoute = request()->route();
     $currentRouteName = $currentRoute?->getName();
     $currentRouteParameters = $currentRoute?->parameters() ?? [];
+    unset($currentRouteParameters['fallbackPlaceholder']);
     $resolvedCanonical = $canonical ?? (is_string($currentRouteName) ? LocalizedRoute::route($currentRouteName, $currentRouteParameters) : url()->current());
     $robotsContent = $robots ?? 'index, follow';
 @endphp

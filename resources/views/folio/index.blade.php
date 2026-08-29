@@ -1,3 +1,11 @@
+<?php
+
+use function Laravel\Folio\name;
+
+name('home');
+
+?>
+
 <x-layouts.landing>
 
     @if (session()->has('success_key') || session()->has('success'))

@@ -1,3 +1,22 @@
+<?php
+
+use Illuminate\View\View;
+
+use function Laravel\Folio\{name, render};
+
+name('service');
+
+render(function (View $view, string $service): View {
+    $serviceDefinition = collect(config('site_services'))
+        ->firstWhere('slug', $service);
+
+    abort_unless($serviceDefinition, 404);
+
+    return $view->with('service', $serviceDefinition);
+});
+
+?>
+
 <x-layouts.landing
     :title="__('services.' . $service['key'] . '.meta_title')"
     :metaDescription="__('services.' . $service['key'] . '.meta_description')"
