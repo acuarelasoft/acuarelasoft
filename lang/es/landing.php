@@ -3,8 +3,8 @@
 return [
 
     // Meta
-    'meta_title' => 'Desarrollo de Software a Medida — AcuarelaSoft',
-    'meta_description' => 'Agencia de desarrollo web en Ciudad de México. Sistemas a medida con Laravel, Angular y Node.js. 20 años de experiencia. Consulta gratuita.',
+    'meta_title' => 'Desarrollo de software a medida en México — AcuarelaSoft',
+    'meta_description' => 'Agencia de desarrollo de software a medida en Ciudad de México para empresas en México. Sistemas web, apps y modernización con Laravel, Angular y Node.js.',
 
     // Nav
     'nav_services' => 'Servicios',
@@ -15,7 +15,7 @@ return [
 
     // Hero
     'hero_headline' => 'El arte de crear software a tu medida',
-    'hero_subheadline' => 'Agencia de desarrollo web con enfoque en usabilidad y diseño, respaldada por 20 años de experiencia. Transformamos tus ideas en sistemas robustos y elegantes.',
+    'hero_subheadline' => 'Agencia de desarrollo de software a medida en Ciudad de México, con enfoque en usabilidad y diseño. Transformamos ideas de negocio en sistemas robustos, elegantes y listos para crecer en México.',
     'hero_cta_primary' => 'Solicitar Consulta Gratuita',
     'hero_cta_secondary' => 'Conoce nuestros servicios',
     'hero_trust_experience' => '20+ años de experiencia',

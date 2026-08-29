@@ -1,5 +1,5 @@
 @props([
-    'href' => route('home'),
+    'href' => \App\Support\LocalizedRoute::route('home'),
     'label' => __('landing.footer_tagline'),
     'size' => 'md',
     'iconVariant' => 'color',

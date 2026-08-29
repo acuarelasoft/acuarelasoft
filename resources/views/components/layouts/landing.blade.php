@@ -1,5 +1,19 @@
+@php
+    use App\Support\LocalizedRoute;
+    use Illuminate\Support\Str;
+
+    $currentRoute = request()->route();
+    $currentRouteName = $currentRoute?->getName();
+    $currentRouteParameters = $currentRoute?->parameters() ?? [];
+    $baseRouteName = is_string($currentRouteName)
+        ? (Str::startsWith($currentRouteName, 'en.') ? substr($currentRouteName, 3) : $currentRouteName)
+        : null;
+    $resolvedCanonical = $canonical ?? ($baseRouteName ? LocalizedRoute::route($baseRouteName, $currentRouteParameters) : url()->current());
+    $resolvedAlternates = $alternates ?? ($baseRouteName ? LocalizedRoute::alternates($baseRouteName, $currentRouteParameters) : LocalizedRoute::alternates('home'));
+    $robotsContent = $robots ?? 'index, follow';
+@endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ LocalizedRoute::languageTag() }}">
 <head>
     @production
         <!-- Google Tag Manager -->
@@ -15,22 +29,22 @@
 
     <title>{{ $title ?? __('landing.meta_title') }}</title>
     <meta name="description" content="{{ $metaDescription ?? __('landing.meta_description') }}">
+    <meta name="robots" content="{{ $robotsContent }}">
 
-    <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
+    <link rel="canonical" href="{{ $resolvedCanonical }}">
 
-    {{-- Hreflang for bilingual SEO --}}
-    <link rel="alternate" hreflang="es" href="{{ $hreflangEs ?? url('/') }}">
-    <link rel="alternate" hreflang="en" href="{{ $hreflangEn ?? url('/en') }}">
-    <link rel="alternate" hreflang="x-default" href="{{ $hreflangDefault ?? ($hreflangEs ?? url('/')) }}">
+    @foreach ($resolvedAlternates as $hreflang => $href)
+        <link rel="alternate" hreflang="{{ $hreflang }}" href="{{ $href }}">
+    @endforeach
 
     {{-- Open Graph --}}
     <meta property="og:title" content="{{ $title ?? __('landing.meta_title') }}">
     <meta property="og:description" content="{{ $metaDescription ?? __('landing.meta_description') }}">
-    <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
+    <meta property="og:url" content="{{ $resolvedCanonical }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AcuarelaSoft">
-    <meta property="og:locale" content="{{ app()->getLocale() === 'es' ? 'es_MX' : 'en_US' }}">
-    <meta property="og:locale:alternate" content="{{ app()->getLocale() === 'es' ? 'en_US' : 'es_MX' }}">
+    <meta property="og:locale" content="{{ LocalizedRoute::ogLocale() }}">
+    <meta property="og:locale:alternate" content="{{ LocalizedRoute::alternateOgLocale() }}">
 
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
@@ -54,7 +68,7 @@
 
     {{-- JSON-LD Structured Data --}}
     @stack('structured-data')
-</head>
+    </head>
 <body class="relative bg-paper paper-bg font-sans text-ink antialiased">
     @production
         <!-- Google Tag Manager (noscript) -->
@@ -73,7 +87,7 @@
         </defs>
     </svg>
 
-    @php($landingBaseUrl = app()->getLocale() === 'es' ? route('home') : route('home.lang', ['lang' => 'en']))
+    @php($landingBaseUrl = LocalizedRoute::route('home'))
     @php($landingServicesUrl = $landingBaseUrl . '#servicios')
     @php($landingProcessUrl = $landingBaseUrl . '#proceso')
     @php($landingWhyUsUrl = $landingBaseUrl . '#por-que-nosotros')
@@ -103,12 +117,12 @@
             <div class="flex items-center gap-4">
                 {{-- Language switcher --}}
                 <nav class="flex gap-1 text-xs font-sans font-medium" aria-label="{{ app()->getLocale() === 'es' ? 'Selector de idioma' : 'Language selector' }}">
-                          <a href="{{ route('home.lang', ['lang' => 'es']) }}" lang="es" hreflang="es"
-                       class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'es' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
-                       {{ app()->getLocale() === 'es' ? 'aria-current=true' : '' }}>ES</a>
-                          <a href="{{ route('home.lang', ['lang' => 'en']) }}" lang="en" hreflang="en"
-                       class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
-                       {{ app()->getLocale() === 'en' ? 'aria-current=true' : '' }}>EN</a>
+                    <a href="{{ $resolvedAlternates['es-MX'] }}" lang="es-MX" hreflang="es-MX"
+                        class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'es' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
+                        {{ app()->getLocale() === 'es' ? 'aria-current=true' : '' }}>ES</a>
+                    <a href="{{ $resolvedAlternates['en'] }}" lang="en" hreflang="en"
+                        class="px-2 py-1 rounded-soft transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-acuarela-400/15 text-petroleo' : 'text-ink/50 hover:text-petroleo' }}"
+                        {{ app()->getLocale() === 'en' ? 'aria-current=true' : '' }}>EN</a>
                 </nav>
 
                 {{-- CTA button --}}
@@ -166,6 +180,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="https://github.com/acuarelasoft/" rel="noopener noreferrer" target="_blank" class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55" aria-label="GitHub">
+                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.57.1.78-.25.78-.55 0-.27-.01-.99-.02-1.95-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.97.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.47.11-3.07 0 0 .97-.31 3.17 1.18a11.02 11.02 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.6.23 2.78.11 3.07.73.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.25 5.69.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.13 0 .3.2.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+                            </a>
+                        </li>
+                        <li>
                             <a href="https://wa.me/5256494401900" rel="noopener noreferrer" target="_blank" class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55" aria-label="WhatsApp">
                                 <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
                             </a>
@@ -183,7 +202,7 @@
                     <ul class="space-y-2.5 font-sans text-[1rem] font-medium text-ink/88">
                         @foreach (config('site_services') as $service)
                             <li>
-                                <a href="{{ route('service', ['service' => $service['slug']]) }}" class="hover:text-petroleo transition-colors duration-200">
+                                <a href="{{ LocalizedRoute::route('service', ['service' => $service['slug']]) }}" class="hover:text-petroleo transition-colors duration-200">
                                     {{ __('services.' . $service['key'] . '.title') }}
                                 </a>
                             </li>

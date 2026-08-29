@@ -1,49 +1,19 @@
 <?php
 
 return [
-    'meta_title' => 'Project Requirements Intake | AcuarelaSoft',
-    'meta_description' => 'Share your project requirements and select the system modules you need. Receive a preliminary effort estimate and confirmation email.',
+    'meta_title' => 'Web App Module Catalog | AcuarelaSoft',
+    'meta_description' => 'Explore the modules we can implement in your web app: catalogs, payments, dashboards, automation, integrations, and more.',
 
-    'hero_title' => 'Project Requirements Intake',
-    'hero_subtitle' => 'Tell us about your project and select the modules you need. This form helps us prepare a high-quality discovery proposal.',
+    'hero_title' => 'Modules We Can Implement in Your Web App',
+    'hero_subtitle' => 'Explore the modules and capabilities we can build for your project.',
 
-    'sections' => [
-        'client' => 'Client Information',
-        'client_hint' => 'We only use this information to send you the confirmation email and schedule the discovery call.',
-        'modules' => 'Module Selection',
-        'modules_hint' => 'Each module represents a feature of your system. Select everything you think you will need — combined complexity scores generate the preliminary effort estimate.',
-        'summary' => 'Your Selection Summary',
-        'summary_hint' => 'Review your selection before submitting. Go back to the module section to adjust if needed.',
-    ],
-
-    'fields' => [
-        'full_name' => 'Full name',
-        'email' => 'Email',
-        'phone' => 'Phone',
-        'project_summary' => 'Project summary',
-        'project_summary_hint' => 'Describe the system you want to build: what it does, who uses it, and the main problem it solves. Minimum 20 characters.',
-        'module_search' => 'Search modules',
-        'module_search_placeholder' => 'Search by module name...',
-        'category_filter' => 'Category',
-        'complexity_filter' => 'Complexity',
-    ],
-
-    'actions' => [
-        'submit' => 'Submit Requirements',
-        'toggle_details' => 'View full details',
-        'apply_preset' => 'Apply preset',
-        'clear_filters' => 'Clear filters',
-    ],
-
-    'presets' => [
-        'title' => 'Recommended Stacks',
-        'ecommerce' => 'E-commerce stack',
-        'saas_b2b' => 'SaaS B2B stack',
-        'logistica' => 'Logistics stack',
+    'info' => [
+        'cta_title' => 'Want help prioritizing the right stack?',
+        'cta_description' => 'Share your business goals and we will help you define an initial module combination, technical scope, and recommended next step.',
+        'cta_action' => 'Contact the team',
     ],
 
     'categories' => [
-        'all' => 'All categories',
         'platform' => 'Core Platform',
         'commerce' => 'Commerce and Billing',
         'operations' => 'Operations and Logistics',
@@ -53,7 +23,6 @@ return [
     ],
 
     'complexity' => [
-        'all' => 'All complexity levels',
         'baja' => 'Low',
         'baja-media' => 'Low-Medium',
         'media' => 'Medium',
@@ -61,68 +30,9 @@ return [
         'alta' => 'High',
     ],
 
-    'estimate' => [
-        'score' => 'Relative score',
-        'size' => 'T-shirt size',
-        'budget_tier' => 'Budget tier',
-        'budget_low' => 'Low',
-        'budget_medium' => 'Medium',
-        'budget_high' => 'High',
-        'no_modules' => 'Select at least one module to view the estimate.',
-        'disclaimer' => 'This estimate is preliminary and non-binding. Final scope, timeline, and budget are defined after discovery and technical validation.',
-        'weighting_title' => 'Weighting model',
-        'weighting_copy' => 'Complexity weights: Low=1, Low-Medium=2, Medium=3, Medium-High=5, High=8. Total score determines size and budget tier.',
-    ],
-
     'helpers' => [
-        'required' => 'Required field',
-        'modules_required' => 'Select at least one module.',
-        'selected_count' => ':count modules selected',
-        'no_results' => 'No modules match the current filters.',
-        'no_modules_selected' => 'You have not selected any modules yet.',
         'dependencies' => 'Dependencies',
         'use_cases' => 'Example use cases',
-        'complexity_tag' => 'Complexity',
-        'steps_label' => 'How it works',
-        'step_1_title' => 'Fill in your details',
-        'step_1_desc' => 'Name, email, and phone so we can coordinate next steps.',
-        'step_2_title' => 'Choose modules',
-        'step_2_desc' => 'Select all the features your system needs.',
-        'step_3_title' => 'Review and submit',
-        'step_3_desc' => "We'll confirm within 24 hours with a preliminary estimate.",
-        'module_tip' => 'Select all modules you think your system will need. Click “View full details” on each card to read the description, dependencies, and example use cases.',
-        'submit_note' => "You'll receive a confirmation email after submitting. Our team will review it and reach out within 24 business hours.",
-    ],
-
-    'thank_you' => [
-        'title' => 'Thank you for your submission',
-        'subtitle' => 'We have received your requirements and sent a confirmation email. Our team will follow up within 24 business hours.',
-        'cta' => 'Back to homepage',
-    ],
-
-    'email' => [
-        'subject' => 'We received your project requirements',
-        'greeting' => 'Hello :name,',
-        'intro' => 'Thank you for sharing your project requirements with AcuarelaSoft. Here is a summary of your submission:',
-        'selected_modules' => 'Selected modules',
-        'summary' => 'Project summary',
-        'estimate' => 'Preliminary estimate',
-        'outro' => 'This estimate is preliminary. We will contact you to refine scope and provide a formal proposal.',
-        'signature' => 'AcuarelaSoft Team',
-    ],
-
-    'validation' => [
-        'full_name_required' => 'Please enter your full name.',
-        'email_required' => 'Please enter your email address.',
-        'email_email' => 'Please enter a valid email address.',
-        'phone_required' => 'Please enter your phone number.',
-        'project_summary_required' => 'Please provide a project summary.',
-        'project_summary_min' => 'Project summary must be at least :min characters.',
-        'selected_modules_required' => 'Select at least one module.',
-        'selected_modules_min' => 'Select at least one module.',
-        'selected_modules_array' => 'Invalid module selection format.',
-        'selected_modules_in' => 'One or more selected modules are invalid.',
-        'captcha_invalid' => 'CAPTCHA verification failed. Please try again.',
     ],
 
     'modules' => [
