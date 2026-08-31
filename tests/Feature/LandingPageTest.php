@@ -41,10 +41,16 @@ test('landing page contains json-ld structured data', function () {
 });
 
 test('landing page outputs locale-specific canonical url', function () {
-    $this->get('/')
+    $response = $this->get('/')
         ->assertSuccessful()
         ->assertSee('<html lang="es-MX">', false)
-        ->assertSee('rel="canonical" href="'.LocalizedRoute::route('home').'"', false);
+        // Laravel Head always normalizes the root path canonical with a trailing slash.
+        ->assertSee('rel="canonical" href="'.rtrim(LocalizedRoute::route('home'), '/').'/"', false);
+
+    $html = $response->getContent();
+
+    expect(substr_count($html, '<title'))->toBe(1)
+        ->and(substr_count($html, 'rel="canonical"'))->toBe(1);
 });
 
 test('landing page renders watercolor texture assets', function () {
@@ -61,13 +67,13 @@ test('landing page renders watercolor texture assets', function () {
 });
 
 test('service page cta points to spanish landing contact form', function () {
-    $this->get('/servicios/web-design')
+    $this->get('/servicios/mantenimiento-de-aplicaciones')
         ->assertStatus(200)
         ->assertSee('href="'.LocalizedRoute::route('home').'#contacto"', false);
 });
 
 test('service hero omits technology pills while retaining the dedicated technology section', function () {
-    $this->get('/servicios/web-design')
+    $this->get('/servicios/mantenimiento-de-aplicaciones')
         ->assertSuccessful()
         ->assertDontSee('w-full flex flex-wrap justify-center gap-2', false)
         ->assertSee(__('services.tech_title'));
@@ -91,7 +97,7 @@ test('unknown service page returns not found', function () {
 });
 
 test('service page company footer links point to spanish landing sections', function () {
-    $this->get('/servicios/web-design')
+    $this->get('/servicios/diseno-web')
         ->assertStatus(200)
         ->assertSee('href="'.LocalizedRoute::route('home').'#servicios"', false)
         ->assertSee('href="'.LocalizedRoute::route('home').'#por-que-nosotros"', false)
@@ -111,6 +117,8 @@ test('landing footer lists links for all spanish services', function () {
 test('legacy public urls no longer exist', function () {
     $this->get('/services/web-design')->assertNotFound();
 
+    $this->get('/servicios/web-design')->assertNotFound();
+
     $this->get('/intake')->assertNotFound();
 
     $this->get('/intake/thanks')->assertNotFound();
@@ -123,7 +131,7 @@ test('sitemap exposes canonical public urls', function () {
 
     $response->assertSuccessful()
         ->assertSee(LocalizedRoute::route('home'), false)
-        ->assertSee(LocalizedRoute::route('service', ['service' => 'web-design']), false)
+        ->assertSee(LocalizedRoute::route('service', ['service' => 'diseno-web']), false)
         ->assertSee(LocalizedRoute::route('service', ['service' => 'mantenimiento-de-aplicaciones']), false)
         ->assertDontSee(LocalizedRoute::route('service', ['service' => 'app-maintenance']), false)
         ->assertDontSee(LocalizedRoute::route('service', ['service' => 'legacy-migration']), false);

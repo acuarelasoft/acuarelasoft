@@ -12,7 +12,7 @@ test('web-apps service page renders the modules catalog', function () {
 });
 
 test('other service pages do not render the modules catalog', function () {
-    get('/servicios/web-design')
+    get('/servicios/diseno-web')
         ->assertSuccessful()
         ->assertDontSee(__('intake.hero_title'));
 });

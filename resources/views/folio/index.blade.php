@@ -238,7 +238,7 @@ name('home');
         @php
             $sliderCards = [
                 [
-                    'slug' => 'web-design',
+                    'slug' => 'diseno-web',
                     'label' => __('landing.slider_web_design_label'),
                     'title' => __('landing.slider_web_design_title'),
                     'description' => __('landing.slider_web_design_desc'),

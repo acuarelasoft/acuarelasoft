@@ -1,12 +1,22 @@
 @php
     use App\Support\LocalizedRoute;
+    use Laravel\Head\Facades\Head;
 
-    $currentRoute = request()->route();
-    $currentRouteName = $currentRoute?->getName();
-    $currentRouteParameters = $currentRoute?->parameters() ?? [];
-    unset($currentRouteParameters['fallbackPlaceholder']);
-    $resolvedCanonical = $canonical ?? (is_string($currentRouteName) ? LocalizedRoute::route($currentRouteName, $currentRouteParameters) : url()->current());
-    $robotsContent = $robots ?? 'index, follow';
+    if (isset($title)) {
+        Head::title($title, exact: true);
+    }
+
+    if (isset($metaDescription)) {
+        Head::description($metaDescription);
+    }
+
+    if (isset($canonical)) {
+        Head::canonical($canonical, forceHttps: false);
+    }
+
+    if (isset($robots)) {
+        Head::robots($robots);
+    }
 @endphp
 <!DOCTYPE html>
 <html lang="{{ LocalizedRoute::languageTag() }}">
@@ -23,24 +33,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $title ?? __('landing.meta_title') }}</title>
-    <meta name="description" content="{{ $metaDescription ?? __('landing.meta_description') }}">
-    <meta name="robots" content="{{ $robotsContent }}">
-
-    <link rel="canonical" href="{{ $resolvedCanonical }}">
-
-    {{-- Open Graph --}}
-    <meta property="og:title" content="{{ $title ?? __('landing.meta_title') }}">
-    <meta property="og:description" content="{{ $metaDescription ?? __('landing.meta_description') }}">
-    <meta property="og:url" content="{{ $resolvedCanonical }}">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="AcuarelaSoft">
-    <meta property="og:locale" content="{{ LocalizedRoute::ogLocale() }}">
-
-    {{-- Twitter Card --}}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $title ?? __('landing.meta_title') }}">
-    <meta name="twitter:description" content="{{ $metaDescription ?? __('landing.meta_description') }}">
+    @head
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
