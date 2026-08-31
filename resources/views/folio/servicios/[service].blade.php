@@ -111,13 +111,6 @@ render(function (View $view, string $service): View {
                                 <p class="font-heading text-ink text-xl font-semibold mb-2">{{ __('services.' . $service['key'] . '.badge') }}</p>
                                 <p class="font-sans text-ink/60 text-sm leading-relaxed">{{ __('services.' . $service['key'] . '.tagline') }}</p>
                             </div>
-                            <div class="w-full flex flex-wrap justify-center gap-2">
-                                @foreach(array_slice($service['techs'], 0, 4) as $tech)
-                                    <span class="px-3 py-1 rounded-pill bg-acuarela-400/10 font-sans text-xs font-medium text-petroleo border border-acuarela-400/20">
-                                        {{ $tech }}
-                                    </span>
-                                @endforeach
-                            </div>
                         </div>
                     </div>
                 </div>

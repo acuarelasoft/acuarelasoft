@@ -66,6 +66,13 @@ test('service page cta points to spanish landing contact form', function () {
         ->assertSee('href="'.LocalizedRoute::route('home').'#contacto"', false);
 });
 
+test('service hero omits technology pills while retaining the dedicated technology section', function () {
+    $this->get('/servicios/web-design')
+        ->assertSuccessful()
+        ->assertDontSee('w-full flex flex-wrap justify-center gap-2', false)
+        ->assertSee(__('services.tech_title'));
+});
+
 test('application maintenance service page loads', function () {
     $this->get('/servicios/mantenimiento-de-aplicaciones')
         ->assertSuccessful()
