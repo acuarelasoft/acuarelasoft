@@ -5,6 +5,7 @@ $pages = [
     [
         'baseName' => 'home',
         'parameters' => [],
+        'lastMod' => $homeLastMod,
     ],
 ];
 
@@ -12,6 +13,7 @@ foreach ($serviceSlugs as $serviceSlug) {
     $pages[] = [
         'baseName' => 'service',
         'parameters' => ['service' => $serviceSlug],
+        'lastMod' => $serviceLastMods[$serviceSlug] ?? false,
     ];
 }
 
@@ -22,6 +24,9 @@ foreach ($serviceSlugs as $serviceSlug) {
     @php($canonical = LocalizedRoute::route($page['baseName'], $page['parameters']))
     <url>
         <loc>{{ $canonical }}</loc>
+        @if ($page['lastMod'])
+        <lastmod>{{ date('Y-m-d', $page['lastMod']) }}</lastmod>
+        @endif
     </url>
 @endforeach
 </urlset>

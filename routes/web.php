@@ -19,8 +19,24 @@ Route::get('/sitemap.xml', function () {
         ->pluck('slug')
         ->all();
 
+    // Prefer the slug-specific static Folio view's mtime when it exists, else the wildcard view's.
+    $lastModified = fn (string $path) => file_exists($path) ? filemtime($path) : false;
+
+    $homeLastMod = $lastModified(resource_path('views/folio/index.blade.php'));
+
+    $serviceLastMods = collect($serviceSlugs)->mapWithKeys(function (string $slug) use ($lastModified) {
+        $mtime = $lastModified(resource_path("views/folio/servicios/{$slug}.blade.php"))
+            ?: $lastModified(resource_path('views/folio/servicios/[service].blade.php'));
+
+        return [$slug => $mtime];
+    });
+
     return response()
-        ->view('sitemap', ['serviceSlugs' => $serviceSlugs])
+        ->view('sitemap', [
+            'serviceSlugs' => $serviceSlugs,
+            'homeLastMod' => $homeLastMod,
+            'serviceLastMods' => $serviceLastMods,
+        ])
         ->header('Content-Type', 'application/xml; charset=UTF-8');
 })->name('sitemap');
 
