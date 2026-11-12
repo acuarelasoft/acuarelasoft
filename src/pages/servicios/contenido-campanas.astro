@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../data/landing';
+import { serviceBreadcrumb } from '../../data/services';
+
+const url = `${site.url}/servicios/contenido-campanas/`;
+const title = 'Contenido y campañas para negocios — AcuarelaSoft';
+const description = 'Contenido para comunicar tu oferta y campañas con alcance definido. Producción asistida por IA con revisión humana; gestión de anuncios y pauta por separado.';
+const contact = '/contacto/?service=content-campaigns#contacto';
+const stages = [
+  { title: 'Entender tu oferta', text: 'Identificamos qué comunicas, a quién te diriges y qué acción quieres facilitar.' },
+  { title: 'Definir las piezas', text: 'Acordamos canales, formatos, cantidad de contenidos y materiales necesarios.' },
+  { title: 'Producir y revisar', text: 'Preparamos las piezas con asistencia de IA y revisión humana, dentro de las rondas acordadas.' },
+  { title: 'Publicar según el acuerdo', text: 'Entregamos o gestionamos lo contratado. La publicación y el seguimiento se definen en la propuesta.' },
+];
+const schema = {
+  '@context': 'https://schema.org', '@type': 'Service', name: 'Contenido y campañas',
+  description, url, serviceType: 'Producción de contenido y gestión de campañas',
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
+  areaServed: { '@type': 'City', name: 'Ciudad de México' },
+};
+---
+
+<Layout title={title} metaDescription={description} canonical={url} structuredData={[schema, serviceBreadcrumb({ name: 'Contenido y campañas', path: '/servicios/contenido-campanas/' })]}>
+  <div class="campaign-page">
+    <section class="campaign-hero" aria-labelledby="campaign-title">
+      <nav aria-label="Ruta de navegación"><a href="/">Inicio</a> <span aria-hidden="true">/</span> <a href="/servicios/">Servicios</a> <span aria-hidden="true">/</span> <span aria-current="page">Contenido y campañas</span></nav>
+      <div class="hero-grid">
+        <div><p class="eyebrow">Del mensaje a la publicación</p><h1 id="campaign-title">Creación de contenido y campañas digitales para negocios</h1><p class="intro">Creamos contenido para presentar tu oferta y evaluamos campañas para darle difusión. Cada proyecto empieza con un objetivo y un alcance, no con publicar por publicar.</p><a class="action" href={contact}>Cuéntanos qué quieres comunicar</a></div>
+        <aside class="brief" aria-labelledby="brief-title"><span class="brief-label">El punto de partida</span><h2 id="brief-title">Un mensaje con intención</h2><dl><div><dt>Qué ofreces</dt><dd>Una oferta concreta y verificable.</dd></div><div><dt>A quién</dt><dd>Las personas que necesitas informar.</dd></div><div><dt>Para qué</dt><dd>Una siguiente acción clara.</dd></div></dl><p>Tu información y aprobación son parte del proceso.</p></aside>
+      </div>
+    </section>
+
+    <section class="workstream" aria-labelledby="workstream-title"><p class="eyebrow">Cómo se construye</p><h2 id="workstream-title">Cómo creamos el contenido para tu negocio</h2><ol>{stages.map((stage, index) => <li><span class="stage-number">0{index + 1}</span><div><h3>{stage.title}</h3><p>{stage.text}</p></div></li>)}</ol></section>
+
+    <section class="budget" aria-labelledby="budget-title">
+      <div class="budget-intro"><p class="eyebrow">Claridad en la cotización</p><h2 id="budget-title">Costos de contenido, gestión de anuncios y pauta publicitaria</h2><p>Producción, gestión de anuncios y presupuesto de pauta se evalúan y cotizan por separado. Contratar contenido no implica contratar una campaña.</p></div>
+      <div class="budget-grid">
+        <article><span class="tag">Producción</span><h3>Producción de contenido</h3><p>Textos y materiales acordados, con formatos, cantidades, fuentes de información y revisiones definidos.</p></article>
+        <article><span class="tag">Gestión</span><h3>Gestión de anuncios</h3><p>Configuración y administración de anuncios cuando se contraten, con canales y responsabilidades especificados.</p></article>
+        <article><span class="tag">Pauta</span><h3>Presupuesto de pauta publicitaria</h3><p>Presupuesto destinado a las plataformas publicitarias. Se identifica aparte del costo de producción y gestión.</p></article>
+      </div>
+    </section>
+    <section class="review" aria-labelledby="review-title"><h2 id="review-title">Contenido asistido por IA con revisión humana</h2><p>Usamos asistencia de IA para la producción de contenido, con revisión humana antes de la entrega. Contrastamos el material con la información que proporcionas; tú validas que represente correctamente tu negocio.</p><p>Fotografía original, redacción integral, servicios externos y necesidades especiales se delimitan en la propuesta. No prometemos ventas, alcance ni conversiones garantizadas.</p></section>
+    <section class="campaign-close" aria-labelledby="campaign-next"><h2 id="campaign-next">Empecemos con tu próxima comunicación</h2><p>Comparte tu oferta, canales actuales y si necesitas piezas, anuncios o ambos.</p><a class="action" href={contact}>Cotizar contenido y campañas</a><p class="related"><a href="/servicios/fotografia-comercial/">Fotografía original para tus piezas</a> · <a href="/servicios/seo-analitica/">Medición para tu sitio</a></p></section>
+  </div>
+</Layout>
+
+<style>
+  .campaign-page { max-width: 72rem; margin: auto; padding: 2rem 1.5rem 4rem; }
+  nav { font-size: var(--text-sm); margin-bottom: 3rem; }
+  nav a, .related a { text-decoration: underline; text-underline-offset: 4px; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; line-height: 1.1; }
+  h1 { font-size: clamp(2.8rem, 5vw, 4.8rem); max-width: 15ch; }
+  h2 { font-size: clamp(2rem, 3vw, 2.8rem); }
+  h3 { font-size: 1.9rem; margin-bottom: 1rem; }
+  p, dd { line-height: 1.7; }
+  .eyebrow { color: var(--color-coral-ink); font-size: var(--text-sm); font-weight: 600; margin-bottom: 1rem; }
+  .hero-grid { display: grid; gap: 3rem; align-items: center; }
+  .intro { margin: 1.5rem 0 2rem; max-width: 38rem; }
+  .action { display: inline-flex; justify-content: center; text-align: center; background: var(--color-coral-ink); color: var(--color-paper); font-weight: 600; border-radius: var(--radius-pill); padding: 1rem 1.5rem; }
+  .action:hover { background: var(--color-ink); }
+  a:focus-visible { outline: 2px solid var(--color-coral-ink); outline-offset: 5px; }
+  .brief { background: color-mix(in srgb, var(--color-salmon) 16%, var(--color-paper)); padding: 2rem; border-radius: 2rem 2rem var(--radius-soft) var(--radius-soft); border: 1px solid color-mix(in srgb, var(--color-coral-ink) 25%, transparent); }
+  .brief-label { display: block; margin-bottom: 1.5rem; font-size: var(--text-sm); color: var(--color-coral-ink); font-weight: 600; }
+  .brief h2 { font-size: 2.5rem; }
+  .brief dl { margin: 1.5rem 0; }
+  .brief dl > div { padding: 1rem 0; border-bottom: 1px solid color-mix(in srgb, var(--color-coral-ink) 20%, transparent); }
+  dt { font-weight: 600; }
+  .brief > p { font-size: var(--text-sm); }
+  .workstream { padding: 4rem 0; }
+  .workstream > h2 { max-width: 42rem; }
+  .workstream ol { display: grid; gap: 2rem; margin-top: 2rem; }
+  .workstream li { display: flex; gap: 1.5rem; align-items: start; }
+  .stage-number { font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-coral-ink); border-top: 2px solid var(--color-salmon); padding-top: 0.5rem; flex-shrink: 0; }
+  .workstream h3 { font-size: 1.8rem; }
+  .budget { padding: 3rem 0; border-block: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
+  .budget-intro { max-width: 43rem; }
+  .budget-intro p:last-child { margin-top: 1.5rem; }
+  .budget-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
+  .budget-grid article { background: var(--color-paper); padding: 2rem; border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent); border-radius: var(--radius-soft); }
+  .tag { display: inline-block; font-size: var(--text-sm); padding: 0.4rem 0.75rem; border-radius: var(--radius-pill); background: var(--color-acuarela-50); color: var(--color-acuarela-700); margin-bottom: 1.5rem; }
+  .review { padding: 4rem 0; max-width: 50rem; }
+  .review p { margin-top: 1.5rem; }
+  .campaign-close { background: color-mix(in srgb, var(--color-salmon) 12%, var(--color-paper)); padding: 2rem; border-radius: var(--radius-soft); }
+  .campaign-close > p { margin: 1.5rem 0; }
+  .related { font-size: var(--text-sm); }
+  @media (min-width: 800px) { .hero-grid { grid-template-columns: 1.3fr 1fr; } .workstream ol { grid-template-columns: repeat(2, 1fr); gap: 3rem; } .budget-grid { grid-template-columns: repeat(3, 1fr); } .campaign-close { padding: 3rem; } }
+</style>

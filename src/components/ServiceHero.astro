@@ -1,0 +1,100 @@
+---
+import type { ServiceDefinition, ServiceText } from '../data/services';
+import { serviceShared } from '../data/services';
+
+interface Props {
+  def: ServiceDefinition;
+  text: ServiceText;
+}
+
+const { def, text } = Astro.props;
+---
+
+<section class="relative min-h-[52vh] flex items-center overflow-hidden" aria-labelledby="service-hero-heading">
+  <div class="absolute inset-0 -z-20 bg-paper" aria-hidden="true"></div>
+  <div
+    class="absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background-image: radial-gradient(ellipse 75% 65% at 8% 20%, color-mix(in srgb, var(--color-acuarela-500) 20%, transparent) 0%, transparent 68%), radial-gradient(ellipse 55% 50% at 88% 70%, color-mix(in srgb, var(--color-salmon) 14%, transparent) 0%, transparent 62%), radial-gradient(ellipse 40% 38% at 50% 95%, color-mix(in srgb, var(--color-mint) 12%, transparent) 0%, transparent 55%);"
+  >
+  </div>
+
+  <div class="absolute top-12 right-10 w-14 h-14 rounded-2xl bg-salmon/80 -z-10" aria-hidden="true"></div>
+  <div class="absolute bottom-16 left-[42%] hidden lg:block w-10 h-10 rounded-2xl bg-acuarela-400/40 -z-10" aria-hidden="true"></div>
+
+  <div class="max-w-6xl mx-auto px-6 pt-28 pb-20 md:pt-36 md:pb-28 w-full">
+    <nav class="mb-8 flex flex-wrap items-center gap-2 font-sans text-sm text-ink/50" aria-label="Ruta de navegación">
+      <a href="/" class="hover:text-petroleo transition-colors duration-200">Inicio</a>
+      <svg class="w-3.5 h-3.5 text-ink/30" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"></path>
+      </svg>
+      <span class="text-ink/70" aria-current="page">{text.title}</span>
+    </nav>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="max-w-xl">
+        <span
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-pill border border-acuarela-300/50 bg-acuarela-50/70 text-acuarela-700 font-sans text-sm font-semibold mb-6"
+        >
+          <span class="size-2 rounded-full bg-salmon"></span>
+          {text.badge}
+        </span>
+
+        <h1
+          id="service-hero-heading"
+          class="font-heading text-ink text-4xl sm:text-5xl font-bold leading-[1.08] tracking-tight mb-5"
+        >
+          {text.title}
+        </h1>
+
+        <p class="font-sans text-ink/70 text-lg md:text-xl leading-relaxed mb-5 italic">{text.tagline}</p>
+
+        <p class="font-sans text-ink/65 text-base leading-relaxed mb-10">{text.description}</p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/contacto/"
+            class="bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-petroleo-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base text-center"
+          >
+            {serviceShared.cta_contact}
+          </a>
+        </div>
+      </div>
+
+      <div class="flex justify-center lg:justify-end">
+        <div
+          class="w-full max-w-sm rounded-[18px] border border-acuarela-300/35 bg-paper/90 backdrop-blur-[3px] p-8 shadow-sm shadow-petroleo/7"
+        >
+          <div class="flex flex-col items-center text-center gap-6">
+            <div class={`w-20 h-20 flex items-center justify-center rounded-2xl ${def.icon_bg}`}>
+              <svg
+                class="w-10 h-10 text-petroleo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d={def.icon_path}></path>
+              </svg>
+            </div>
+            <div>
+              <p class="font-heading text-ink text-xl font-semibold mb-2">{text.badge}</p>
+              <p class="font-sans text-ink/60 text-sm leading-relaxed">{text.tagline}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg viewBox="0 0 1200 30" preserveAspectRatio="none" class="w-full h-6" aria-hidden="true">
+  <path
+    d="M0,15 Q150,5 300,14 T600,12 T900,16 T1200,13"
+    stroke="var(--color-acuarela-500)"
+    stroke-opacity="0.3"
+    stroke-width="3"
+    fill="none"
+    stroke-linecap="round"></path>
+</svg>

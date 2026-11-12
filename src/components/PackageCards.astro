@@ -1,0 +1,83 @@
+---
+import { formatPrice, pricing } from '../data/pricing';
+
+interface Props {
+  sectionId?: string;
+  title?: string;
+  description?: string;
+}
+
+const {
+  sectionId = 'paquetes',
+  title = 'Tu sitio web desde un precio base',
+  description = 'Empieza con el paquete base y agrega solo lo que tu negocio necesita.',
+} = Astro.props;
+
+const { hostingMonthly, includedHostingMonths } = pricing.webDesign;
+---
+
+<section id={sectionId} class="bg-acuarela-50/45 px-6 py-20 md:py-24" aria-labelledby={`${sectionId}-heading`}>
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-10 max-w-3xl">
+      <h2 id={`${sectionId}-heading`} class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">{title}</h2>
+      <p class="font-sans text-lg leading-relaxed text-ink/65">{description}</p>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-5">
+      <ul class="list-none lg:col-span-3">
+        {pricing.packages.map((pkg) => (
+          <li class="flex h-full flex-col rounded-soft border border-acuarela-400/20 bg-paper p-6 md:p-8">
+            <h3 class="mb-3 font-heading text-2xl font-bold text-ink">{pkg.name}</h3>
+            <p class="mb-4 font-sans text-sm leading-relaxed text-ink/70">{pkg.audience}</p>
+            <p class="font-heading text-2xl font-bold text-petroleo">
+              Desde {formatPrice(pkg.price)} + IVA {pkg.billing}
+            </p>
+            <p class="mb-6 mt-2 font-sans text-sm leading-relaxed text-ink/70">
+              Incluye {includedHostingMonths} meses de hosting. A partir del mes {includedHostingMonths + 1}, hosting administrado por {formatPrice(hostingMonthly)} + IVA al mes.
+            </p>
+            <h4 class="mb-3 font-sans text-sm font-semibold text-ink">Qué incluye</h4>
+            <ul class="mb-5 space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+              {pkg.includes.map((item) => (
+                <li class="flex gap-2"><span class="text-petroleo" aria-hidden="true">✓</span><span>{item}</span></li>
+              ))}
+            </ul>
+            <h4 class="mb-3 font-sans text-sm font-semibold text-ink">Condiciones importantes</h4>
+            <ul class="mb-6 space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+              {pkg.conditions.map((item) => (
+                <li class="flex gap-2"><span class="text-petroleo" aria-hidden="true">•</span><span>{item}</span></li>
+              ))}
+            </ul>
+            <a
+              href={`/?package=${pkg.id}&service=${pkg.service}#contacto`}
+              class="mt-auto inline-flex items-center justify-center rounded-soft bg-petroleo px-5 py-3 text-center font-sans text-sm font-semibold text-paper transition-colors hover:bg-petroleo-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo"
+            >
+              Consultar este paquete
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="flex flex-col rounded-soft border border-acuarela-400/20 bg-paper p-6 md:p-8 lg:col-span-2">
+        <h3 class="mb-3 font-heading text-2xl font-bold text-ink">Personaliza tu proyecto</h3>
+        <p class="mb-6 font-sans text-sm leading-relaxed text-ink/70">Extras que se contratan aparte, según lo que necesite tu sitio.</p>
+        <ul class="mb-6 space-y-5">
+          {pricing.extras.map((extra) => (
+            <li class="border-b border-acuarela-400/20 pb-5 last:border-b-0 last:pb-0">
+              <div class="mb-1 flex flex-wrap items-baseline justify-between gap-x-3">
+                <h4 class="font-sans text-base font-semibold text-ink">{extra.name}</h4>
+                <p class="font-heading text-lg font-bold text-petroleo">
+                  {extra.from ? 'Desde ' : ''}{formatPrice(extra.price)} + IVA
+                </p>
+              </div>
+              <p class="font-sans text-sm leading-relaxed text-ink/70">{extra.description}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-auto font-sans text-sm leading-relaxed text-ink/70">
+          Funciones especiales, como calculadoras, catálogos o formularios avanzados, se cotizan aparte.
+        </p>
+      </div>
+    </div>
+    <p class="mt-6 font-sans text-xs leading-relaxed text-ink/55">
+      Precios base en MXN más IVA, sujetos al alcance descrito. Dominio, correo corporativo, licencias y otros proveedores se cotizan por separado.
+    </p>
+  </div>
+</section>

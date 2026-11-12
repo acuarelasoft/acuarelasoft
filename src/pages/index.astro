@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import Process from '../components/Process.astro';
+import WhyUs from '../components/WhyUs.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { landing, site } from '../data/landing';
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site.url}/#organization`,
+  name: 'AcuarelaSoft',
+  alternateName: 'Acuarela Soft',
+  url: `${site.url}/`,
+  logo: `${site.url}/logos/acuarelasoft-600.png`,
+  description: landing.meta_description,
+  email: site.email,
+  telephone: '+525649440190',
+  areaServed: [
+    { '@type': 'Country', name: 'Mexico' },
+    { '@type': 'City', name: 'Ciudad de México' },
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Ciudad de México',
+    addressRegion: 'CDMX',
+    addressCountry: 'MX',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+525649440190',
+    email: site.email,
+    contactType: 'sales',
+    availableLanguage: ['es'],
+    areaServed: 'MX',
+  },
+  sameAs: [site.linkedin, site.github],
+  knowsAbout: [
+    'Sitios web y tiendas en línea',
+    'Fotografía comercial',
+    'SEO y analítica',
+    'Contenido y campañas digitales',
+    'Mantenimiento WordPress',
+  ],
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site.url}/#website`,
+  name: 'AcuarelaSoft',
+  alternateName: 'Acuarela Soft',
+  url: `${site.url}/`,
+  inLanguage: site.languageTag,
+  publisher: { '@id': `${site.url}/#organization` },
+};
+---
+
+<Layout
+  title={landing.meta_title}
+  metaDescription={landing.meta_description}
+  canonical={`${site.url}/`}
+  structuredData={[organization, website]}
+>
+  <Hero />
+  <ServicesGrid />
+  <WhyUs />
+  <Process />
+  <ContactSection />
+</Layout>

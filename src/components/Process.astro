@@ -1,0 +1,31 @@
+---
+import { landing } from '../data/landing';
+---
+
+<section id="proceso" class="py-20 px-6 reveal" aria-labelledby="process-heading">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 id="process-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">
+        {landing.process_title}
+      </h2>
+      <p class="font-sans text-ink/60 text-lg max-w-xl mx-auto">{landing.process_subtitle}</p>
+    </div>
+
+    <ol class="relative border-l-2 border-acuarela-400/20 ml-4 space-y-10 list-none">
+      {
+        landing.process_steps.map((step, i) => (
+          <li class="pl-10 relative">
+            <span class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold">
+              {i + 1}
+            </span>
+            <h3 class="font-heading text-ink text-xl font-semibold mb-2">{step.name}</h3>
+            <p class="font-sans text-ink/70 leading-relaxed">{step.desc}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mt-10 font-sans text-sm text-ink/55">
+      {landing.process_note}
+    </p>
+  </div>
+</section>

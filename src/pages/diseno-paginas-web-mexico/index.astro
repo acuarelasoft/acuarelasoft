@@ -1,0 +1,515 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import PackageCards from '../../components/PackageCards.astro';
+import SectionNav from '../../components/SectionNav.astro';
+import { site } from '../../data/landing';
+import { formatPrice, pricing } from '../../data/pricing';
+import { faqs as businessFaqs } from '../../data/faqs';
+import { serviceBreadcrumb } from '../../data/services';
+
+const slug = 'diseno-paginas-web-mexico';
+const url = `${site.url}/${slug}/`;
+const title = 'Diseño de páginas web en CDMX para negocios — AcuarelaSoft';
+const description =
+  'Sitios web para profesionales, despachos y negocios locales en CDMX. Conoce alcances, paquetes y condiciones antes de solicitar una cotización.';
+
+const benefits = [
+  {
+    title: 'Proyecta una imagen profesional',
+    description:
+      'Presenta tu negocio en un espacio propio, con una imagen cuidada y contenido organizado alrededor de lo que ofreces.',
+  },
+  {
+    title: 'Explica tus productos y servicios',
+    description:
+      'Reúne la información que tus clientes suelen buscar, como servicios, productos, preguntas frecuentes y formas de atención.',
+  },
+  {
+    title: 'Facilita el contacto',
+    description:
+      'Agrega opciones como WhatsApp o un formulario para que las personas interesadas puedan dar el siguiente paso.',
+  },
+  {
+    title: 'Muestra los datos importantes',
+    description:
+      'Comparte horarios, ubicación, teléfono y otros datos útiles en un solo lugar.',
+  },
+  {
+    title: 'Ayuda a construir confianza',
+    description:
+      'Una presentación clara permite que las personas conozcan mejor tu negocio antes de ponerse en contacto.',
+  },
+  {
+    title: 'Ten una presencia propia en internet',
+    description:
+      'Tu sitio puede ser un punto de referencia que controlas y compartes, además de tus perfiles en redes sociales.',
+  },
+  {
+    title: 'Prepara un destino para tus campañas',
+    description:
+      'Una página enfocada puede servir como destino para futuras campañas publicitarias; los resultados dependen de cada estrategia.',
+  },
+];
+
+const siteTypes = [
+  {
+    title: 'Sitio web corporativo',
+    audience: 'Pequeñas empresas y despachos que necesitan presentar su organización.',
+    need: 'Explica quiénes son, qué hacen y cómo pueden contactarlos en distintas secciones.',
+  },
+  {
+    title: 'Página para negocio local',
+    audience: 'Restaurantes, cafeterías, comercios y negocios de servicios.',
+    need: 'Destaca la oferta, horarios, ubicación y formas de atención del establecimiento.',
+  },
+  {
+    title: 'Sitio para profesionales',
+    audience: 'Consultorios, especialistas y profesionales independientes.',
+    need: 'Presenta servicios, experiencia, datos prácticos y opciones para solicitar información o una cita.',
+  },
+  {
+    title: 'Landing page para una campaña',
+    audience: 'Negocios que quieren comunicar una oferta, servicio o iniciativa concreta.',
+    need: 'Concentra la información principal y una llamada a la acción en una página enfocada.',
+  },
+  {
+    title: 'Catálogo informativo',
+    audience: 'Negocios que quieren mostrar varias opciones sin vender en línea.',
+    need: 'Organiza productos o servicios para consulta; no incluye carrito, pagos ni gestión de pedidos.',
+  },
+];
+
+const includedItems = [
+  'Diseño visual adaptado a la identidad y necesidades de tu negocio.',
+  'Diseño responsivo para celulares, tabletas y computadoras.',
+  'Estructura de navegación clara y contenido organizado.',
+  'Integración de WhatsApp o formulario y, cuando corresponda, información de ubicación y contacto.',
+  'Optimización inicial de imágenes y recursos para una carga eficiente.',
+  'Configuración técnica básica para buscadores, como títulos, descripciones y estructura de la página.',
+  'Publicación y pruebas de funcionamiento antes de entregar el sitio.',
+];
+
+const optionalItems = [
+  'Fotografía comercial en Ciudad de México.',
+  'Secciones o páginas adicionales al alcance base.',
+  'Dominio, correo corporativo y licencias se cotizan por separado.',
+  'Redacción de contenido, integraciones especiales y funcionalidades adicionales.',
+  `Tienda en línea con carrito, pagos y gestión de pedidos: servicio independiente, desde ${formatPrice(pricing.onlineStores.shopify.price)} + IVA en Shopify o ${formatPrice(pricing.onlineStores.woocommerce.price)} + IVA en WooCommerce.`,
+  'Seguimiento SEO, gestión de anuncios y mantenimiento después de publicar.',
+];
+
+const processSteps = [
+  {
+    title: 'Conversación inicial y objetivos',
+    description:
+      'Nos cuentas sobre tu negocio, las personas a quienes atiendes y qué necesitas que resuelva el sitio. Juntos identificamos el tipo de proyecto.',
+    client: 'Tú compartes el contexto y las prioridades de tu negocio.',
+    delivery: 'Acordamos un objetivo y el siguiente paso.',
+  },
+  {
+    title: 'Información y materiales',
+    description:
+      'Reunimos textos, datos de contacto, identidad visual e imágenes disponibles para definir el contenido.',
+    client: 'Tú compartes o apruebas los materiales y la información.',
+    delivery: 'Una lista de secciones y contenidos para el proyecto.',
+  },
+  {
+    title: 'Propuesta y cotización',
+    description:
+      'Definimos por escrito las secciones, entregables, servicios incluidos y opcionales, precio, pagos y tiempos estimados.',
+    client: 'Revisas el alcance y autorizas la propuesta antes de iniciar.',
+    delivery: 'Una cotización con condiciones específicas para tu proyecto.',
+  },
+  {
+    title: 'Diseño y desarrollo',
+    description:
+      'Creamos el sitio conforme al alcance aprobado y compartimos avances para revisión.',
+    client: 'Revisas que la información represente correctamente tu negocio.',
+    delivery: 'Una versión del sitio para evaluar antes de publicarlo.',
+  },
+  {
+    title: 'Revisión y ajustes',
+    description:
+      'Recopilamos tus observaciones y realizamos los cambios contemplados en la cotización.',
+    client: 'Envías comentarios claros y apruebas la versión final.',
+    delivery: 'El sitio final aprobado y listo para publicación.',
+  },
+  {
+    title: 'Publicación',
+    description:
+      'Publicamos el sitio en el hosting administrado por AcuarelaSoft y comprobamos sus funciones principales.',
+    client: 'Confirmas que el sitio y los datos publicados sean correctos.',
+    delivery: 'El sitio en línea, con hosting administrado durante los primeros 12 meses.',
+  },
+];
+
+const faqs = businessFaqs.map(({ q, a }) => ({ question: q, answer: a }));
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: title,
+  description,
+  provider: { '@type': 'Organization', name: 'AcuarelaSoft', url: `${site.url}/` },
+  areaServed: [
+    { '@type': 'Country', name: 'Mexico' },
+    { '@type': 'City', name: 'Ciudad de México' },
+  ],
+  url,
+  inLanguage: site.languageTag,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+};
+
+const breadcrumb = serviceBreadcrumb({ name: 'Diseño y desarrollo de sitios web', path: `/${slug}/` });
+
+const sectionNavItems = [
+  { id: 'web-design-heading', label: 'Inicio' },
+  { id: 'benefits-heading', label: 'Beneficios' },
+  { id: 'site-types-heading', label: 'Tipos de sitios' },
+  { id: 'included-heading', label: 'Qué incluye' },
+  { id: 'opciones', label: 'Opciones y precios' },
+  { id: 'formas-de-pago', label: 'Formas de pago' },
+  { id: 'process-heading', label: 'Cómo trabajamos' },
+  { id: 'materials-heading', label: 'Qué necesitamos' },
+  { id: 'after-launch-heading', label: 'Dominio y hosting' },
+  { id: 'faq-heading', label: 'Preguntas frecuentes' },
+  { id: 'cotizar', label: 'Cotizar' },
+];
+---
+
+<Layout title={title} metaDescription={description} canonical={url} structuredData={[serviceSchema, faqSchema, breadcrumb]}>
+  <section class="relative overflow-hidden bg-paper px-6 pb-20 pt-28 md:pb-28 md:pt-36" aria-labelledby="web-design-heading">
+    <div
+      class="absolute inset-0 -z-10"
+      aria-hidden="true"
+      style="background-image: radial-gradient(ellipse 75% 65% at 8% 20%, color-mix(in srgb, var(--color-acuarela-500) 20%, transparent) 0%, transparent 68%), radial-gradient(ellipse 55% 50% at 88% 70%, color-mix(in srgb, var(--color-salmon) 14%, transparent) 0%, transparent 62%);"
+    ></div>
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <nav class="mb-8 flex flex-wrap items-center gap-2 font-sans text-sm text-ink/50" aria-label="Ruta de navegación">
+          <a href="/" class="hover:text-petroleo">Inicio</a>
+          <span aria-hidden="true">›</span>
+          <a href="/servicios/" class="hover:text-petroleo">Servicios</a>
+          <span aria-hidden="true">›</span>
+          <span class="text-ink/70" aria-current="page">Diseño y desarrollo de sitios web</span>
+        </nav>
+        <p class="mb-5 inline-flex items-center gap-2 rounded-pill border border-acuarela-300/50 bg-acuarela-50/70 px-4 py-2 font-sans text-sm font-semibold text-acuarela-700">
+          <span class="size-2 rounded-full bg-salmon" aria-hidden="true"></span>
+          Diseño y desarrollo de sitios web
+        </p>
+        <h1 id="web-design-heading" class="mb-5 max-w-3xl font-heading text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl">
+          Diseño de páginas web en CDMX para negocios y profesionales
+        </h1>
+        <p class="mb-8 max-w-2xl font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
+          Diseñamos sitios para profesionales, despachos, consultorios y negocios locales en CDMX: presenta tus servicios, comparte información útil y facilita el contacto.
+        </p>
+        <a
+          href="#cotizar"
+          class="inline-flex items-center justify-center rounded-soft bg-petroleo px-8 py-3.5 text-center font-sans text-base font-semibold text-paper transition-colors hover:bg-petroleo-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo"
+        >
+          Solicitar cotización de mi sitio web
+        </a>
+        <p class="mt-4 font-sans text-sm text-ink/55">Cuéntanos qué necesita tu negocio; definimos el alcance contigo antes de iniciar.</p>
+      </div>
+      <aside class="overflow-hidden rounded-soft border border-acuarela-400/20 bg-white/80 shadow-sm" aria-label="Resumen del servicio">
+        <img
+          src="/assets/solutions/diseno-web-acuarela.webp"
+          alt="Bocetos de páginas web pintados en acuarela"
+          width="1200"
+          height="800"
+          decoding="async"
+          fetchpriority="high"
+          class="block h-auto w-full"
+        />
+        <div class="p-7 md:p-8">
+          <h2 class="mb-4 font-heading text-xl font-bold text-ink">¿Qué podemos crear?</h2>
+          <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+            <li>Un sitio corporativo o para un negocio local.</li>
+            <li>Una página para profesionales independientes.</li>
+            <li>Una landing page o un catálogo informativo.</li>
+            <li>Opciones de contacto como WhatsApp y formularios.</li>
+          </ul>
+          <p class="mt-5 border-t border-acuarela-400/15 pt-5 font-sans text-sm leading-relaxed text-ink/60">
+            ¿Necesitas carrito y pagos? Conoce nuestras <a href="/servicios/tiendas-en-linea/" class="text-petroleo underline underline-offset-4">tiendas en línea Shopify y WooCommerce</a>.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 md:py-24" aria-labelledby="benefits-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="benefits-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">¿Cómo puede ayudar un sitio web a tu negocio?</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Un sitio bien organizado puede apoyar la comunicación y el contacto con tus clientes. Sus resultados dependen de tu oferta, tu audiencia y cómo lo uses; no garantizamos tráfico, ventas ni posiciones en buscadores.
+        </p>
+      </div>
+      <ul class="grid list-none gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {benefits.map((benefit, index) => (
+          <li class="rounded-soft border border-acuarela-400/15 bg-white/80 p-6">
+            <span class="mb-4 flex size-10 items-center justify-center rounded-soft bg-mint/20 font-heading font-bold text-petroleo" aria-hidden="true">
+              {index + 1}
+            </span>
+            <h3 class="mb-2 font-heading text-lg font-semibold text-ink">{benefit.title}</h3>
+            <p class="font-sans text-sm leading-relaxed text-ink/65">{benefit.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-acuarela-50/45 px-6 py-20 md:py-24" aria-labelledby="site-types-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="site-types-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Tipos de sitios web que desarrollamos</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Elegimos la estructura según lo que quieras comunicar, no según una plantilla de funciones que quizá no necesitas.
+        </p>
+      </div>
+      <ul class="grid list-none gap-5 md:grid-cols-2">
+        {siteTypes.map((type) => (
+          <li class="rounded-soft border border-acuarela-400/20 bg-paper p-6 md:p-7">
+            <h3 class="mb-2 font-heading text-xl font-semibold text-ink">{type.title}</h3>
+            <p class="mb-3 font-sans text-sm leading-relaxed text-ink/60"><strong class="text-ink/75">Para:</strong> {type.audience}</p>
+            <p class="font-sans text-sm leading-relaxed text-ink/70">{type.need}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6 font-sans text-sm leading-relaxed text-ink/60">
+        ¿Necesitas carrito, pagos en línea o gestión de pedidos? Eso corresponde a una <a href="/servicios/tiendas-en-linea/" class="text-petroleo underline underline-offset-4">tienda en línea</a>, un servicio con sus propias opciones y precios.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 md:py-24" aria-labelledby="included-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="included-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Qué incluye el diseño de tu página web</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Cada cotización especifica el alcance de tu proyecto. Estos son los elementos que podemos contemplar en el diseño y desarrollo del sitio.
+        </p>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-2">
+        <article class="rounded-soft border border-mint/40 bg-white/80 p-7">
+          <h3 class="mb-5 font-heading text-xl font-semibold text-ink">Elementos del sitio</h3>
+          <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+            {includedItems.map((item) => <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">✓</span><span>{item}</span></li>)}
+          </ul>
+        </article>
+        <article class="rounded-soft border border-salmon/35 bg-white/80 p-7">
+          <h3 class="mb-5 font-heading text-xl font-semibold text-ink">Opcionales o sujetos a cotización</h3>
+          <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+            {optionalItems.map((item) => <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">•</span><span>{item}</span></li>)}
+          </ul>
+          <p class="mt-5 border-t border-salmon/20 pt-4 font-sans text-xs leading-relaxed text-ink/55">
+            La analítica se configura cuando esté incluida en el alcance aprobado y se cuente con los accesos necesarios. La optimización inicial para buscadores no es un servicio continuo de SEO.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <PackageCards
+    sectionId="opciones"
+    title="Paquetes y precios de diseño de páginas web"
+    description="Un paquete base de una sola página, con el primer año de hosting incluido y extras que agregas solo si los necesitas."
+  />
+
+  <section id="formas-de-pago" class="px-6 py-20 md:py-24" aria-labelledby="payment-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="payment-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Formas de pago</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Elige la opción que mejor se adapte a tu negocio. La forma de pago queda establecida en la propuesta antes de iniciar.
+        </p>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-2">
+        <article class="flex flex-col rounded-soft border border-mint/40 bg-white/80 p-7 md:p-8">
+          <p class="mb-4 inline-flex w-fit items-center rounded-pill bg-mint/15 px-3 py-1 font-sans text-xs font-semibold text-petroleo">Opción 1</p>
+          <h3 class="mb-3 font-heading text-2xl font-semibold text-ink">50% al inicio y 50% al final</h3>
+          <p class="mb-6 font-sans text-sm leading-relaxed text-ink/70">
+            Divide el costo del proyecto en dos pagos iguales: uno para comenzar y otro al terminar.
+          </p>
+          <ol class="mt-auto grid gap-4 sm:grid-cols-2">
+            <li class="rounded-soft border border-acuarela-400/15 bg-paper p-5">
+              <span class="block font-heading text-3xl text-petroleo">50%</span>
+              <span class="mt-1 block font-sans text-sm font-semibold text-ink">Pago inicial</span>
+              <span class="mt-1 block font-sans text-xs leading-relaxed text-ink/60">Al inicio del proyecto, junto con los materiales y accesos.</span>
+            </li>
+            <li class="rounded-soft border border-acuarela-400/15 bg-paper p-5">
+              <span class="block font-heading text-3xl text-petroleo">50%</span>
+              <span class="mt-1 block font-sans text-sm font-semibold text-ink">Pago final</span>
+              <span class="mt-1 block font-sans text-xs leading-relaxed text-ink/60">Al final del proyecto, con la entrega del sitio.</span>
+            </li>
+          </ol>
+        </article>
+        <article class="flex flex-col rounded-soft border border-salmon/35 bg-white/80 p-7 md:p-8">
+          <p class="mb-4 inline-flex w-fit items-center rounded-pill bg-salmon/15 px-3 py-1 font-sans text-xs font-semibold text-coral-ink">Opción 2</p>
+          <h3 class="mb-3 font-heading text-2xl font-semibold text-ink">Meses sin intereses con Mercado Pago</h3>
+          <p class="mb-6 font-sans text-sm leading-relaxed text-ink/70">
+            Paga tu proyecto con tarjeta de crédito a meses sin intereses a través de Mercado Pago.
+          </p>
+          <ul class="mt-auto space-y-3 border-t border-salmon/20 pt-5 font-sans text-sm leading-relaxed text-ink/70">
+            <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">✓</span><span>Disponible con tarjetas participantes.</span></li>
+            <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">✓</span><span>Los plazos disponibles dependen de tu banco y de las promociones vigentes en Mercado Pago.</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 md:py-24" aria-labelledby="process-heading">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="process-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Cómo diseñamos y publicamos tu sitio web</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Avanzamos por etapas y dejamos el alcance y las aprobaciones por escrito. El trabajo comienza con anticipo, materiales y accesos completos.
+        </p>
+      </div>
+      <ol class="space-y-5">
+        {processSteps.map((step, index) => (
+          <li class="grid gap-4 rounded-soft border border-acuarela-400/15 bg-white/80 p-6 sm:grid-cols-[3rem_1fr] md:p-7">
+            <span class="flex size-10 items-center justify-center rounded-full bg-petroleo font-sans font-bold text-paper" aria-label={`Etapa ${index + 1}`}>{index + 1}</span>
+            <div>
+              <h3 class="mb-2 font-heading text-xl font-semibold text-ink">{step.title}</h3>
+              <p class="mb-3 font-sans text-sm leading-relaxed text-ink/70">{step.description}</p>
+              <p class="font-sans text-xs leading-relaxed text-ink/55"><strong class="text-ink/70">Tu participación:</strong> {step.client}</p>
+              <p class="mt-1 font-sans text-xs leading-relaxed text-ink/55"><strong class="text-ink/70">Recibes:</strong> {step.delivery}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="bg-acuarela-50/45 px-6 py-20 md:py-24" aria-labelledby="materials-heading">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_0.8fr]">
+      <div>
+        <h2 id="materials-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Qué necesitamos de tu negocio</h2>
+        <p class="mb-6 font-sans text-lg leading-relaxed text-ink/65">
+          No necesitas tener todo listo para conversar. Para preparar el sitio, te pediremos la información y los materiales disponibles:
+        </p>
+        <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+          <li>Nombre comercial y una descripción del negocio.</li>
+          <li>Productos o servicios que quieres presentar.</li>
+          <li>Logotipo y elementos de identidad visual, si tienes.</li>
+          <li>Teléfono, WhatsApp, correo, ubicación y horarios que deseas publicar.</li>
+          <li>
+            Fotografías y textos para las secciones, si los tienes.
+            <span class="ml-1 inline-flex items-center rounded-pill bg-mint/15 px-2 py-0.5 text-xs font-semibold text-petroleo">Opcional</span>
+          </li>
+        </ul>
+      </div>
+      <aside class="rounded-soft border border-acuarela-400/20 bg-paper p-7">
+        <h3 class="mb-3 font-heading text-xl font-semibold text-ink">¿No tienes fotografías ni textos?</h3>
+        <p class="mb-4 font-sans text-sm leading-relaxed text-ink/70">
+          Podemos encargarnos. Tomamos las fotografías y redactamos los textos de tu sitio; antes de publicar, tú los revisas y validas.
+        </p>
+        <ul class="space-y-3 border-t border-acuarela-400/15 pt-4 font-sans text-sm leading-relaxed text-ink/70">
+          <li class="flex gap-3">
+            <span class="text-petroleo" aria-hidden="true">✓</span>
+            <span><strong class="text-ink">Fotografía:</strong> una sesión comercial de establecimiento parte de {formatPrice(pricing.photography.establishmentSessionPrice)} + IVA e incluye hasta {pricing.photography.sessionMinutes} minutos en una ubicación y {pricing.photography.editedPhotos} fotos editadas. Confirmamos ubicación y traslado en la propuesta.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-petroleo" aria-hidden="true">✓</span>
+            <span><strong class="text-ink">Textos:</strong> redactamos el contenido a partir de la información de tu negocio y lo ajustamos con tus comentarios.</span>
+          </li>
+        </ul>
+        <p class="mt-4 font-sans text-xs leading-relaxed text-ink/55">Ambos servicios son opcionales y se cotizan por separado.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 md:py-24" aria-labelledby="after-launch-heading">
+    <div class="mx-auto max-w-5xl">
+      <h2 id="after-launch-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Dominio, hosting y qué pasa después</h2>
+      <p class="mb-8 max-w-3xl font-sans text-lg leading-relaxed text-ink/65">
+        El dominio es la dirección de tu sitio (por ejemplo, tunegocio.com). El hosting es el servicio donde se guardan los archivos para que el sitio pueda visitarse.
+      </p>
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="rounded-soft border border-acuarela-400/15 bg-white/80 p-6">
+          <h3 class="mb-2 font-heading text-lg font-semibold text-ink">Antes de contratar</h3>
+          <p class="font-sans text-sm leading-relaxed text-ink/70">
+            El hosting y el certificado de seguridad están incluidos durante los primeros {pricing.webDesign.includedHostingMonths} meses desde la publicación, como parte del pago del proyecto. El dominio y el correo corporativo se cotizan por separado. Redacción completa, blog autoadministrable, reservas, pagos e integraciones requieren otro presupuesto.
+          </p>
+        </article>
+        <article class="rounded-soft border border-acuarela-400/15 bg-white/80 p-6">
+          <h3 class="mb-2 font-heading text-lg font-semibold text-ink">Después de publicar</h3>
+          <p class="font-sans text-sm leading-relaxed text-ink/70">
+            Mientras tu sitio esté alojado con AcuarelaSoft, nosotros administramos el hosting. Tienes 30 días de garantía sobre defectos técnicos, independiente del hosting. Los cambios posteriores a la publicación se cotizan aparte.
+          </p>
+        </article>
+        <article class="rounded-soft border border-petroleo/25 bg-paper p-6 md:col-span-2 md:p-8">
+          <div class="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="font-heading text-2xl font-bold text-ink">{pricing.webDesign.hostingName}</h3>
+            <p class="font-heading text-xl font-bold text-petroleo">{formatPrice(pricing.webDesign.hostingMonthly)} + IVA al mes</p>
+          </div>
+          <p class="mb-5 font-sans text-sm leading-relaxed text-ink/70">
+            Al terminar los {pricing.webDesign.includedHostingMonths} meses incluidos, el hosting tiene un costo. A partir del mes {pricing.webDesign.includedHostingMonths + 1}, puedes continuar con el hosting administrado para conservar tu sitio publicado.
+          </p>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div>
+              <h4 class="mb-3 font-sans text-sm font-semibold text-ink">Qué incluye</h4>
+              <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+                {pricing.webDesign.hostingIncludes.map((item) => (
+                  <li class="flex gap-2"><span class="text-petroleo" aria-hidden="true">✓</span><span>{item}</span></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 class="mb-3 font-sans text-sm font-semibold text-ink">Qué no incluye</h4>
+              <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+                {pricing.webDesign.hostingExcludes.map((item) => (
+                  <li class="flex gap-2"><span class="text-petroleo" aria-hidden="true">•</span><span>{item}</span></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 rounded-soft bg-acuarela-50/60 p-5">
+            <h4 class="mb-2 font-sans text-sm font-semibold text-ink">Si prefieres no continuar</h4>
+            <p class="font-sans text-sm leading-relaxed text-ink/70">{pricing.webDesign.hostingExit}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-acuarela-50/45 px-6 py-20 md:py-24" aria-labelledby="faq-heading">
+    <div class="mx-auto max-w-4xl">
+      <h2 id="faq-heading" class="mb-8 font-heading text-3xl font-bold text-ink md:text-4xl">Preguntas frecuentes sobre diseño web</h2>
+      <ul class="space-y-4">
+        {faqs.map((faq) => (
+          <li>
+            <details class="group rounded-soft border border-acuarela-400/20 bg-paper p-5 open:border-acuarela-400/40 md:p-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-lg font-semibold text-ink">
+                {faq.question}
+                <span class="shrink-0 text-2xl leading-none text-petroleo transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="mt-3 font-sans text-sm leading-relaxed text-ink/70">{faq.answer}</p>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="px-6 pt-16 text-center" aria-labelledby="quote-cta-heading">
+    <div class="mx-auto max-w-3xl">
+      <h2 id="quote-cta-heading" class="mb-3 font-heading text-3xl font-bold text-ink md:text-4xl">Solicita una cotización para tu sitio</h2>
+      <p class="font-sans text-lg leading-relaxed text-ink/65">Cuéntanos qué quieres presentar y te ayudamos a definir el alcance y la cotización.</p>
+    </div>
+  </section>
+  <ContactSection webDesign sectionId="cotizar" />
+  <SectionNav items={sectionNavItems} />
+</Layout>

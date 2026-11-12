@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../data/landing';
+import { serviceBreadcrumb } from '../../data/services';
+import { formatPrice, pricing } from '../../data/pricing';
+
+const url = `${site.url}/servicios/mantenimiento-wordpress/`;
+const title = 'Mantenimiento WordPress para negocios — AcuarelaSoft';
+const description = 'Cuidado preventivo para sitios institucionales WordPress, sujeto a revisión y admisión. Conoce actualizaciones, respaldos, cambios incluidos y exclusiones.';
+const contact = '/contacto/?service=wordpress-care#contacto';
+const care = pricing.wordpressCare;
+const schema = {
+  '@context': 'https://schema.org', '@type': 'Service', name: 'Mantenimiento WordPress',
+  description, url, serviceType: 'Mantenimiento preventivo de sitios WordPress',
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
+  areaServed: { '@type': 'City', name: 'Ciudad de México' },
+};
+---
+
+<Layout title={title} metaDescription={description} canonical={url} structuredData={[schema, serviceBreadcrumb({ name: 'Mantenimiento WordPress', path: '/servicios/mantenimiento-wordpress/' })]}>
+  <div class="care-page">
+    <section class="care-hero" aria-labelledby="care-title">
+      <nav aria-label="Ruta de navegación"><a href="/">Inicio</a> <span aria-hidden="true">/</span> <a href="/servicios/">Servicios</a> <span aria-hidden="true">/</span> <span aria-current="page">Mantenimiento WordPress</span></nav>
+      <div class="hero-grid">
+        <div><p class="eyebrow">Cuidado preventivo, con límites claros</p><h1 id="care-title">Mantenimiento WordPress para sitios web de negocios</h1><p class="intro">Actualizaciones, respaldos y cambios acordados para sitios institucionales WordPress. Revisamos el estado del sitio antes de admitirlo; el mantenimiento no sustituye la reparación de problemas anteriores.</p><a class="action" href={contact}>Solicitar revisión de mi sitio</a></div>
+        <aside class="plan" aria-labelledby="plan-title"><span class="plan-label">Servicio mensual · Sujeto a admisión</span><h2 id="plan-title">{care.name}</h2><p class="price">{formatPrice(care.price)} <span>+ IVA {care.billing}</span></p><p>{care.audience}</p><a class="action" href={contact}>Consultar admisión</a></aside>
+      </div>
+    </section>
+
+    <section class="coverage" aria-labelledby="coverage-title">
+      <div><p class="eyebrow">Qué cubre el plan</p><h2 id="coverage-title">Actualizaciones, respaldos y cambios para tu sitio WordPress</h2><p>No es atención humana permanente ni una bolsa ilimitada de desarrollo. Las tareas y los tiempos disponibles quedan delimitados.</p></div>
+      <ul>{care.includes.map((item) => <li><span class="check" aria-hidden="true">✓</span><p>{item}</p></li>)}</ul>
+    </section>
+
+    <section class="admission" aria-labelledby="admission-title"><p class="eyebrow">Antes de contratar</p><h2 id="admission-title">Evaluación de tu sitio antes de contratar mantenimiento</h2><ol><li><span>01</span><h3>Conocer el sitio</h3><p>Comparte la URL, alojamiento y contexto del sitio. Identificamos los accesos necesarios para la evaluación.</p></li><li><span>02</span><h3>Evaluar su admisión</h3><p>Revisamos el estado de WordPress y sus componentes para delimitar problemas previos y condiciones de incorporación.</p></li><li><span>03</span><h3>Acordar continuidad</h3><p>Si el sitio se admite, definimos alcance, accesos, calendario de atención y condiciones del mantenimiento.</p></li></ol></section>
+
+    <section class="limits" aria-labelledby="limits-title"><h2 id="limits-title">Condiciones y exclusiones del mantenimiento WordPress</h2><ul>{care.conditions.map((condition) => <li>{condition}</li>)}</ul><p>Rediseños, nuevas funcionalidades, integraciones y necesidades fuera del plan requieren una evaluación y cotización independiente. El monitoreo y los respaldos no garantizan la ausencia de incidentes.</p></section>
+    <section class="care-close" aria-labelledby="care-next"><h2 id="care-next">¿Tu sitio necesita cuidado recurrente?</h2><p>Cuéntanos cómo está hoy y qué cambios esperas realizar. Confirmaremos si puede incorporarse al servicio.</p><a class="action" href={contact}>Cotizar mantenimiento WordPress</a><p class="related">¿Necesitas crear o renovar tu presencia digital? <a href="/diseno-paginas-web-mexico/">Explora el diseño de sitios web</a>.</p></section>
+  </div>
+</Layout>
+
+<style>
+  .care-page { max-width: 72rem; margin: auto; padding: 2rem 1.5rem 4rem; }
+  nav { font-size: var(--text-sm); margin-bottom: 3rem; }
+  nav a, .related a { text-decoration: underline; text-underline-offset: 4px; }
+  .eyebrow { color: var(--color-petroleo-dark); font-size: var(--text-sm); font-weight: 600; margin-bottom: 1rem; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; line-height: 1.1; }
+  h1 { font-size: clamp(2.8rem, 5vw, 4.7rem); max-width: 15ch; }
+  h2 { font-size: clamp(2rem, 3vw, 2.8rem); }
+  h3 { font-size: 1.8rem; margin: 1rem 0; }
+  p, li { line-height: 1.7; }
+  .hero-grid { display: grid; gap: 3rem; align-items: center; }
+  .intro { margin: 1.5rem 0 2rem; max-width: 38rem; }
+  .action { display: inline-flex; justify-content: center; text-align: center; padding: 1rem 1.5rem; background: var(--color-petroleo); color: var(--color-paper); border-radius: var(--radius-soft); font-weight: 600; }
+  .action:hover { background: var(--color-petroleo-dark); }
+  a:focus-visible { outline: 2px solid var(--color-mint); outline-offset: 5px; }
+  .plan { padding: 2rem; background: var(--color-ink); color: var(--color-paper); border-radius: 1rem; }
+  .plan-label { display: block; font-size: var(--text-sm); color: var(--color-mint); margin-bottom: 1.5rem; }
+  .plan h2 { font-size: 2.3rem; }
+  .plan > p { margin: 1.5rem 0; }
+  .price { font-size: 2rem; font-weight: 600; }
+  .price span { display: block; font-size: var(--text-sm); font-weight: 400; }
+  .coverage { display: grid; gap: 2rem; padding: 4rem 0; }
+  .coverage h2 { margin-bottom: 1.5rem; }
+  .coverage ul { display: grid; gap: 1rem; }
+  .coverage li { display: flex; gap: 1rem; align-items: start; padding: 1.5rem; border: 1px solid color-mix(in srgb, var(--color-petroleo) 25%, transparent); border-radius: var(--radius-soft); background: var(--color-paper); }
+  .check { color: var(--color-petroleo-dark); font-weight: 700; }
+  .admission { padding: 3rem 0; border-top: 1px solid color-mix(in srgb, var(--color-petroleo) 25%, transparent); }
+  .admission > h2 { max-width: 42rem; }
+  .admission ol { display: grid; gap: 2rem; margin-top: 2rem; }
+  .admission li { border-top: 3px solid var(--color-mint); padding-top: 1.5rem; }
+  .admission li > span { color: var(--color-petroleo-dark); font-weight: 600; }
+  .limits { margin-top: 1rem; padding: 2rem; background: var(--color-acuarela-50); border-radius: var(--radius-soft); }
+  .limits ul { list-style: disc; padding-left: 1.25rem; margin: 1.5rem 0; }
+  .limits li + li { margin-top: 1rem; }
+  .care-close { padding-top: 4rem; }
+  .care-close p { max-width: 45rem; margin: 1.5rem 0; }
+  .related { font-size: var(--text-sm); }
+  @media (min-width: 800px) { .hero-grid { grid-template-columns: 1.4fr 1fr; } .coverage { grid-template-columns: 1fr 1.2fr; gap: 4rem; } .admission ol { grid-template-columns: repeat(3, 1fr); } .limits { padding: 3rem; } }
+</style>

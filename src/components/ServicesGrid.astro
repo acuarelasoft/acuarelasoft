@@ -1,0 +1,69 @@
+---
+import { landing } from '../data/landing';
+import { serviceOptions } from '../data/services';
+
+const cards = landing.slider_cards.map((card) => {
+  const service = serviceOptions.find((option) => option.value === card.value);
+  if (!service) throw new Error(`Falta la ruta del servicio: ${card.value}`);
+  return { ...card, path: service.path };
+});
+---
+
+<section id="servicios" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="slider-heading">
+  <div
+    class="absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 68% 50% at 24% 38%, color-mix(in srgb, var(--color-acuarela-500) 10%, transparent) 0%, transparent 70%), radial-gradient(ellipse 56% 45% at 78% 62%, color-mix(in srgb, var(--color-salmon) 10%, transparent) 0%, transparent 65%);"
+  >
+  </div>
+
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-8 md:mb-10">
+      <h2 id="slider-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-2">
+        {landing.slider_title}
+      </h2>
+      <p class="font-sans text-ink/60 text-base md:text-lg">{landing.slider_subtitle}</p>
+    </div>
+
+    <ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {
+        cards.map((card) => (
+          <li class="w-full">
+            <a
+              href={card.path}
+              class="group block h-full rounded-soft border border-acuarela-400/20 bg-paper overflow-hidden transition-all duration-250 hover:-translate-y-0.5 hover:border-acuarela-400/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo"
+              aria-label={`${card.title}`}
+            >
+              <div class="relative h-44">
+                <div
+                  class="absolute inset-0"
+                  style={`background-image: url('${card.image}'); background-size: cover; background-position: center;`}
+                />
+                <div class="absolute inset-0 bg-gradient-to-tr from-petroleo/25 via-acuarela-400/10 to-salmon/15" />
+                <div class="absolute top-4 left-4 inline-flex px-3 py-1 rounded-pill bg-paper/90 text-petroleo font-sans text-xs font-semibold">
+                  {card.label}
+                </div>
+              </div>
+
+              <div class="p-5 flex items-start gap-4">
+                <div class="grow">
+                  <h3 class="font-heading text-ink text-lg font-semibold mb-2">{card.title}</h3>
+                  <p class="font-sans text-sm text-ink/70 leading-relaxed">{card.description}</p>
+                </div>
+
+                <span
+                  class="shrink-0 inline-flex items-center justify-center size-10 rounded-full bg-paper border border-acuarela-400/25 text-petroleo transition-colors duration-200 group-hover:bg-acuarela-50 group-hover:border-acuarela-400/45"
+                  aria-hidden="true"
+                >
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

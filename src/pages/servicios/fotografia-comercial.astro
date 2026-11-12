@@ -1,0 +1,400 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import SectionNav from '../../components/SectionNav.astro';
+import { site } from '../../data/landing';
+import { serviceBreadcrumb } from '../../data/services';
+import { formatPrice, pricing } from '../../data/pricing';
+
+const url = `${site.url}/servicios/fotografia-comercial/`;
+const title = 'Fotografía comercial en CDMX para negocios — AcuarelaSoft';
+const description =
+  'Sesiones de fotografía comercial en CDMX para productos, lugares, servicios y equipos de trabajo. Consulta alcances y solicita una cotización.';
+const photo = pricing.photography;
+
+const benefits = [
+  {
+    title: 'Muestra tu negocio con imágenes propias',
+    description: 'Presenta tus productos, espacios y personas con fotografías creadas para tu negocio.',
+  },
+  {
+    title: 'Explica mejor lo que ofreces',
+    description: 'Da contexto a tus productos y servicios mostrando detalles, actividades y formas de atención.',
+  },
+  {
+    title: 'Prepara contenido para tus canales',
+    description: 'Planea imágenes para acompañar tu sitio web, catálogo, redes sociales o publicidad.',
+  },
+  {
+    title: 'Cuida la presentación de tu marca',
+    description: 'Define el estilo de las tomas de acuerdo con lo que quieres comunicar y dónde las usarás.',
+  },
+];
+
+const sessionTypes = [
+  {
+    title: 'Productos',
+    audience: 'Catálogos, tiendas y presentaciones comerciales.',
+    description: 'Fotografiamos detalles, presentación y contexto de uso para mostrar lo que vendes.',
+    preparation: 'Acordamos la cantidad de productos, su preparación y los tipos de toma.',
+  },
+  {
+    title: 'Lugares y espacios',
+    audience: 'Locales, oficinas, restaurantes e instalaciones.',
+    description: 'Mostramos el ambiente, las áreas y los detalles que identifican tu establecimiento.',
+    preparation: 'Revisamos las áreas, los horarios y las condiciones de la ubicación.',
+  },
+  {
+    title: 'Servicios',
+    audience: 'Negocios y profesionales que quieren mostrar cómo trabajan.',
+    description: 'Fotografiamos actividades, procesos y momentos de atención que ayudan a explicar tu servicio.',
+    preparation: 'Definimos las actividades a fotografiar y coordinamos a las personas participantes.',
+  },
+  {
+    title: 'Equipos de trabajo',
+    audience: 'Personas y equipos que dan identidad a una organización.',
+    description: 'Creamos retratos y fotografías del equipo en su entorno de trabajo.',
+    preparation: 'Coordinamos participantes, horarios y autorizaciones necesarias.',
+  },
+];
+
+const includedItems = [
+  'Conversación inicial sobre tu negocio, las imágenes que necesitas y dónde las usarás.',
+  'Planeación de las tomas de acuerdo con el alcance aprobado.',
+  'Sesión de fotografía original para tu negocio.',
+  'Selección y edición de las fotografías acordadas.',
+];
+
+const agreedItems = [
+  'Cantidad de imágenes, duración, ubicaciones y tipos de toma según el proyecto.',
+  'Disponibilidad, acceso a los espacios, horarios y traslado.',
+  'Permisos de las ubicaciones y autorizaciones de las personas que aparezcan.',
+  'Nivel de edición, formatos, calendario de entrega y usos autorizados.',
+  'Necesidades especiales de producción o edición, sujetas a revisión y cotización.',
+];
+
+const processSteps = [
+  {
+    title: 'Conversamos sobre tu negocio',
+    description: 'Nos cuentas qué quieres mostrar, dónde se realizará la sesión y en qué canales usarás las imágenes.',
+  },
+  {
+    title: 'Definimos el alcance',
+    description: 'Revisamos las tomas, la ubicación y la preparación. Recibes una propuesta con el precio y las condiciones antes de agendar.',
+  },
+  {
+    title: 'Preparamos y realizamos la sesión',
+    description: 'Coordinamos el espacio, los productos o las personas participantes y fotografiamos lo acordado.',
+  },
+  {
+    title: 'Editamos y entregamos',
+    description: 'Seleccionamos y editamos las fotografías contempladas. Los formatos, usos autorizados y calendario se definen en la propuesta.',
+  },
+];
+
+const faqs = [
+  {
+    question: '¿Puedo contratar solo la fotografía?',
+    answer: 'Sí. Puedes cotizar una sesión por separado o contratarla junto con un proyecto web que la incluya.',
+  },
+  {
+    question: '¿Qué incluye la sesión para establecimiento?',
+    answer: `La referencia parte de ${formatPrice(photo.establishmentSessionPrice)} + IVA e incluye hasta ${photo.sessionMinutes} minutos, una ubicación en CDMX sujeta a confirmación y ${photo.editedPhotos} fotografías editadas. El traslado se confirma en la propuesta.`,
+  },
+  {
+    question: '¿El precio de establecimiento aplica a cualquier sesión?',
+    answer: 'No necesariamente. Las sesiones de productos, servicios, equipos u otros espacios se cotizan según las tomas, la preparación y el alcance que necesites.',
+  },
+  {
+    question: '¿Qué necesito preparar antes de la sesión?',
+    answer: 'Según el proyecto, coordinamos la ubicación, los productos, los espacios, las personas participantes y las autorizaciones necesarias antes de agendar.',
+  },
+  {
+    question: '¿Cuándo y cómo recibiré las fotografías?',
+    answer: 'La cantidad de imágenes, los formatos, los usos autorizados y el calendario de entrega se acuerdan en la propuesta de cada sesión.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Fotografía comercial',
+  description,
+  url,
+  serviceType: 'Fotografía comercial para web y publicidad',
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
+  areaServed: { '@type': 'City', name: 'Ciudad de México' },
+  inLanguage: site.languageTag,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+};
+
+const sectionNavItems = [
+  { id: 'photography-heading', label: 'Inicio' },
+  { id: 'benefits-heading', label: 'Beneficios' },
+  { id: 'session-types-heading', label: 'Tipos de sesión' },
+  { id: 'included-heading', label: 'Qué incluye' },
+  { id: 'opciones', label: 'Referencia de precio' },
+  { id: 'process-heading', label: 'Cómo trabajamos' },
+  { id: 'preparation-heading', label: 'Qué necesitamos' },
+  { id: 'faq-heading', label: 'Preguntas frecuentes' },
+  { id: 'cotizar', label: 'Cotizar' },
+];
+---
+
+<Layout
+  title={title}
+  metaDescription={description}
+  canonical={url}
+  structuredData={[serviceSchema, faqSchema, serviceBreadcrumb({ name: 'Fotografía comercial', path: '/servicios/fotografia-comercial/' })]}
+>
+  <section class="relative overflow-hidden bg-paper px-6 pb-20 pt-28 md:pb-28 md:pt-36" aria-labelledby="photography-heading">
+    <div
+      class="pointer-events-none absolute inset-0"
+      aria-hidden="true"
+      style="background-image: radial-gradient(ellipse 75% 65% at 8% 20%, color-mix(in srgb, var(--color-acuarela-500) 20%, transparent) 0%, transparent 68%), radial-gradient(ellipse 55% 50% at 88% 70%, color-mix(in srgb, var(--color-salmon) 14%, transparent) 0%, transparent 62%);"
+    ></div>
+    <div class="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <nav class="mb-8 flex flex-wrap items-center gap-2 font-sans text-sm text-ink/70" aria-label="Ruta de navegación">
+          <a href="/" class="hover:text-petroleo">Inicio</a>
+          <span aria-hidden="true">›</span>
+          <a href="/servicios/" class="hover:text-petroleo">Servicios</a>
+          <span aria-hidden="true">›</span>
+          <span class="text-ink/70" aria-current="page">Fotografía comercial</span>
+        </nav>
+        <p class="mb-5 inline-flex items-center gap-2 rounded-pill border border-acuarela-300/50 bg-acuarela-50/70 px-4 py-2 font-sans text-sm font-semibold text-acuarela-700">
+          <span class="size-2 rounded-full bg-salmon" aria-hidden="true"></span>
+          Fotografía comercial · Ciudad de México
+        </p>
+        <h1 id="photography-heading" class="mb-5 max-w-3xl font-heading text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl">
+          Fotografía comercial en CDMX para productos y negocios
+        </h1>
+        <p class="mb-8 max-w-2xl font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
+          Creamos imágenes originales de tus productos, lugares, servicios y equipo en CDMX, pensadas para tu sitio web, catálogo y comunicación.
+        </p>
+        <a
+          href="#cotizar"
+          class="inline-flex items-center justify-center rounded-soft bg-petroleo px-8 py-3.5 text-center font-sans text-base font-semibold text-paper transition-colors hover:bg-petroleo-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo"
+        >
+          Cotizar mi sesión
+        </a>
+        <p class="mt-4 font-sans text-sm text-ink/70">Cuéntanos qué quieres mostrar; definimos el alcance contigo antes de agendar.</p>
+      </div>
+      <aside class="overflow-hidden rounded-soft border border-acuarela-400/20 bg-white/80 shadow-sm" aria-label="Resumen del servicio">
+        <img
+          src="/assets/solutions/fotografia-comercial.svg"
+          alt=""
+          width="1200"
+          height="800"
+          decoding="async"
+          fetchpriority="high"
+          class="block h-auto w-full"
+        />
+        <div class="p-7 md:p-8">
+          <h2 class="mb-4 font-heading text-xl font-bold text-ink">¿Qué podemos fotografiar?</h2>
+          <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+            <li>Productos y detalles de lo que vendes.</li>
+            <li>Lugares, establecimientos y espacios.</li>
+            <li>Servicios, actividades y procesos.</li>
+            <li>Personas y equipos de trabajo.</li>
+          </ul>
+          <p class="mt-5 border-t border-acuarela-400/15 pt-5 font-sans text-sm leading-relaxed text-ink/70">
+            Contrata la sesión por separado o junto con un <a href="/diseno-paginas-web-mexico/" class="text-petroleo underline underline-offset-4">proyecto de sitio web</a>.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 md:py-24" aria-labelledby="benefits-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="benefits-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Imágenes que ayudan a contar tu historia</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Las fotografías originales pueden ayudarte a comunicar con claridad lo que haces y complementar la presencia de tu negocio en distintos medios.
+        </p>
+      </div>
+      <ul class="grid list-none gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {benefits.map((benefit, index) => (
+          <li class="rounded-soft border border-acuarela-400/15 bg-white/80 p-6">
+            <span class="mb-4 flex size-10 items-center justify-center rounded-soft bg-mint/20 font-heading font-bold text-petroleo" aria-hidden="true">{index + 1}</span>
+            <h3 class="mb-2 font-heading text-lg font-semibold text-ink">{benefit.title}</h3>
+            <p class="font-sans text-sm leading-relaxed text-ink/65">{benefit.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-acuarela-50/45 px-6 py-20 md:py-24" aria-labelledby="session-types-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="session-types-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Fotografía de productos, establecimientos y equipos de trabajo</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Planeamos cada sesión según lo que quieras comunicar, el espacio disponible y el uso que tendrán las imágenes.
+        </p>
+      </div>
+      <ul class="grid list-none gap-5 md:grid-cols-2">
+        {sessionTypes.map((type) => (
+          <li class="rounded-soft border border-acuarela-400/20 bg-paper p-6 md:p-7">
+            <h3 class="mb-2 font-heading text-xl font-semibold text-ink">{type.title}</h3>
+            <p class="mb-3 font-sans text-sm leading-relaxed text-ink/70"><strong class="text-ink/75">Para:</strong> {type.audience}</p>
+            <p class="font-sans text-sm leading-relaxed text-ink/70">{type.description}</p>
+            <p class="mt-4 border-t border-acuarela-400/15 pt-4 font-sans text-sm leading-relaxed text-ink/70">{type.preparation}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 md:py-24" aria-labelledby="included-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="included-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Qué contempla una sesión</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Cada propuesta especifica el alcance del proyecto. Estos son los pasos y condiciones que revisamos contigo antes de comenzar.
+        </p>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-2">
+        <article class="rounded-soft border border-mint/40 bg-white/80 p-7">
+          <h3 class="mb-5 font-heading text-xl font-semibold text-ink">Trabajo fotográfico</h3>
+          <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+            {includedItems.map((item) => <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">✓</span><span>{item}</span></li>)}
+          </ul>
+        </article>
+        <article class="rounded-soft border border-salmon/35 bg-white/80 p-7">
+          <h3 class="mb-5 font-heading text-xl font-semibold text-ink">Se define en la propuesta</h3>
+          <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+            {agreedItems.map((item) => <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">•</span><span>{item}</span></li>)}
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="opciones" class="bg-acuarela-50/45 px-6 py-20 md:py-24" aria-labelledby="options-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="options-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Precios y opciones de fotografía comercial</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          La sesión de establecimiento tiene un alcance base. Para otras necesidades, preparamos una cotización según el proyecto.
+        </p>
+      </div>
+      <div class="grid gap-6 lg:grid-cols-2">
+        <article class="flex flex-col rounded-soft border border-acuarela-400/20 bg-paper p-6 md:p-8">
+          <p class="mb-4 inline-flex w-fit items-center rounded-pill bg-mint/15 px-3 py-1 font-sans text-xs font-semibold text-petroleo">Referencia de contratación</p>
+          <h3 class="mb-3 font-heading text-2xl font-bold text-ink">Sesión para establecimiento</h3>
+          <p class="mb-5 font-heading text-2xl font-bold text-petroleo">
+            Desde {formatPrice(photo.establishmentSessionPrice)} + IVA <span class="font-sans text-sm font-normal text-ink/65">por sesión</span>
+          </p>
+          <ul class="mb-6 space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+            <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">✓</span><span>Hasta {photo.sessionMinutes} minutos de sesión.</span></li>
+            <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">✓</span><span>Una ubicación en CDMX, sujeta a confirmación.</span></li>
+            <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">✓</span><span>{photo.editedPhotos} fotografías editadas para entrega.</span></li>
+          </ul>
+          <p class="mb-6 border-t border-acuarela-400/15 pt-4 font-sans text-sm leading-relaxed text-ink/70">
+            Las tomas, la ubicación y el traslado se confirman antes de agendar. Puede contratarse por separado o dentro de un paquete que la incluya.
+          </p>
+          <a
+            href="#cotizar"
+            class="mt-auto inline-flex items-center justify-center rounded-soft bg-petroleo px-5 py-3 text-center font-sans text-sm font-semibold text-paper transition-colors hover:bg-petroleo-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo"
+          >
+            Consultar disponibilidad y alcance
+          </a>
+        </article>
+        <article class="flex flex-col rounded-soft border border-salmon/35 bg-paper p-6 md:p-8">
+          <p class="mb-4 inline-flex w-fit items-center rounded-pill bg-salmon/15 px-3 py-1 font-sans text-xs font-semibold text-coral-ink">Según tu proyecto</p>
+          <h3 class="mb-3 font-heading text-2xl font-bold text-ink">Otras sesiones, cotización a medida</h3>
+          <p class="font-sans text-sm leading-relaxed text-ink/70">
+            Productos, servicios, equipos y espacios con necesidades distintas pueden requerir otra preparación. Definimos el precio de acuerdo con las tomas y el alcance solicitado.
+          </p>
+          <ul class="mt-6 space-y-3 border-t border-salmon/20 pt-5 font-sans text-sm leading-relaxed text-ink/70">
+            <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">•</span><span>Cantidad y complejidad de productos o actividades.</span></li>
+            <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">•</span><span>Ubicación, duración y personas participantes.</span></li>
+            <li class="flex gap-3"><span class="text-petroleo" aria-hidden="true">•</span><span>Imágenes, edición y entregables acordados.</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 md:py-24" aria-labelledby="process-heading">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-12 max-w-3xl">
+        <h2 id="process-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Cómo trabajamos</h2>
+        <p class="font-sans text-lg leading-relaxed text-ink/65">
+          Planeamos la sesión contigo y dejamos claros el alcance y las condiciones antes de realizarla.
+        </p>
+      </div>
+      <ol class="space-y-5">
+        {processSteps.map((step, index) => (
+          <li class="grid gap-4 rounded-soft border border-acuarela-400/15 bg-white/80 p-6 sm:grid-cols-[3rem_1fr] md:p-7">
+            <span class="flex size-10 items-center justify-center rounded-full bg-petroleo font-sans font-bold text-paper" aria-label={`Etapa ${index + 1}`}>{index + 1}</span>
+            <div>
+              <h3 class="mb-2 font-heading text-xl font-semibold text-ink">{step.title}</h3>
+              <p class="font-sans text-sm leading-relaxed text-ink/70">{step.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="bg-acuarela-50/45 px-6 py-20 md:py-24" aria-labelledby="preparation-heading">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_0.8fr]">
+      <div>
+        <h2 id="preparation-heading" class="mb-4 font-heading text-3xl font-bold text-ink md:text-4xl">Qué necesitamos para preparar tu sesión</h2>
+        <p class="mb-6 font-sans text-lg leading-relaxed text-ink/65">
+          No necesitas tener todo resuelto para conversar. Estos datos nos ayudan a definir la propuesta:
+        </p>
+        <ul class="space-y-3 font-sans text-sm leading-relaxed text-ink/70">
+          <li>Qué productos, lugares, servicios o personas quieres mostrar y cómo usarás las fotografías.</li>
+          <li>La ubicación y los horarios posibles para la sesión.</li>
+          <li>Productos listos y espacios preparados, cuando corresponda.</li>
+          <li>Personas participantes y permisos o autorizaciones necesarios.</li>
+          <li>Referencias visuales o materiales de tu marca, si cuentas con ellos.</li>
+        </ul>
+      </div>
+      <aside class="rounded-soft border border-acuarela-400/20 bg-paper p-7">
+        <h3 class="mb-3 font-heading text-xl font-semibold text-ink">¿También necesitas un sitio web?</h3>
+        <p class="mb-4 font-sans text-sm leading-relaxed text-ink/70">
+          Podemos combinar la fotografía con un sitio para presentar tu negocio. Cada servicio y sus entregables se especifican en la propuesta.
+        </p>
+        <a href="/diseno-paginas-web-mexico/" class="font-sans text-sm font-semibold text-petroleo underline underline-offset-4 hover:text-petroleo-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo">
+          Conoce el diseño de sitios web
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 md:py-24" aria-labelledby="faq-heading">
+    <div class="mx-auto max-w-4xl">
+      <h2 id="faq-heading" class="mb-8 font-heading text-3xl font-bold text-ink md:text-4xl">Preguntas frecuentes sobre fotografía comercial</h2>
+      <ul class="space-y-4">
+        {faqs.map((faq) => (
+          <li>
+            <details class="group rounded-soft border border-acuarela-400/20 bg-paper p-5 open:border-acuarela-400/40 md:p-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-lg font-semibold text-ink">
+                {faq.question}
+                <span class="shrink-0 text-2xl leading-none text-petroleo transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="mt-3 font-sans text-sm leading-relaxed text-ink/70">{faq.answer}</p>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <ContactSection commercialPhotography sectionId="cotizar" />
+  <SectionNav items={sectionNavItems} />
+</Layout>

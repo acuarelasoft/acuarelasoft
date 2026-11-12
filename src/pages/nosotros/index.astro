@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import { site, landing } from '../../data/landing';
+
+const url = `${site.url}/nosotros/`;
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Nosotros', item: url },
+  ],
+};
+---
+
+<Layout
+  title="Nosotros — AcuarelaSoft"
+  metaDescription="AcuarelaSoft combina desarrollo web, fotografía original y capacidad técnica para ayudar a negocios a mantener su presencia digital."
+  canonical={url}
+  structuredData={breadcrumb}
+>
+  <section class="max-w-4xl mx-auto px-6 pt-28 pb-10 md:pt-36" aria-labelledby="nosotros-heading">
+    <nav class="mb-6 flex items-center gap-2 font-sans text-sm text-ink/50" aria-label="Ruta de navegación">
+      <a href="/" class="hover:text-petroleo">Inicio</a><span aria-hidden="true">›</span>
+      <span class="text-ink/70" aria-current="page">Nosotros</span>
+    </nav>
+    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-pill border border-acuarela-300/50 bg-acuarela-50/70 text-acuarela-700 font-sans text-sm font-semibold mb-5">
+      <span class="size-2 rounded-full bg-salmon"></span>
+      Creatividad y tecnología para hacerte visible
+    </span>
+    <h1 id="nosotros-heading" class="font-heading text-ink text-4xl sm:text-5xl font-bold leading-tight mb-4">
+      AcuarelaSoft: diseño web y fotografía comercial en CDMX
+    </h1>
+    <p class="font-sans text-ink/65 text-lg leading-relaxed">
+      AcuarelaSoft ayuda a profesionales, despachos, consultorios y empresas locales a crear, mejorar y mantener su presencia en internet.
+      Combinamos desarrollo web, fotografía comercial original y capacidad técnica, con alcances y condiciones definidos en cada propuesta.
+    </p>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 py-8" aria-label="Por qué elegirnos">
+    <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        landing.why_cards.map((c) => (
+          <li class="bg-paper rounded-soft border border-acuarela-400/15 p-6">
+            <h2 class="font-heading text-ink text-lg font-semibold mb-2">{c.title}</h2>
+            <p class="font-sans text-ink/65 text-sm leading-relaxed">{c.desc}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-8 grid gap-5 md:grid-cols-3 font-sans text-sm">
+      <div class="rounded-soft border border-acuarela-300/35 bg-paper/70 p-5">
+        <p class="font-bold text-petroleo mb-1">Alcance claro</p>
+        <p class="text-ink/65">La propuesta detalla entregables, plazos, costos y servicios externos.</p>
+      </div>
+      <div class="rounded-soft border border-acuarela-300/35 bg-paper/70 p-5">
+        <p class="font-bold text-petroleo mb-1">Revisión por etapas</p>
+        <p class="text-ink/65">Los proyectos incluyen las rondas de revisión acordadas en su alcance.</p>
+      </div>
+      <div class="rounded-soft border border-acuarela-300/35 bg-paper/70 p-5">
+        <p class="font-bold text-petroleo mb-1">Enfoque en CDMX</p>
+        <p class="text-ink/65">Atención para negocios y profesionales de Ciudad de México. Escríbenos por WhatsApp: {site.phoneCdmx}.</p>
+      </div>
+    </div>
+  </section>
+
+  <ContactSection />
+</Layout>

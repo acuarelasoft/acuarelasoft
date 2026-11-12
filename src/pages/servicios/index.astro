@@ -1,0 +1,156 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { landing, site } from '../../data/landing';
+import { SERVICES_LABEL, SERVICES_PATH, serviceOptions } from '../../data/services';
+
+const url = `${site.url}${SERVICES_PATH}`;
+const title = 'Servicios digitales para negocios — AcuarelaSoft';
+const description =
+  'Sitios web, tiendas en línea, fotografía comercial, SEO y analítica, contenido y campañas, y mantenimiento WordPress para negocios en México.';
+
+const services = landing.slider_cards.map((card, index) => {
+  const service = serviceOptions.find((option) => option.value === card.value);
+  if (!service) throw new Error(`Falta la ruta del servicio: ${card.value}`);
+  return { ...card, path: service.path, number: String(index + 1).padStart(2, '0') };
+});
+
+const stages = [
+  { title: 'Presencia', text: 'Presenta lo que haces y facilita el contacto.', values: ['websites', 'commercial-photography'] },
+  { title: 'Venta', text: 'Recibe pedidos y difunde tu oferta.', values: ['online-stores', 'content-campaigns'] },
+  { title: 'Continuidad', text: 'Mide resultados y cuida lo publicado.', values: ['seo-analytics', 'wordpress-care'] },
+];
+const labelFor = (value: string) => serviceOptions.find((option) => option.value === value)?.label ?? value;
+const pathFor = (value: string) => serviceOptions.find((option) => option.value === value)?.path ?? SERVICES_PATH;
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: SERVICES_LABEL, item: url },
+  ],
+};
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Servicios de AcuarelaSoft',
+  itemListElement: services.map((service, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: service.label,
+    url: `${site.url}${service.path}`,
+  })),
+};
+---
+
+<Layout title={title} metaDescription={description} canonical={url} structuredData={[breadcrumb, itemList]}>
+  <div class="services-hub">
+    <section class="hub-hero" aria-labelledby="hub-title">
+      <nav aria-label="Ruta de navegación">
+        <a href="/">Inicio</a> <span aria-hidden="true">/</span> <span aria-current="page">{SERVICES_LABEL}</span>
+      </nav>
+      <p class="eyebrow">Servicios</p>
+      <h1 id="hub-title">Servicios digitales para negocios en CDMX</h1>
+      <p class="intro">
+        Seis servicios que pueden contratarse por separado o combinarse. Cada uno tiene su propia página con lo que incluye,
+        cómo trabajamos y cómo solicitar una cotización.
+      </p>
+    </section>
+
+    <section class="hub-list" aria-labelledby="list-title">
+      <h2 id="list-title" class="visually-hidden">Lista de servicios</h2>
+      <ol>
+        {
+          services.map((service) => (
+            <li>
+              <a href={service.path}>
+                <span class="number" aria-hidden="true">{service.number}</span>
+                <span class="media" style={`background-image: url('${service.image}')`} aria-hidden="true" />
+                <span class="body">
+                  <span class="label">{service.label}</span>
+                  <span class="title">{service.title}</span>
+                  <span class="desc">{service.description}</span>
+                </span>
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="hub-stages" aria-labelledby="stages-title">
+      <p class="eyebrow">¿Por dónde empezar?</p>
+      <h2 id="stages-title">Elige según la etapa de tu negocio</h2>
+      <div class="stages-grid">
+        {
+          stages.map((stage) => (
+            <article>
+              <h3>{stage.title}</h3>
+              <p>{stage.text}</p>
+              <ul>
+                {stage.values.map((value) => (
+                  <li><a href={pathFor(value)}>{labelFor(value)}</a></li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="hub-cta" aria-labelledby="hub-cta-title">
+      <h2 id="hub-cta-title">¿No sabes qué servicio necesitas?</h2>
+      <p>Cuéntanos qué quieres resolver y te orientamos antes de proponer un alcance.</p>
+      <a class="action" href="/contacto/?service=not-sure#contacto">Solicitar orientación</a>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .services-hub { --hub-line: color-mix(in srgb, var(--color-petroleo) 18%, transparent); }
+  .hub-hero, .hub-list, .hub-stages, .hub-cta { max-width: 72rem; margin: auto; padding: 3.5rem 1.5rem; }
+  .hub-hero { padding-top: 2rem; }
+  nav { font-size: var(--text-sm); margin-bottom: 3rem; }
+  nav a { text-decoration: underline; text-underline-offset: 4px; }
+  .eyebrow { color: var(--color-petroleo-dark); font-size: var(--text-sm); font-weight: 600; margin-bottom: 1rem; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; line-height: 1.1; }
+  h1 { font-size: clamp(2.6rem, 5vw, 4.4rem); max-width: 18ch; }
+  h2 { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 2rem; }
+  h3 { font-size: 1.7rem; margin-bottom: 0.5rem; }
+  .intro { margin-top: 1.5rem; max-width: 40rem; line-height: 1.65; color: color-mix(in srgb, var(--color-ink) 75%, transparent); }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  a:focus-visible { outline: 2px solid var(--color-petroleo); outline-offset: 4px; }
+
+  .hub-list ol { border-top: 1px solid var(--hub-line); }
+  .hub-list li { border-bottom: 1px solid var(--hub-line); }
+  .hub-list a { display: grid; grid-template-columns: auto 1fr auto; gap: 1.25rem; align-items: center; padding: 1.5rem 0.5rem; transition: background-color 200ms; }
+  .hub-list a:hover { background: var(--color-acuarela-50); }
+  .number { font-family: var(--font-heading); font-size: 2rem; color: var(--color-petroleo); }
+  .media { display: none; }
+  .body { display: grid; gap: 0.35rem; }
+  .label { font-size: var(--text-sm); font-weight: 600; color: var(--color-petroleo-dark); }
+  .title { font-family: var(--font-heading); font-size: 1.5rem; line-height: 1.2; }
+  .desc { font-size: var(--text-sm); line-height: 1.6; color: color-mix(in srgb, var(--color-ink) 70%, transparent); max-width: 44rem; }
+  .arrow { font-size: 1.5rem; color: var(--color-petroleo); transition: translate 200ms; }
+  .hub-list a:hover .arrow { translate: 0.35rem 0; }
+
+  .stages-grid { display: grid; gap: 1rem; }
+  .stages-grid article { padding: 2rem; border: 1px solid var(--hub-line); border-radius: var(--radius-soft); background: var(--color-paper); }
+  .stages-grid p { line-height: 1.6; margin-bottom: 1rem; }
+  .stages-grid li + li { margin-top: 0.5rem; }
+  .stages-grid a { text-decoration: underline; text-underline-offset: 4px; }
+  .stages-grid a:hover { color: var(--color-petroleo); }
+
+  .hub-cta { text-align: center; border-top: 1px solid var(--hub-line); }
+  .hub-cta h2 { margin-bottom: 1rem; }
+  .hub-cta p { margin-bottom: 2rem; line-height: 1.6; }
+  .action { display: inline-flex; padding: 1rem 1.5rem; border-radius: var(--radius-soft); background: var(--color-petroleo); color: var(--color-paper); font-weight: 600; }
+  .action:hover { background: var(--color-petroleo-dark); }
+
+  @media (min-width: 800px) {
+    .hub-list a { grid-template-columns: 4rem 9rem 1fr auto; gap: 2rem; padding: 1.75rem 1rem; }
+    .media { display: block; height: 6rem; border-radius: var(--radius-soft); background-size: cover; background-position: center; }
+    .stages-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

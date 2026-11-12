@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../data/landing';
+import { faqs } from '../../data/faqs';
+
+const url = `${site.url}/preguntas-frecuentes/`;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Preguntas frecuentes', item: url },
+  ],
+};
+---
+
+<Layout
+  title="Preguntas frecuentes sobre soluciones digitales — AcuarelaSoft"
+  metaDescription="Respuestas sobre paquetes, precios, sitios web, fotografía, mantenimiento, SEO y campañas de AcuarelaSoft."
+  canonical={url}
+  structuredData={[breadcrumb, faqSchema]}
+>
+  <section class="max-w-4xl mx-auto px-6 pt-28 pb-10 md:pt-36" aria-labelledby="faq-heading">
+    <nav class="mb-6 flex items-center gap-2 font-sans text-sm text-ink/50" aria-label="Ruta de navegación">
+      <a href="/" class="hover:text-petroleo">Inicio</a><span aria-hidden="true">›</span>
+      <span class="text-ink/70" aria-current="page">Preguntas frecuentes</span>
+    </nav>
+    <h1 id="faq-heading" class="font-heading text-ink text-4xl sm:text-5xl font-bold leading-tight mb-4">
+      Preguntas sobre nuestros servicios y paquetes
+    </h1>
+    <p class="font-sans text-ink/65 text-lg">Conoce alcances, plazos y qué necesitas para solicitar una cotización.</p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-16" aria-label="Preguntas y respuestas">
+    <ul class="space-y-4">
+      {
+        faqs.map((f) => (
+          <li>
+            <details class="group bg-paper rounded-soft border border-acuarela-400/20 p-6 open:border-acuarela-400/40">
+              <summary class="cursor-pointer font-heading text-ink text-lg font-semibold list-none flex items-center justify-between gap-4">
+                {f.q}
+                <span class="shrink-0 text-petroleo transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden="true">+</span>
+              </summary>
+              <p class="mt-3 font-sans text-ink/70 leading-relaxed">{f.a}</p>
+            </details>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-12 text-center">
+      <a
+        href="/contacto/?service=not-sure#contacto"
+        class="inline-block bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft hover:bg-petroleo-dark transition-all"
+      >
+        Solicitar cotización
+      </a>
+    </div>
+  </section>
+</Layout>

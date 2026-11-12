@@ -1,0 +1,176 @@
+---
+import BrandLogo from './BrandLogo.astro';
+import { landing, site } from '../data/landing';
+import { serviceOptions } from '../data/services';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="relative bg-paper border-t border-acuarela-300/25 overflow-hidden" aria-label="Footer">
+  <div
+    class="absolute inset-0"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 62% 54% at 14% 24%, color-mix(in srgb, var(--color-acuarela-500) 12%, transparent) 0%, transparent 68%), radial-gradient(ellipse 44% 42% at 84% 70%, color-mix(in srgb, var(--color-salmon) 10%, transparent) 0%, transparent 62%);"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.34]"
+    aria-hidden="true"
+    style="background-image: url('/assets/textures/palete.webp'); background-repeat: no-repeat; background-size: cover; background-position: right center;"
+  >
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-14 md:py-16">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <section>
+        <BrandLogo size="lg" />
+        <p class="mt-5 max-w-xs font-heading text-lg font-bold leading-snug text-petroleo">
+          {landing.footer_tagline}
+        </p>
+        <p class="mt-5 max-w-xs font-sans text-base font-medium leading-relaxed text-ink/85">
+          {landing.footer_tagline_description}
+        </p>
+        <ul class="mt-6 flex items-center gap-3" aria-label={landing.footer_social_heading}>
+          <li>
+            <a
+              href={site.linkedin}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55"
+              aria-label="LinkedIn"
+            >
+              <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M8 10H5V19H8V10M6.5 8.31A1.75 1.75 0 1 0 6.5 4.81A1.75 1.75 0 0 0 6.5 8.31M19 19V13.62C19 10.74 17.44 9.38 15.35 9.38C13.66 9.38 12.91 10.31 12.5 10.97V10H9.5V19H12.5V14C12.5 12.69 12.75 11.42 14.38 11.42C15.98 11.42 16 12.92 16 14.08V19H19Z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href={site.github}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55"
+              aria-label="GitHub"
+            >
+              <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.57.1.78-.25.78-.55 0-.27-.01-.99-.02-1.95-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.97.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.47.11-3.07 0 0 .97-.31 3.17 1.18a11.02 11.02 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.6.23 2.78.11 3.07.73.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.25 5.69.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.13 0 .3.2.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href={site.whatsappCdmx}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55"
+              aria-label="WhatsApp"
+            >
+              <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${site.email}`}
+              class="inline-flex items-center justify-center size-10 rounded-soft border border-acuarela-300/40 bg-paper/70 text-ink/70 transition-all duration-200 hover:text-petroleo hover:border-acuarela-400/55"
+              aria-label="Email"
+            >
+              <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21.75 7.5v9a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 16.5v-9m19.5 0A2.25 2.25 0 0 0 19.5 5.25h-15A2.25 2.25 0 0 0 2.25 7.5m19.5 0-9.334 6.223a.75.75 0 0 1-.832 0L2.25 7.5"
+                ></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-sans text-sm font-bold uppercase tracking-[0.14em] text-petroleo mb-4">
+          {landing.footer_services_heading}
+        </h2>
+        <ul class="space-y-2 font-sans text-base font-medium text-ink/88">
+          {serviceOptions.map((service) => (
+            <li>
+              <a href={service.path} class="hover:text-petroleo transition-colors duration-200">{service.label}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-sans text-sm font-bold uppercase tracking-[0.14em] text-petroleo mb-4">
+          {landing.footer_company_heading}
+        </h2>
+        <ul class="space-y-2.5 font-sans text-base font-medium text-ink/88">
+          <li>
+            <a href="/nosotros/" class="hover:text-petroleo transition-colors duration-200">
+              {landing.footer_company_about}
+            </a>
+          </li>
+          <li>
+            <a href="/servicios/" class="hover:text-petroleo transition-colors duration-200">
+              {landing.nav_services}
+            </a>
+          </li>
+          <li>
+            <a href="/preguntas-frecuentes/" class="hover:text-petroleo transition-colors duration-200">
+              {landing.nav_faq}
+            </a>
+          </li>
+          <li>
+            <a href="/contacto/" class="hover:text-petroleo transition-colors duration-200">
+              {landing.nav_contact}
+            </a>
+          </li>
+          <li>
+            <a href="/aviso-privacidad/" class="hover:text-petroleo transition-colors duration-200">
+              Aviso de privacidad
+            </a>
+          </li>
+          <li>
+            <a href="/mapa-sitio/" class="hover:text-petroleo transition-colors duration-200">
+              Mapa del sitio
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-sans text-sm font-bold uppercase tracking-[0.14em] text-petroleo mb-4">
+          {landing.footer_get_in_touch_heading}
+        </h2>
+        <address class="not-italic space-y-4 font-sans text-base font-medium text-ink/88">
+          <p>
+            <a href={`mailto:${site.email}`} class="wrap-anywhere hover:text-petroleo transition-colors duration-200">
+              {site.email}
+            </a>
+          </p>
+          <div class="space-y-2">
+            <div class="rounded-soft border border-acuarela-300/35 bg-paper/70 px-3 py-2.5">
+              <p class="text-xs font-bold uppercase tracking-[0.1em] text-petroleo">Sede CDMX</p>
+              <a
+                href={site.whatsappCdmx}
+                rel="noopener noreferrer"
+                target="_blank"
+                class="mt-1 block text-base font-semibold hover:text-petroleo transition-colors duration-200"
+                aria-label="WhatsApp sede CDMX"
+              >
+                {site.phoneCdmx}
+              </a>
+            </div>
+          </div>
+        </address>
+      </section>
+    </div>
+  </div>
+</footer>

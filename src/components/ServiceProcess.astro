@@ -1,0 +1,40 @@
+---
+import type { ServiceText } from '../data/services';
+import { serviceShared } from '../data/services';
+
+interface Props {
+  text: ServiceText;
+}
+
+const { text } = Astro.props;
+---
+
+<section class="relative py-20 px-6 md:py-28 overflow-hidden reveal" aria-labelledby="process-heading">
+  <div
+    class="absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 65% 50% at 80% 40%, color-mix(in srgb, var(--color-salmon) 10%, transparent) 0%, transparent 65%);"
+  >
+  </div>
+
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 id="process-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-3">
+        {serviceShared.process_title}
+      </h2>
+    </div>
+
+    <ol class="relative ml-4 space-y-10 list-none border-l-2 border-acuarela-400/20">
+      {
+        text.process.map((step, i) => (
+          <li class="pl-10 relative">
+            <span class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-petroleo text-paper flex items-center justify-center font-sans text-sm font-bold shrink-0">
+              {i + 1}
+            </span>
+            <p class="font-sans text-ink/75 text-base leading-relaxed pt-1">{step}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

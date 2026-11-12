@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../data/landing';
+
+const url = `${site.url}/aviso-privacidad/`;
+---
+
+<Layout
+  title="Aviso de privacidad — AcuarelaSoft"
+  metaDescription="Cómo cuidamos tus datos de contacto en AcuarelaSoft: qué pedimos, para qué y cómo pedir que los borremos."
+  canonical={url}
+>
+  <section class="max-w-3xl mx-auto px-6 pt-28 pb-20 md:pt-36" aria-labelledby="privacidad-heading">
+    <nav class="mb-6 flex items-center gap-2 font-sans text-sm text-ink/50" aria-label="Ruta de navegación">
+      <a href="/" class="hover:text-petroleo">Inicio</a><span aria-hidden="true">›</span>
+      <span class="text-ink/70" aria-current="page">Aviso de privacidad</span>
+    </nav>
+    <h1 id="privacidad-heading" class="font-heading text-ink text-4xl font-bold mb-4">Aviso de privacidad</h1>
+    <div class="space-y-4 font-sans text-ink/70 leading-relaxed">
+      <p>
+        En AcuarelaSoft cuidamos tus datos. Solo te pedimos nombre, email, teléfono y lo que nos cuentes de tu
+        proyecto para poder contactarte y prepararte una propuesta.
+      </p>
+      <p>No vendemos ni compartimos tu información. Solo la usa nuestro equipo para darte seguimiento.</p>
+      <p>
+        Puedes pedir que corrijamos o borremos tus datos escribiendo a
+        <a class="underline hover:text-petroleo" href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+      <p>Al dejarnos tus datos aceptas que te contactemos por email, teléfono o WhatsApp.</p>
+    </div>
+  </section>
+</Layout>

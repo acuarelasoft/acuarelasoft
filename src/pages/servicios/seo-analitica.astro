@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../data/landing';
+import { serviceBreadcrumb } from '../../data/services';
+
+const url = `${site.url}/servicios/seo-analitica/`;
+const title = 'SEO y analítica para tu sitio web — AcuarelaSoft';
+const description = 'Configuración inicial para buscadores y medición de visitas. Definimos herramientas, eventos y seguimiento SEO según las necesidades de tu negocio.';
+const contact = '/contacto/?service=seo-analytics#contacto';
+const questions = [
+  { title: '¿Cómo encuentran tu sitio?', text: 'Revisamos la información que presentas a los buscadores y el estado de las herramientas disponibles.' },
+  { title: '¿Qué hacen las personas al entrar?', text: 'Definimos qué interacciones conviene medir según tus objetivos y las funciones del sitio.' },
+  { title: '¿Qué necesitas revisar después?', text: 'Acordamos indicadores y prioridades para que la medición tenga un propósito concreto.' },
+];
+const schema = {
+  '@context': 'https://schema.org', '@type': 'Service', name: 'SEO y analítica',
+  description, url, serviceType: 'Configuración SEO y analítica web',
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
+  areaServed: { '@type': 'City', name: 'Ciudad de México' },
+};
+---
+
+<Layout title={title} metaDescription={description} canonical={url} structuredData={[schema, serviceBreadcrumb({ name: 'SEO y analítica', path: '/servicios/seo-analitica/' })]}>
+  <div class="analytics-page">
+    <section class="analytics-hero" aria-labelledby="analytics-title">
+      <nav aria-label="Ruta de navegación"><a href="/">Inicio</a> <span aria-hidden="true">/</span> <a href="/servicios/">Servicios</a> <span aria-hidden="true">/</span> <span aria-current="page">SEO y analítica</span></nav>
+      <p class="eyebrow">Información clara. Medición útil.</p>
+      <h1 id="analytics-title">Servicios de SEO y analítica web para negocios</h1>
+      <p class="intro">Preparamos la información técnica para buscadores y configuramos medición según el alcance acordado. Tener datos es el inicio; saber qué preguntas responder les da sentido.</p>
+      <a class="action" href={contact}>Revisar las necesidades de mi sitio</a>
+    </section>
+
+    <section class="questions" aria-labelledby="questions-title">
+      <h2 id="questions-title">Qué puedes medir con la analítica web</h2>
+      <div class="question-grid">{questions.map((question, index) => <article><span class="index">0{index + 1}</span><h3>{question.title}</h3><p>{question.text}</p></article>)}</div>
+    </section>
+
+    <section class="comparison" aria-labelledby="comparison-title">
+      <div class="section-heading"><p class="eyebrow">Dos alcances distintos</p><h2 id="comparison-title">Configuración inicial y seguimiento de SEO y analítica</h2></div>
+      <div class="comparison-grid">
+        <article class="initial"><span class="label">Proyecto inicial</span><h3>Configuración de SEO, GA4 y Search Console</h3><ul><li>Revisión técnica inicial de títulos, descripciones y estructura acordada.</li><li>Configuración de herramientas como GA4 y Search Console cuando se incluyan.</li><li>Definición e implementación de los eventos contemplados en la propuesta.</li><li>Comprobación de la configuración y entrega de los accesos acordados.</li></ul></article>
+        <article class="ongoing"><span class="label">Servicio recurrente</span><h3>Seguimiento SEO y análisis de resultados</h3><ul><li>Revisión periódica de indicadores acordados.</li><li>Interpretación de la actividad y detección de oportunidades.</li><li>Recomendaciones y acciones de mejora incluidas en el contrato.</li><li>Frecuencia de revisión, informes y responsabilidades por escrito.</li></ul><p>El seguimiento se cotiza por separado; no está incluido automáticamente en la configuración inicial.</p></article>
+      </div>
+    </section>
+
+    <section class="access" aria-labelledby="access-title">
+      <div><p class="eyebrow">Para preparar una propuesta</p><h2 id="access-title">Qué necesitamos para cotizar SEO y analítica web</h2></div>
+      <div><p>Comparte la URL de tu sitio, tus objetivos y qué herramientas utilizas. Revisamos los accesos necesarios, el estado actual y las limitaciones antes de acordar entregables.</p><p>Los eventos, cambios técnicos, herramientas y requisitos de privacidad o consentimiento se definen según el sitio. La redacción de contenido, campañas y trabajos adicionales no se presuponen incluidos.</p></div>
+    </section>
+    <aside class="expectations" aria-labelledby="expectations-title"><h2 id="expectations-title">Sin promesas de posiciones ni ventas</h2><p>La configuración SEO y la analítica no garantizan una posición en Google, un volumen de visitas ni resultados comerciales. Los datos pueden verse limitados por consentimiento, bloqueadores y configuración de los dispositivos.</p></aside>
+    <section class="analytics-close" aria-labelledby="analytics-next"><h2 id="analytics-next">¿Qué necesitas entender de tu sitio?</h2><p>Definamos qué configurar y qué seguimiento vale la pena contratar.</p><a class="action" href={contact}>Cotizar SEO y analítica</a><a class="related" href="/servicios/contenido-campanas/">Explorar contenido y campañas</a></section>
+  </div>
+</Layout>
+
+<style>
+  .analytics-page { max-width: 72rem; margin: auto; padding: 2rem 1.5rem 4rem; }
+  nav { font-size: var(--text-sm); margin-bottom: 3rem; }
+  nav a, .related { text-decoration: underline; text-underline-offset: 4px; }
+  .eyebrow { color: var(--color-acuarela-700); font-size: var(--text-sm); font-weight: 600; margin-bottom: 1rem; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; line-height: 1.1; }
+  h1 { font-size: clamp(2.8rem, 5.5vw, 5rem); max-width: 18ch; }
+  h2 { font-size: clamp(2rem, 3vw, 2.8rem); }
+  h3 { font-size: 1.9rem; }
+  p, li { line-height: 1.7; }
+  .intro { max-width: 45rem; margin: 1.5rem 0 2rem; }
+  .action { display: inline-flex; justify-content: center; padding: 1rem 1.5rem; background: var(--color-acuarela-700); color: var(--color-paper); border-radius: var(--radius-soft); font-weight: 600; text-align: center; }
+  .action:hover { background: var(--color-acuarela-800); }
+  a:focus-visible { outline: 2px solid var(--color-acuarela-600); outline-offset: 5px; }
+  .questions { padding: 4rem 0; }
+  .question-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
+  .question-grid article { padding: 1.5rem; border-left: 2px solid var(--color-acuarela-400); background: var(--color-acuarela-50); }
+  .index { display: block; color: var(--color-acuarela-700); font-weight: 600; margin-bottom: 1.5rem; }
+  .question-grid h3 { margin-bottom: 1rem; }
+  .section-heading { max-width: 42rem; margin-bottom: 2rem; }
+  .comparison-grid { display: grid; gap: 1.5rem; }
+  .comparison-grid article { padding: 2rem; border-radius: var(--radius-soft); }
+  .initial { border: 1px solid var(--color-acuarela-300); background: var(--color-paper); }
+  .ongoing { background: var(--color-ink); color: var(--color-paper); }
+  .label { display: inline-block; font-size: var(--text-sm); margin-bottom: 1.5rem; border-bottom: 1px solid currentColor; padding-bottom: 0.5rem; }
+  ul { list-style: disc; padding-left: 1.25rem; margin-top: 1.5rem; }
+  li + li { margin-top: 1rem; }
+  .ongoing > p { margin-top: 1.5rem; font-size: var(--text-sm); }
+  .access { display: grid; gap: 2rem; padding: 4rem 0; }
+  .access p + p { margin-top: 1rem; }
+  .expectations { padding: 2rem; border: 1px dashed var(--color-acuarela-400); border-radius: var(--radius-soft); }
+  .expectations h2 { font-size: 2rem; margin-bottom: 1rem; }
+  .analytics-close { padding-top: 4rem; }
+  .analytics-close p { margin: 1.5rem 0; }
+  .related { display: block; margin-top: 1.5rem; font-size: var(--text-sm); }
+  @media (min-width: 800px) { .question-grid { grid-template-columns: repeat(3, 1fr); } .comparison-grid { grid-template-columns: repeat(2, 1fr); } .access { grid-template-columns: 1fr 1.2fr; gap: 4rem; } }
+</style>

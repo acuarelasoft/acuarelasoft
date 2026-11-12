@@ -1,0 +1,47 @@
+---
+import type { ServiceText } from '../data/services';
+import { serviceShared } from '../data/services';
+
+interface Props {
+  text: ServiceText;
+  iconBg: string;
+}
+
+const { text, iconBg } = Astro.props;
+const cardBgs = [iconBg, 'bg-salmon/15', 'bg-mint/20', 'bg-acuarela-400/10'];
+---
+
+<section class="relative py-20 px-6 md:py-28 overflow-hidden reveal" aria-labelledby="features-heading">
+  <div
+    class="absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 70% 55% at 20% 35%, color-mix(in srgb, var(--color-acuarela-500) 8%, transparent) 0%, transparent 65%);"
+  >
+  </div>
+
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 id="features-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-3">
+        {serviceShared.features_title}
+      </h2>
+    </div>
+
+    <ul class="grid sm:grid-cols-2 gap-8 list-none">
+      {
+        text.features.map((feature, i) => (
+          <li>
+            <article class="bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5 h-full">
+              <div class={`w-11 h-11 mb-5 flex items-center justify-center rounded-soft ${cardBgs[i % cardBgs.length]}`}>
+                <svg class="w-5 h-5 text-petroleo" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 class="font-heading text-ink text-lg font-semibold mb-2">{feature.title}</h3>
+              <p class="font-sans text-ink/70 text-base leading-relaxed">{feature.desc}</p>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+import type { ServiceText } from '../data/services';
+import { serviceShared } from '../data/services';
+
+interface Props {
+  text: ServiceText;
+}
+
+const { text } = Astro.props;
+---
+
+<section class="relative py-24 px-6 md:py-32 overflow-hidden reveal" aria-labelledby="cta-heading">
+  <div
+    class="absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 65% 65% at 25% 50%, color-mix(in srgb, var(--color-salmon) 14%, transparent) 0%, transparent 62%), radial-gradient(ellipse 50% 50% at 80% 40%, color-mix(in srgb, var(--color-mint) 10%, transparent) 0%, transparent 58%);"
+  >
+  </div>
+
+  <div
+    class="absolute inset-0 -z-10 opacity-40"
+    aria-hidden="true"
+    style="background-image: linear-gradient(to right, color-mix(in srgb, var(--color-petroleo) 5%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--color-petroleo) 5%, transparent) 1px, transparent 1px); background-size: 32px 32px;"
+  >
+  </div>
+
+  <div class="max-w-2xl mx-auto text-center">
+    <span
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-pill border border-salmon/50 bg-salmon/10 text-coral-ink font-sans text-sm font-semibold mb-6"
+    >
+      <span class="size-2 rounded-full bg-salmon"></span>
+      {serviceShared.cta_badge}
+    </span>
+
+    <h2 id="cta-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4 leading-tight">
+      {text.cta_title}
+    </h2>
+    <p class="font-sans text-ink/60 text-lg mb-10">{serviceShared.cta_section_subtitle}</p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 md:mb-24">
+      <a
+        href="/contacto/"
+        class="bg-petroleo text-paper font-sans font-semibold px-8 py-3.5 rounded-soft transition-all duration-200 hover:bg-petroleo-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petroleo text-base text-center"
+      >
+        {serviceShared.cta_contact}
+      </a>
+    </div>
+  </div>
+</section>

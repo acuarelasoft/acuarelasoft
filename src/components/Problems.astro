@@ -1,0 +1,45 @@
+---
+import { landing } from '../data/landing';
+---
+
+<section id="problemas" class="relative py-20 px-6 overflow-hidden reveal" aria-labelledby="problems-heading">
+  <div
+    class="absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 80% 60% at 20% 30%, color-mix(in srgb, var(--color-acuarela-500) 10%, transparent) 0%, transparent 70%);"
+  >
+  </div>
+
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 id="problems-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-4">
+        {landing.problems_title}
+      </h2>
+      <p class="font-sans text-ink/60 text-lg max-w-xl mx-auto">{landing.problems_subtitle}</p>
+    </div>
+
+    <dl class="grid gap-8">
+      {
+        landing.pains.map((item) => (
+          <div class="bg-paper rounded-soft p-6 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5">
+            <dt class="font-heading text-ink text-lg font-semibold mb-2 flex items-start gap-3">
+              <span class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-salmon/20 text-coral-ink">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  />
+                </svg>
+              </span>
+              {item.pain}
+            </dt>
+            <dd class="font-sans text-ink/70 leading-relaxed ml-11">
+              <span class="text-petroleo font-medium">→</span> {item.solution}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+---
+import { webDesignOffering } from '../data/services';
+
+const o = webDesignOffering;
+---
+
+<section class="relative py-20 px-6 md:py-28 overflow-hidden reveal" aria-labelledby="offering-heading">
+  <div
+    class="absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 70% 55% at 80% 20%, color-mix(in srgb, var(--color-acuarela-500) 8%, transparent) 0%, transparent 65%);"
+  >
+  </div>
+
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 id="offering-heading" class="font-heading text-ink text-3xl md:text-4xl font-bold mb-3">{o.title}</h2>
+      <p class="font-sans text-ink/60 text-lg max-w-2xl mx-auto">{o.subtitle}</p>
+    </div>
+
+    <ul class="grid md:grid-cols-2 gap-8 list-none">
+      <li>
+        <article
+          class="flex flex-col h-full bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5"
+        >
+          <span
+            class="inline-flex self-start items-center gap-2 px-3 py-1 rounded-pill bg-mint/20 text-petroleo font-sans text-xs font-semibold mb-5"
+          >
+            {o.design_badge}
+          </span>
+          <h3 class="font-heading text-ink text-xl font-semibold mb-3">{o.design_title}</h3>
+          <p class="font-sans text-ink/70 text-base leading-relaxed grow">{o.design_desc}</p>
+          <p class="mt-6 font-heading text-petroleo text-lg font-semibold">{o.design_price}</p>
+        </article>
+      </li>
+
+      <li>
+        <article
+          class="flex flex-col h-full bg-paper rounded-soft p-8 border border-acuarela-400/15 transition-all duration-250 hover:border-acuarela-400/30 hover:-translate-y-0.5"
+        >
+          <span
+            class="inline-flex self-start items-center gap-2 px-3 py-1 rounded-pill bg-salmon/15 text-petroleo font-sans text-xs font-semibold mb-5"
+          >
+            {o.photo_badge}
+          </span>
+          <h3 class="font-heading text-ink text-xl font-semibold mb-3">{o.photo_title}</h3>
+          <p class="font-sans text-ink/70 text-base leading-relaxed grow">{o.photo_desc}</p>
+          <p class="mt-6 font-heading text-petroleo text-lg font-semibold">{o.photo_price}</p>
+        </article>
+      </li>
+
+    </ul>
+
+    <p class="mt-8 text-center font-sans text-ink/50 text-sm">{o.pricing_disclaimer}</p>
+  </div>
+</section>

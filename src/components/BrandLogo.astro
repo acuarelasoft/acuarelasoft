@@ -1,0 +1,63 @@
+---
+interface Props {
+  size?: 'md' | 'lg';
+}
+
+const { size = 'md' } = Astro.props;
+const isLarge = size === 'lg';
+const width = isLarge ? 240 : 200;
+const height = isLarge ? 81 : 67;
+const imageWidths = [200, 240, 300, 400, 480, 600];
+const srcset = (format: 'webp' | 'png') =>
+  imageWidths.map((width) => `/logos/acuarelasoft-${width}.${format} ${width}w`).join(', ');
+---
+
+<a
+  href="/"
+  aria-label="AcuarelaSoft - Sitios web para negocios"
+  class:list={['brand-logo', { 'brand-logo-large': isLarge }]}
+>
+  <picture>
+    <source type="image/webp" srcset={srcset('webp')} sizes={`${width}px`} />
+    <img
+      src={`/logos/acuarelasoft-${width}.png`}
+      srcset={srcset('png')}
+      sizes={`${width}px`}
+      width={width}
+      height={height}
+      alt="AcuarelaSoft"
+      loading={isLarge ? 'lazy' : 'eager'}
+      decoding="async"
+    />
+  </picture>
+</a>
+
+<style>
+  .brand-logo {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 200px;
+    max-width: 100%;
+    vertical-align: middle;
+    border-radius: var(--radius-soft);
+  }
+
+  .brand-logo-large {
+    width: 240px;
+  }
+
+  picture,
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  .brand-logo:focus-visible {
+    outline: 2px solid var(--color-petroleo);
+    outline-offset: 5px;
+  }
+</style>
